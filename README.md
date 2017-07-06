@@ -1,12 +1,12 @@
 # 2017年7月5日
 
 ## window下快速新建文件及文件夹buildfolder.bat批处理
-md 新建文件夹
-cd 定位到文件夹
-rd 删除文件夹
-type NUL > 文件名 新建空文件
-del 删除文件
-exit 运行后退出界面
+md 新建文件夹  
+cd 定位到文件夹  
+rd 删除文件夹  
+type NUL > 文件名 新建空文件  
+del 删除文件  
+exit 运行后退出界面  
 ```
 md src
 md src\images
@@ -25,16 +25,16 @@ exit
 ```
 
 ## 配置自动刷新预览脚本
-nodemon 监听多个文件时候需要些两次--watch
-监听webpack.dev.config.js文件改动自动重新加载配置
---exec \"\" 运行插件配置信息
---content-base src 服务器在src所在位置（但是实际上生成的文件在内存，怎么配置都可以）
---progress cmd控制台带进度条
---colors cmd控制台带颜色
---inline webpack-dev-server的模式2
---port 8080 配置端口
---open 打开浏览器
---hot 模块热加载 （注意：设置后无法自动刷新）
+nodemon 监听多个文件时候需要些两次--watch  
+监听webpack.dev.config.js文件改动自动重新加载配置  
+--exec \"\" 运行插件配置信息  
+--content-base src 服务器在src所在位置（但是实际上生成的文件在内存，怎么配置都可以）  
+--progress cmd控制台带进度条  
+--colors cmd控制台带颜色  
+--inline webpack-dev-server的模式2  
+--port 8080 配置端口  
+--open 打开浏览器  
+--hot 模块热加载 （注意：设置后无法自动刷新）  
 
 
 ```    
@@ -52,8 +52,8 @@ npm run dev (git中配置了快捷键rs)
 npm run pub (git中配置了快捷键rd)
 
 ## 问题1：如何解决html中img图片没有hash
-方法1：var imgUrl = require('./images/1.gif');缺点：没法添加hash
-方法2：npm i html-withimg-loader -D
+方法1：var imgUrl = require('./images/1.gif');缺点：没法添加hash  
+方法2：npm i html-withimg-loader -D  
 ```
 {
     //https://www.npmjs.com/package/html-withimg-loader

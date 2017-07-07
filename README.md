@@ -25,8 +25,8 @@ exit
 ```
 
 ## 配置自动刷新预览脚本
-nodemon 监听多个文件时候需要些两次--watch，但是监控packge.json实际内容还是旧的
-监听webpack.config.js文件改动可以自动重新加载配置
+nodemon 监听多个文件时候需要些两次--watch，但是监控packge.json实际内容还是旧的  
+监听webpack.config.js文件改动可以自动重新加载配置  
 --exec \"\" 运行插件配置信息  
 --content-base src 服务器所在位置，当有绝对路径时候必须设置
 --progress cmd控制台带进度条  
@@ -62,7 +62,7 @@ npm run pub (git中配置了快捷键rd)
 
 ## 问题5：link中的favicon的路径不对
 
-## 问题6：如何在手机端调试预览
+## 问题6：如何在手机端调试预览 手机上直接输入192.168.1.100:8080
 ```
     在package.json文件中设置路由器中固定的ip，可以在本地设置
     --content-base src --host 192.168.1.100 --port 8080 --open

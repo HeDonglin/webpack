@@ -240,21 +240,30 @@
 	"buffers":
 	[
 		{
-			"file": "webpack.dev.config.js",
+			"file": "webpack.config.js",
 			"settings":
 			{
-				"buffer_size": 9448,
+				"buffer_size": 9627,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/C/Users/Administrator/Desktop/webpack2-multiple-entry/config/webpack.config.js",
+			"file": "package.json",
 			"settings":
 			{
-				"buffer_size": 4439,
+				"buffer_size": 1928,
 				"encoding": "UTF-8",
-				"line_ending": "Windows"
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "README.md",
+			"settings":
+			{
+				"buffer_size": 15117,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -574,9 +583,13 @@
 	],
 	"file_history":
 	[
+		"/G/webpack/dist/main/b.html",
+		"/C/Users/Administrator/.bashrc",
+		"/G/webpack/webpack.config.js",
+		"/G/webpack/package.json",
+		"/C/Users/Administrator/Desktop/webpack2-multiple-entry/config/webpack.config.js",
 		"/G/webpack/1.js",
 		"/G/webpack/dist/index.html",
-		"/G/webpack/dist/main/b.html",
 		"/G/webpack/1.thml",
 		"/G/webpack/4.js",
 		"/G/webpack/5.js",
@@ -591,17 +604,13 @@
 		"/C/Users/Administrator/Desktop/2.js",
 		"/G/webpack/src/a.html",
 		"/G/webpack/src/main/b.html",
-		"/G/webpack/webpack.config.js",
 		"/G/webpack/webpack.dev.config.js",
 		"/G/webpack/src/index.html",
-		"/C/Users/Administrator/Desktop/webpack2-multiple-entry/config/webpack.config.js",
 		"/G/webpack/src/main/b.js",
 		"/G/webpack/README.md",
 		"/C/Users/Administrator/Desktop/1.js",
 		"/G/webpack/dist/a.html",
 		"/G/webpack/src/a.js",
-		"/G/webpack/package.json",
-		"/C/Users/Administrator/.bashrc",
 		"/C/Users/Administrator/Desktop/webpack2-multiple-entry/config/postcss.config.js",
 		"/C/Users/Administrator/Desktop/webpack2-multiple-entry/package.json",
 		"/C/Users/Administrator/Desktop/webpack2-multiple-entry/src/js/lib/url.js",
@@ -790,6 +799,32 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"w3c0929",
+			".dev",
+			"单数",
+			"单页面",
+			"alias",
+			"vendor",
+			"ventor",
+			"provide",
+			"jsCommon",
+			"jsChunk",
+			"cssBrowsers",
+			"/\\/src\\/publics\\//",
+			"entryHtml",
+			"getEntry",
+			"dd",
+			"igFolder",
+			"null",
+			"getEntry",
+			"entryHtml",
+			"entryJs",
+			"getEntry",
+			"igFolder",
+			"entry",
+			"igFolder",
+			"文件夹",
+			"igFloader",
 			"regg",
 			"entry",
 			"Entry",
@@ -891,33 +926,7 @@
 			"glob",
 			"Glob",
 			"在bash",
-			"ROOT",
-			"const",
-			"htmlChunk",
-			"exChunks",
-			"不太明白",
-			"entries",
-			"index",
-			"main",
-			"\":",
-			"main",
-			"prefix",
-			"dddddddddddddd",
-			"dddddddddddd",
-			"publicPath",
-			"htmlTemplate",
-			"htmlFilename",
-			"htmlTemplate",
-			"htmlFilename",
-			"index",
-			"filename",
-			"index",
-			"publics",
-			"htmlName",
-			"htmlTemplate",
-			"htmlName",
-			"fontHash",
-			"imgHash"
+			"ROOT"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -940,19 +949,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "webpack.dev.config.js",
+					"file": "webpack.config.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9448,
+						"buffer_size": 9627,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7164,
-								7164
+								4119,
+								4119
 							]
 						],
 						"settings":
@@ -962,27 +971,12 @@
 							{
 								"close":
 								{
-									"1":
-									[
-										7473,
-										7474
-									]
 								},
 								"icon":
 								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/dot.png",
-										"brackethighlighter.default"
-									]
 								},
 								"open":
 								{
-									"1":
-									[
-										7110,
-										7111
-									]
 								},
 								"unmatched":
 								{
@@ -1056,7 +1050,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 8325.0,
+						"translation.y": 4830.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1064,19 +1058,19 @@
 				},
 				{
 					"buffer": 1,
-					"file": "/C/Users/Administrator/Desktop/webpack2-multiple-entry/config/webpack.config.js",
+					"file": "package.json",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4439,
+						"buffer_size": 1928,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								89,
-								89
+								71,
+								71
 							]
 						],
 						"settings":
@@ -1086,12 +1080,27 @@
 							{
 								"close":
 								{
+									"1":
+									[
+										1926,
+										1927
+									]
 								},
 								"icon":
 								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/dot.png",
+										"brackethighlighter.default"
+									]
 								},
 								"open":
 								{
+									"1":
+									[
+										0,
+										1
+									]
 								},
 								"unmatched":
 								{
@@ -1140,13 +1149,13 @@
 								7,
 								225,
 								7,
-								2,
-								20,
-								57,
-								56,
-								14,
-								234,
-								40,
+								7,
+								6,
+								17,
+								50,
+								4,
+								98,
+								252,
 								113,
 								1,
 								133,
@@ -1157,14 +1166,132 @@
 								3,
 								46
 							],
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
-							"is_init_dirty_state": false,
-							"origin_encoding": "UTF-8",
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "README.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15117,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2172,
+								2172
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										3481,
+										3484
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/dot.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										1474,
+										1477
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"c_time":
+							[
+								128,
+								3,
+								99,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								113,
+								0,
+								67,
+								10,
+								7,
+								225,
+								7,
+								4,
+								19,
+								8,
+								58,
+								10,
+								196,
+								60,
+								113,
+								1,
+								133,
+								113,
+								2,
+								82,
+								113,
+								3,
+								46
+							],
+							"syntax": "Packages/MarkdownEditing/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 3360.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,

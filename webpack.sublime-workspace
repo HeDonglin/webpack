@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"201",
+				"2017-07-08"
+			],
+			[
 				"re",
 				"require\trequire()"
 			],
@@ -243,7 +247,7 @@
 			"file": "webpack.config.js",
 			"settings":
 			{
-				"buffer_size": 9627,
+				"buffer_size": 9783,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -253,6 +257,23 @@
 			"settings":
 			{
 				"buffer_size": 1928,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/index.html",
+			"settings":
+			{
+				"buffer_size": 1907,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/index.js",
+			"settings":
+			{
+				"buffer_size": 299,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -261,9 +282,18 @@
 			"file": "README.md",
 			"settings":
 			{
-				"buffer_size": 15117,
+				"buffer_size": 11822,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "newFloder.bat",
+			"settings":
+			{
+				"buffer_size": 255,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -579,14 +609,17 @@
 	},
 	"expanded_folders":
 	[
-		"/G/webpack"
+		"/G/webpack",
+		"/G/webpack/src"
 	],
 	"file_history":
 	[
+		"/G/webpack/package.json",
+		"/G/webpack/newFloder.bat",
+		"/G/webpack/README.md",
 		"/G/webpack/dist/main/b.html",
 		"/C/Users/Administrator/.bashrc",
 		"/G/webpack/webpack.config.js",
-		"/G/webpack/package.json",
 		"/C/Users/Administrator/Desktop/webpack2-multiple-entry/config/webpack.config.js",
 		"/G/webpack/1.js",
 		"/G/webpack/dist/index.html",
@@ -607,7 +640,6 @@
 		"/G/webpack/webpack.dev.config.js",
 		"/G/webpack/src/index.html",
 		"/G/webpack/src/main/b.js",
-		"/G/webpack/README.md",
 		"/C/Users/Administrator/Desktop/1.js",
 		"/G/webpack/dist/a.html",
 		"/G/webpack/src/a.js",
@@ -709,8 +741,7 @@
 		"/G/abc/webpack.dev.config.js",
 		"/G/webpack/src/index.scss",
 		"/G/webpack/src/index.less",
-		"/D/Program Files/Sublime Text 3126/Data/Packages/User/sbc-api-my-javascript.sublime-settings",
-		"/G/webpack/buildfolder.bat"
+		"/D/Program Files/Sublime Text 3126/Data/Packages/User/sbc-api-my-javascript.sublime-settings"
 	],
 	"find":
 	{
@@ -799,6 +830,25 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"glob",
+			"## webpack优点\n```\n对 CommonJS 、AMD 、ES6的语法做了兼容；\n\n对js、css、图片等资源文件都支持打包；\n\n串联式模块加载器 以及插件机制 ，让其具有更好的灵活性和扩展性，例如提供对CoffeeScript、ES6的支持；\n\n有独立的配置文件webpack.config.js；\n\n可以将代码切割成不同的chunk，实现按需加载，降低了初始化时间；\n\n支持 SourceUrls 和 SourceMaps，易于调试；\n\n具有强大的Plugin接口，大多是内部插件，使用起来比较灵活；\n\nwebpack 使用异步 IO 并具有多级缓存。这使得 webpack 很快且在增量编译上更加快；\n\nwebpack最常用与spa应用，主要是vue和react，其实它就非常像Browserify，但是将应用打包为多个文件。如果单页面应用有多个页面，那么用户只从下载对应页面的代码. 当他么访问到另一个页面, 他们不需要重新下载通用的代码。\n```",
+			"问题",
+			"插件：",
+			"条件：",
+			"UglifyJsPlugin",
+			"ProvidePlugin",
+			"vendor",
+			"igFolder",
+			"jquery",
+			"cssConfig",
+			"htmlConfig",
+			"生成",
+			"开发环境不压缩css",
+			"publices",
+			"vendors",
+			"modules",
+			"main",
+			"fonts",
 			"w3c0929",
 			".dev",
 			"单数",
@@ -907,26 +957,7 @@
 			"HappyPack",
 			"const",
 			"IsDev",
-			"ExtractTextPlugin",
-			"optimize.CommonsChunkPlugin",
-			"name: 'common'",
-			"PostcssConfigPath",
-			"entryJs",
-			"config",
-			"PostcssConfigPath",
-			"getEntryHtml",
-			"HappyThreadPool",
-			"configPlugins",
-			"EntryHtml",
-			"entryHtml",
-			"entries",
-			"NODE_ENV",
-			"globPath",
-			"getEntryHtml",
-			"glob",
-			"Glob",
-			"在bash",
-			"ROOT"
+			"ExtractTextPlugin"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -953,15 +984,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9627,
+						"buffer_size": 9783,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4119,
-								4119
+								2053,
+								2053
 							]
 						],
 						"settings":
@@ -1050,7 +1081,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4830.0,
+						"translation.y": 1850.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1059,7 +1090,7 @@
 				{
 					"buffer": 1,
 					"file": "package.json",
-					"semi_transient": false,
+					"semi_transient": true,
 					"settings":
 					{
 						"buffer_size": 1928,
@@ -1069,8 +1100,8 @@
 						"selection":
 						[
 							[
-								71,
-								71
+								270,
+								270
 							]
 						],
 						"settings":
@@ -1080,27 +1111,12 @@
 							{
 								"close":
 								{
-									"1":
-									[
-										1926,
-										1927
-									]
 								},
 								"icon":
 								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/dot.png",
-										"brackethighlighter.default"
-									]
 								},
 								"open":
 								{
-									"1":
-									[
-										0,
-										1
-									]
 								},
 								"unmatched":
 								{
@@ -1172,27 +1188,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 630.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "README.md",
+					"file": "src/index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 15117,
+						"buffer_size": 1907,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2172,
-								2172
+								181,
+								181
 							]
 						],
 						"settings":
@@ -1204,8 +1220,8 @@
 								{
 									"1":
 									[
-										3481,
-										3484
+										176,
+										180
 									]
 								},
 								"icon":
@@ -1220,12 +1236,230 @@
 								{
 									"1":
 									[
-										1474,
-										1477
+										39,
+										43
 									]
 								},
 								"unmatched":
 								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"c_time":
+							[
+								128,
+								3,
+								99,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								113,
+								0,
+								67,
+								10,
+								7,
+								225,
+								7,
+								5,
+								0,
+								20,
+								0,
+								3,
+								189,
+								37,
+								113,
+								1,
+								133,
+								113,
+								2,
+								82,
+								113,
+								3,
+								46
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 299,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								136,
+								136
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"c_time":
+							[
+								128,
+								3,
+								99,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								113,
+								0,
+								67,
+								10,
+								7,
+								225,
+								7,
+								5,
+								0,
+								20,
+								0,
+								3,
+								206,
+								39,
+								113,
+								1,
+								133,
+								113,
+								2,
+								82,
+								113,
+								3,
+								46
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "README.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11822,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11822,
+								11822
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+									"1":
+									[
+										7032,
+										7033
+									]
 								}
 							},
 							"bracket_highlighter.regions":
@@ -1288,13 +1522,122 @@
 								3,
 								46
 							],
-							"syntax": "Packages/MarkdownEditing/Markdown.tmLanguage"
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/MarkdownEditing/Markdown.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3360.0,
+						"translation.y": 17541.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "newFloder.bat",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 255,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								60,
+								60
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"c_time":
+							[
+								128,
+								3,
+								99,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								113,
+								0,
+								67,
+								10,
+								7,
+								225,
+								7,
+								4,
+								19,
+								20,
+								22,
+								13,
+								133,
+								146,
+								113,
+								1,
+								133,
+								113,
+								2,
+								82,
+								113,
+								3,
+								46
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/Batch File/Batch File.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -1391,7 +1734,7 @@
 		[
 			[
 				"",
-				"I:\\笔记\\note.sublime-project"
+				"I:\\笔记\\blog.sublime-project"
 			]
 		],
 		"width": 475.0

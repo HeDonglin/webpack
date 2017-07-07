@@ -57,9 +57,9 @@ exit
         "nodemon": "^1.11.0",
 ```
 说明：
-```js
+```
 -- watch 监听多个文件时候需要些两次--watch （优点：可以监控webpack.config.js文件;缺点：无法监控packge.json）  
---exec \"\" 运行插件配置信息  
+--exec \"\" 运行插件配置信息
 
 其他命令：
 运行非节点脚本

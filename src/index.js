@@ -6,6 +6,7 @@ require('./index.css');
 require('./less.less');
 require('./scss.scss');
 require('./sass.sass');
+require('./app.vue');
 console.log('日志');
 console.log($('#less'));
 

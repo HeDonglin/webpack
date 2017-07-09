@@ -2,8 +2,11 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-07-10 02:03:22
+ * @Last Modified time: 2017-07-10 06:02:34
  */
+// 判断开发环境还是生产环境
+var ENV = process.env.NODE_ENV; //package.json中配置的参数
+var isDev = (ENV === 'dev') ? true : false;
 
 // @see https://github.com/expressjs/express
 // node.js Web应用框架
@@ -78,6 +81,12 @@ app.use(hotMiddleware);
 //     res.sendfile(__dirname + '/src/' + req.url);
 // });
 
+if(isDev){
+    var files=['./src/**'];
+}else{
+    var files=['./dist/**'];
+}
+
 // app.use('/', router);
 var port = 3000;
 var bs = require('browser-sync').create();
@@ -87,6 +96,6 @@ var server = app.listen(port, function() {
         ui: false,
         notify: false,
         proxy: 'localhost:' + port,
-        files: ['./src/**']
+        files: files
     });
 });

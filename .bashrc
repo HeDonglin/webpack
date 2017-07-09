@@ -5,6 +5,7 @@ alias md="mkdir"
 alias tg="git tag"
 alias rs="npm run dev"
 alias rd="npm run pub"
+alias rsd="npm run web"
 # 常用命令
 alias a="git add"
 alias s="git status"

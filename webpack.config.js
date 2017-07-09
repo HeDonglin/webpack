@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-07-10 01:06:53
+ * @Last Modified time: 2017-07-10 06:20:24
  */
 
 // 引入模块及插件
@@ -158,16 +158,6 @@ var configPlugins = [
         allChunks: true
     }),
 
-    // 删除文件
-    new CleanWebpackPlugin(
-        delFolder, //匹配删除的文件
-        {
-            root: R, //根目录
-            verbose: true, //开启在控制台输出信息
-            dry: false //启用删除文件
-        }
-    ),
-
     // 允许错误不打断程序
     new webpack.NoEmitOnErrorsPlugin(),
 
@@ -195,7 +185,7 @@ var config = {
     devtool: isDev ? 'cheap-module-eval-source-map' : 'false',
     // @see https://doc.webpack-china.org/configuration/resolve/
     resolve: {
-        // 省去入口文件中的后缀名
+        // 省去入口文件中的后缀名，入口文件类型
         extensions: ['.js'],
         // 别名，随时可以调用
         // 将模块名和路径对应起来,在js中直接通过require('模块名'),就可以把文件加载进去了
@@ -222,115 +212,112 @@ var config = {
     //加载模块
     module: {
         rules: [{
-                //@see https://www.npmjs.com/package/html-withimg-loader
-                test: /\.html$/,
-                loader: 'html-withimg-loader?min=false', //由于默认会压缩，这个任务交给了html-webpack-plugin处理，min=false(不压缩)，exclude=../(对../的路径都不处理)，deep=false关闭include语法嵌套子页面的功能参数之间用&
+            //@see https://www.npmjs.com/package/html-withimg-loader
+            test: /\.html$/,
+            loader: 'html-withimg-loader?min=false', //由于默认会压缩，这个任务交给了html-webpack-plugin处理，min=false(不压缩)，exclude=../(对../的路径都不处理)，deep=false关闭include语法嵌套子页面的功能参数之间用&
 
-            }, {
-                // @see https://github.com/babel/babel-loader
-                test: /\.js$/,
-                loader: 'babel-loader?id=js',
-                // exclude: path.resolve(R, 'node_modules'), //编译时，不需要编译哪些文件
-                /*include: path.resolve(R, 'src'),//在config中查看编译时，需要包含哪些文件*/
-                options: {
-                    presets: ['latest'] //按照最新的ES6语法规则去转换
-                }
-            },
-             {
-                        // @see https://vue-loader.vuejs.org/zh-cn/configurations/pre-processors.html
-                        // @see https://github.com/yyx990803/vue-template-explorer
-                        // @see https://github.com/vuejs/vue-loader/blob/master/docs/en/configurations/extract-css.md
-                        // @see https://vue-loader.vuejs.org/zh-cn/configurations/extract-css.html#
-                        // @see https://github.com/vuejs/vue-html-loader
-                        test: /\.vue$/,
-                        loader: 'vue-loader',
-                        options: {
-                            extractCSS: true, //提取<style>标签内的css
-                            cssSourceMap: false, //默认（true）
-                            loaders: {
-                                // 'js': 'babel-loader?{"id":"js","presets":["lastest"]}',
-                                // 'html': 'vue-html-loader',
-                                // 'css': ExtractTextPlugin.extract({
-                                //     fallback: 'style-loader?id=css', //编译后用什么loader来提取css文件
-                                //     use: ['css-loader?id=css', {
-                                //         loader: 'postcss-loader?id=css&sourceMap=false',
-                                //         options: cssConfig
-                                //     }]
-                                // }),
-                                // 'less': ExtractTextPlugin.extract({
-                                //     fallback: 'style-loader?id=css',
-                                //     use: ['css-loader?id=css', {
-                                //         loader: 'postcss-loader?id=css&sourceMap=false',
-                                //         options: cssConfig
-                                //     }, 'less-loader?id=css']
-                                // }),
-                                // 'scss': ExtractTextPlugin.extract({ //sass-loader 默认解析 SCSS 语法
-                                //     fallback: 'style-loader?id=css',
-                                //     use: ['css-loader?id=css', {
-                                //         loader: 'postcss-loader?id=css&sourceMap=false',
-                                //         options: cssConfig
-                                //     }, 'sass-loader?id=css']
-                                // }),
-                                // 'sass': ExtractTextPlugin.extract({ //sass-loader 默认解析 SCSS 语法
-                                //     fallback: 'style-loader?id=css',
-                                //     use: ['css-loader?id=css', {
-                                //         loader: 'postcss-loader?id=css&sourceMap=false',
-                                //         options: cssConfig
-                                //     }, 'sass-loader?indentedSyntax&id=css']
-                                // }),
-                            }
-                        }
-                    },
-            {
-                test: /\.(png|jpg|gif)$/,
-                loader: 'url-loader', //三个参数prefix(添加前缀)，mimetype（设置文件的MIME类型）limit（在小于指定值转为bash64）
-                options: {
-                    limit: imgNum,
-                    name: imgPath + '[name].[ext]' + imgHash,
-
-                }
-            }, {
-                test: /\.(eot|woff|woff2|svg|ttf)([\?]?.*)$/,
-                loader: 'file-loader',
-                options: {
-                    limit: fontNum,
-                    name: fontPath + '[name].[ext]' + fontHash,
-                }
-            }, {
-                // @see https://github.com/webpack-contrib/extract-text-webpack-plugin
-                // @see https://github.com/jeffdrumgod/cssloader
-                // @see https://github.com/webpack-contrib/style-loader
-                // @see https://github.com/postcss/postcss-loader
-                test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader?id=css', //编译后用什么loader来提取css文件
-                    use: ['css-loader?id=css', {
-                        loader: 'postcss-loader?id=css&sourceMap=false',
-                        options: cssConfig
-                    }]
-                })
-            }, {
-                // @see https://github.com/webpack-contrib/less-loader
-                test: /\.less$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader?id=css',
-                    use: ['css-loader?id=css', {
-                        loader: 'postcss-loader?id=css&sourceMap=false',
-                        options: cssConfig
-                    }, 'less-loader?id=css']
-                })
-            }, {
-                // @see https://github.com/webpack-contrib/sass-loader
-                test: /\.(scss|sass)$/,
-                use: ExtractTextPlugin.extract({ //sass-loader 默认解析 SCSS 语法
-                    fallback: 'style-loader?id=css',
-                    use: ['css-loader?id=css', {
-                        loader: 'postcss-loader?id=css&sourceMap=false',
-                        options: cssConfig
-                    }, 'sass-loader?id=css']
-                })
+        }, {
+            // @see https://github.com/babel/babel-loader
+            test: /\.js$/,
+            loader: 'babel-loader?id=js',
+            // exclude: path.resolve(R, 'node_modules'), //编译时，不需要编译哪些文件
+            /*include: path.resolve(R, 'src'),//在config中查看编译时，需要包含哪些文件*/
+            options: {
+                presets: ['latest'] //按照最新的ES6语法规则去转换
             }
-        ]
+        }, {
+            // @see https://vue-loader.vuejs.org/zh-cn/configurations/pre-processors.html
+            // @see https://github.com/yyx990803/vue-template-explorer
+            // @see https://github.com/vuejs/vue-loader/blob/master/docs/en/configurations/extract-css.md
+            // @see https://vue-loader.vuejs.org/zh-cn/configurations/extract-css.html#
+            // @see https://github.com/vuejs/vue-html-loader
+            test: /\.vue$/,
+            loader: 'vue-loader',
+            options: {
+                extractCSS: true, //提取<style>标签内的css
+                cssSourceMap: false, //默认（true）
+                loaders: {
+                    // 'js': 'babel-loader?{"id":"js","presets":["lastest"]}',
+                    // 'html': 'vue-html-loader',
+                    // 'css': ExtractTextPlugin.extract({
+                    //     fallback: 'style-loader?id=css', //编译后用什么loader来提取css文件
+                    //     use: ['css-loader?id=css', {
+                    //         loader: 'postcss-loader?id=css&sourceMap=false',
+                    //         options: cssConfig
+                    //     }]
+                    // }),
+                    // 'less': ExtractTextPlugin.extract({
+                    //     fallback: 'style-loader?id=css',
+                    //     use: ['css-loader?id=css', {
+                    //         loader: 'postcss-loader?id=css&sourceMap=false',
+                    //         options: cssConfig
+                    //     }, 'less-loader?id=css']
+                    // }),
+                    // 'scss': ExtractTextPlugin.extract({ //sass-loader 默认解析 SCSS 语法
+                    //     fallback: 'style-loader?id=css',
+                    //     use: ['css-loader?id=css', {
+                    //         loader: 'postcss-loader?id=css&sourceMap=false',
+                    //         options: cssConfig
+                    //     }, 'sass-loader?id=css']
+                    // }),
+                    // 'sass': ExtractTextPlugin.extract({ //sass-loader 默认解析 SCSS 语法
+                    //     fallback: 'style-loader?id=css',
+                    //     use: ['css-loader?id=css', {
+                    //         loader: 'postcss-loader?id=css&sourceMap=false',
+                    //         options: cssConfig
+                    //     }, 'sass-loader?indentedSyntax&id=css']
+                    // }),
+                }
+            }
+        }, {
+            test: /\.(png|jpg|gif)$/,
+            loader: 'url-loader', //三个参数prefix(添加前缀)，mimetype（设置文件的MIME类型）limit（在小于指定值转为bash64）
+            options: {
+                limit: imgNum,
+                name: imgPath + '[name].[ext]' + imgHash,
+
+            }
+        }, {
+            test: /\.(eot|woff|woff2|svg|ttf)([\?]?.*)$/,
+            loader: 'file-loader',
+            options: {
+                limit: fontNum,
+                name: fontPath + '[name].[ext]' + fontHash,
+            }
+        }, {
+            // @see https://github.com/webpack-contrib/extract-text-webpack-plugin
+            // @see https://github.com/jeffdrumgod/cssloader
+            // @see https://github.com/webpack-contrib/style-loader
+            // @see https://github.com/postcss/postcss-loader
+            test: /\.css$/,
+            use: ExtractTextPlugin.extract({
+                fallback: 'style-loader?id=css', //编译后用什么loader来提取css文件
+                use: ['css-loader?id=css', {
+                    loader: 'postcss-loader?id=css&sourceMap=false',
+                    options: cssConfig
+                }]
+            })
+        }, {
+            // @see https://github.com/webpack-contrib/less-loader
+            test: /\.less$/,
+            use: ExtractTextPlugin.extract({
+                fallback: 'style-loader?id=css',
+                use: ['css-loader?id=css', {
+                    loader: 'postcss-loader?id=css&sourceMap=false',
+                    options: cssConfig
+                }, 'less-loader?id=css']
+            })
+        }, {
+            // @see https://github.com/webpack-contrib/sass-loader
+            test: /\.(scss|sass)$/,
+            use: ExtractTextPlugin.extract({ //sass-loader 默认解析 SCSS 语法
+                fallback: 'style-loader?id=css',
+                use: ['css-loader?id=css', {
+                    loader: 'postcss-loader?id=css&sourceMap=false',
+                    options: cssConfig
+                }, 'sass-loader?id=css']
+            })
+        }]
     },
     performance: {
         hints: false
@@ -345,6 +332,18 @@ if (isDev) { // 开发环境下才调试
     for (var i in config.entry) {
         config.entry[i].unshift('webpack-hot-middleware/client?reload=true');
     }
+}
+
+if (ENV !== "web") {
+    configPlugins.push( // 删除文件
+        new CleanWebpackPlugin(
+            delFolder, //匹配删除的文件
+            {
+                root: R, //根目录
+                verbose: true, //开启在控制台输出信息
+                dry: false //启用删除文件
+            }
+        ));
 }
 
 // 获取js路径

@@ -1,10 +1,14 @@
 /*
 * @Author: Administrator
-* @Date:   2017-07-05 00:20:00
+* @Date:   2017-07-09 20:48:33
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-07-06 02:47:33
+* @Last Modified time: 2017-07-09 23:41:36
 */
-.css {
-    background: #099;
+div {
+    background: #800;
     color: #fff;
+    border: 1px solid #000;
+    outline: 1px solid #900;
+    margin: 10px;
+    padding: 10px;
 }

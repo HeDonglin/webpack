@@ -1,13 +1,11 @@
-/*
-* @Author: Administrator
-* @Date:   2017-07-05 00:20:00
-* @Last Modified by:   w3c0929
-* @Last Modified time: 2017-07-08 02:08:56
-*/
-
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+// import Vue from 'vue'
+// import App from './app'
 require('./index.css');
-require('./publics/layout.css');
-require('./index.less');
-require('./index.scss');
-require('./publics/layout.js');
-console.log($('#id'));
+require('./less.less');
+require('./scss.scss');
+require('./sass.sass');
+console.log('日志');
+console.log($('#less'));
+

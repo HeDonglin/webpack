@@ -2,23 +2,37 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-07-08 03:16:30
+ * @Last Modified time: 2017-07-10 01:06:53
  */
 
 // 引入模块及插件
+// @see http://nodejs.cn/api/path.html
 var path = require('path'); //引入path模块
+// @see https://github.com/webpack/webpack
 var webpack = require('webpack'); //引入webpack插件
+// @see https://github.com/jantimon/html-webpack-plugin
 var HtmlWebpackPlugin = require('html-webpack-plugin'); //新建html
+// @see https://www.npmjs.com/package/vue-template-compiler (可以不用require进来)
+var vueTemplateCompiler = require('vue-template-compiler');
+// @see https://github.com/webpack-contrib/extract-text-webpack-plugin
 var ExtractTextPlugin = require("extract-text-webpack-plugin"); //抽离css
+// @see https://github.com/johnagan/clean-webpack-plugin
 var CleanWebpackPlugin = require('clean-webpack-plugin'); //删除文件夹
-var WebpackDevServer = require('webpack-dev-server'); //实时预览
+// @see https://github.com/kevlened/copy-webpack-plugin
 var CopyWebpackPlugin = require("copy-webpack-plugin"); //拷贝文件
+// @see https://github.com/jonathantneal/precss
 var precss = require('precss'); //CSS预处理器
+// @see https://github.com/MoOx/postcss-cssnext
 var cssnext = require('cssnext'); //下一代CSS书写方式兼容现在浏览器
+// @see https://github.com/cssdream/cssgrace
 var cssgrace = require('cssgrace'); //让CSS兼容旧版IE
+// @see https://github.com/leodido/postcss-clean
 var postcssclean = require('postcss-clean'); //压缩css文件
+// @see https://github.com/postcss/autoprefixer
 var autoprefixer = require('autoprefixer'); //为CSS补全浏览器前缀
+// @see https://github.com/isaacs/node-glob
 var glob = require('glob'); //同步执行
+// @see https://github.com/amireh/happypack
 var happyPack = require('happyPack'); //多进程，加速代码构建
 
 // 设置文件夹
@@ -27,22 +41,16 @@ var S = path.resolve(R, 'src'); //入口文件夹
 var D = path.resolve(R, 'dist'); //出口文件夹
 
 // 常规配置
-
 var igFolder = /\/src\/publics\//; // 忽略的某个文件夹所有的内容，相对于根目录
 var htmlExChunks = ['']; //哪些js文件不需要嵌入到html中例如：['c']表示c.js不嵌入,['']表示都嵌入;
 var delFolder = ['dist/']; //需删除的文件夹
+var publicPath = '/';
 // 出口路径
 var imgPath = '/images/'; //相对于出口文件夹，如果采用绝对路径必须指定--content-base src
 var fontPath = '/fonts/'; //相对于出口文件夹，如果采用绝对路径必须指定--content-base src
 var cssPath = 'css/'; //相对于出口文件夹，如果采用绝对路径必须指定--content-base src
 var jsPath = 'js/'; //相对于出口文件夹，如果采用绝对路径必须指定--content-base src
 var mapPath = 'maps/'; //相对于出口文件夹，如果采用绝对路径必须指定--content-base src
-// 配置哈希值
-var jsHash = '[chunkhash:8]';
-var cssHash = '[contenthash:8]';
-var fontHash = '[hash:8]';
-var imgHash = '[hash:8]';
-var mapHash = '[chunkhash:8]';
 
 // 小于设置的值转为bash64,单位为Bytes,10000B=9.77KB
 var imgNum = 100;
@@ -59,16 +67,29 @@ var vendor = { //第三方库
     "window.jQuery": "jquery"
 };
 
-// 入口文件，函数调用；
-var entryHtml = getEntryHtml('./src/**/*.html'); //获取html路径，相对于根目录
-var entryJs = getEntry('./src/**/*.js'); //获取js路径，相对于根目录
-
 // 判断开发环境还是生产环境
 var ENV = process.env.NODE_ENV; //package.json中配置的参数
 var isDev = (ENV === 'dev') ? true : false;
 var happyThreadPool = happyPack.ThreadPool({
     size: (isDev ? 4 : 10) //进程池数量
 });
+
+if (isDev) {
+    // 配置哈希值
+    var jsHash = '';
+    var cssHash = '';
+    var fontHash = '';
+    var imgHash = '';
+    var mapHash = '';
+} else {
+    // 配置哈希值
+    var jsHash = '?v=[chunkhash:8]';
+    var cssHash = '?v=[contenthash:8]';
+    var fontHash = '?v=[hash:8]';
+    var imgHash = '?v=[hash:8]';
+    var mapHash = '?v=[chunkhash:8]';
+}
+
 
 // 开发环境不压缩css,生成环境压缩
 var cssConfig = isDev ? {
@@ -81,11 +102,17 @@ var cssConfig = isDev ? {
 };
 
 
+
+// 入口文件，函数调用；
+var entryHtml = getEntryHtml('./src/**/*.html'); //获取所有html文件的路径(数组)，相对于根目录
+var entryJs = getEntry('./src/**/*.js'); //获取所有的js路径(对象)，相对于根目录
+
+
+
 // 插件封装在数组里
 var configPlugins = [
     new happyPack({
-        id: 'js', //给
-        // @see https://github.com/amireh/happyPack
+        id: 'js',
         threadPool: happyThreadPool,
         loaders: ['babel-loader']
     }),
@@ -97,6 +124,7 @@ var configPlugins = [
     }),
 
     // 抽离相同模块到指定文件中
+    // @see https://doc.webpack-china.org/plugins/commons-chunk-plugin/
     new webpack.optimize.CommonsChunkPlugin({
         name: jsName,
         // chunks: jsChunk, //省略该属性，那么默认所有块；
@@ -105,19 +133,28 @@ var configPlugins = [
         // children:true //（不能和chunks同时使用）从公共文件中抽离到各自引用的页面
     }),
 
-    // 查找相等或近似的模块，避免在最终生成的文件中出现重复的模块
-    new webpack.optimize.DedupePlugin(),
-
-    //压缩js
-    new webpack.optimize.UglifyJsPlugin({
-        compress: {
-            warnings: false
+    // @see https://doc.webpack-china.org/plugins/define-plugin/
+    // @see https://vuefe.cn/v2/guide/installation.html#术语说明
+    // 使用 webpack 的 DefinePlugin 来指定生产环境，以便在压缩时可以让 UglifyJS 自动删除代码块内的警告语句(vue中)
+    new webpack.DefinePlugin({
+        'process.env': {
+            NODE_ENV: JSON.stringify('production')
         }
     }),
 
-    // @see https://github.com/webpack/webpack/tree/master/examples/multiple-entry-points-commons-chunk-css-bundle
+    // @see https://doc.webpack-china.org/guides/migrating/
+    // 压缩js
+    // 配置中，压缩后是否添加sourceMap和warnings同时设置才有意义，警告能够对应到正确的代码行,如果devtool设置为false，那么这里true就没作用了；
+    new webpack.optimize.UglifyJsPlugin({
+        sourceMap: true, //默认为false
+        compress: {
+            warnings: true, //默认为 false
+        }
+    }),
+
+    // @see https://github.com/webpack-contrib/extract-text-webpack-plugin
     new ExtractTextPlugin({
-        filename: cssPath + '[name].css?v=' + cssHash,
+        filename: cssPath + '[name].css' + cssHash,
         allChunks: true
     }),
 
@@ -143,20 +180,19 @@ var configPlugins = [
         to: path.resolve(D, 'favicon.ico')
     }]),
 
-    // 当模块热替换（HMR）时在浏览器控制台输出对用户更友好的模块名字信息
-    new webpack.NamedModulesPlugin()
 ];
 
-// 向数组里添加新的插件
+// 向插件配置(数组)里添加新的插件，自动生成n个html文件
 entryHtml.forEach(function(v) {
     configPlugins.push(new HtmlWebpackPlugin(v));
 });
 
 // js处理
 var config = {
-    // 开发环境推荐：cheap-module-eval-source-map
+    // 开发环境推荐：cheap-module-eval-source-map(在开发环境监测)
     // 生产环境推荐：cheap-module-source-map
-    devtool: isDev ? 'cheap-module-eval-source-map' : 'cheap-module-source-map',
+    // false为关闭所有sourcemap的输出
+    devtool: isDev ? 'cheap-module-eval-source-map' : 'false',
     // @see https://doc.webpack-china.org/configuration/resolve/
     resolve: {
         // 省去入口文件中的后缀名
@@ -178,74 +214,138 @@ var config = {
         path: D, //输出文件夹
         //部署到CDN上可以用到publicPath
         // publicPath: "./", //所有url路径添加；
-        filename: jsPath + '[name].js?v=' + jsHash, //
-        sourceMapFilename: mapPath + '[name].map?v=' + mapHash
+        filename: jsPath + '[name].js' + jsHash, //
+        sourceMapFilename: mapPath + '[name].map' + mapHash,
+        publicPath: publicPath, // 必要HMR知道在哪里可以载热的更新块
     },
 
     //加载模块
     module: {
         rules: [{
-            //@see https://www.npmjs.com/package/html-withimg-loader
-            test: /\.html$/,
-            loader: 'html-withimg-loader?min=false', //由于默认会压缩，这个任务交给了html-webpack-plugin处理，min=false(不压缩)，exclude=../(对../的路径都不处理)，deep=false关闭include语法嵌套子页面的功能参数之间用&
+                //@see https://www.npmjs.com/package/html-withimg-loader
+                test: /\.html$/,
+                loader: 'html-withimg-loader?min=false', //由于默认会压缩，这个任务交给了html-webpack-plugin处理，min=false(不压缩)，exclude=../(对../的路径都不处理)，deep=false关闭include语法嵌套子页面的功能参数之间用&
 
-        }, {
-            test: /\.js$/,
-            loader: 'babel-loader?id=js',
-            /*exclude: path.resolve(R, 'node_modules'), //编译时，不需要编译哪些文件*/
-            /*include: path.resolve(R, 'src'),//在config中查看编译时，需要包含哪些文件*/
-            query: {
-                presets: ['latest'] //按照最新的ES6语法规则去转换
-            }
-        }, {
-            test: /\.(png|jpg|gif)$/,
-            loader: 'url-loader', //三个参数prefix(添加前缀)，mimetype（设置文件的MIME类型）limit（在小于指定值转为bash64）
-            options: {
-                limit: imgNum,
-                name: imgPath + '[name].[ext]?v=' + imgHash,
+            }, {
+                // @see https://github.com/babel/babel-loader
+                test: /\.js$/,
+                loader: 'babel-loader?id=js',
+                // exclude: path.resolve(R, 'node_modules'), //编译时，不需要编译哪些文件
+                /*include: path.resolve(R, 'src'),//在config中查看编译时，需要包含哪些文件*/
+                options: {
+                    presets: ['latest'] //按照最新的ES6语法规则去转换
+                }
+            },
+             {
+                        // @see https://vue-loader.vuejs.org/zh-cn/configurations/pre-processors.html
+                        // @see https://github.com/yyx990803/vue-template-explorer
+                        // @see https://github.com/vuejs/vue-loader/blob/master/docs/en/configurations/extract-css.md
+                        // @see https://vue-loader.vuejs.org/zh-cn/configurations/extract-css.html#
+                        // @see https://github.com/vuejs/vue-html-loader
+                        test: /\.vue$/,
+                        loader: 'vue-loader',
+                        options: {
+                            extractCSS: true, //提取<style>标签内的css
+                            cssSourceMap: false, //默认（true）
+                            loaders: {
+                                // 'js': 'babel-loader?{"id":"js","presets":["lastest"]}',
+                                // 'html': 'vue-html-loader',
+                                // 'css': ExtractTextPlugin.extract({
+                                //     fallback: 'style-loader?id=css', //编译后用什么loader来提取css文件
+                                //     use: ['css-loader?id=css', {
+                                //         loader: 'postcss-loader?id=css&sourceMap=false',
+                                //         options: cssConfig
+                                //     }]
+                                // }),
+                                // 'less': ExtractTextPlugin.extract({
+                                //     fallback: 'style-loader?id=css',
+                                //     use: ['css-loader?id=css', {
+                                //         loader: 'postcss-loader?id=css&sourceMap=false',
+                                //         options: cssConfig
+                                //     }, 'less-loader?id=css']
+                                // }),
+                                // 'scss': ExtractTextPlugin.extract({ //sass-loader 默认解析 SCSS 语法
+                                //     fallback: 'style-loader?id=css',
+                                //     use: ['css-loader?id=css', {
+                                //         loader: 'postcss-loader?id=css&sourceMap=false',
+                                //         options: cssConfig
+                                //     }, 'sass-loader?id=css']
+                                // }),
+                                // 'sass': ExtractTextPlugin.extract({ //sass-loader 默认解析 SCSS 语法
+                                //     fallback: 'style-loader?id=css',
+                                //     use: ['css-loader?id=css', {
+                                //         loader: 'postcss-loader?id=css&sourceMap=false',
+                                //         options: cssConfig
+                                //     }, 'sass-loader?indentedSyntax&id=css']
+                                // }),
+                            }
+                        }
+                    },
+            {
+                test: /\.(png|jpg|gif)$/,
+                loader: 'url-loader', //三个参数prefix(添加前缀)，mimetype（设置文件的MIME类型）limit（在小于指定值转为bash64）
+                options: {
+                    limit: imgNum,
+                    name: imgPath + '[name].[ext]' + imgHash,
 
+                }
+            }, {
+                test: /\.(eot|woff|woff2|svg|ttf)([\?]?.*)$/,
+                loader: 'file-loader',
+                options: {
+                    limit: fontNum,
+                    name: fontPath + '[name].[ext]' + fontHash,
+                }
+            }, {
+                // @see https://github.com/webpack-contrib/extract-text-webpack-plugin
+                // @see https://github.com/jeffdrumgod/cssloader
+                // @see https://github.com/webpack-contrib/style-loader
+                // @see https://github.com/postcss/postcss-loader
+                test: /\.css$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader?id=css', //编译后用什么loader来提取css文件
+                    use: ['css-loader?id=css', {
+                        loader: 'postcss-loader?id=css&sourceMap=false',
+                        options: cssConfig
+                    }]
+                })
+            }, {
+                // @see https://github.com/webpack-contrib/less-loader
+                test: /\.less$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader?id=css',
+                    use: ['css-loader?id=css', {
+                        loader: 'postcss-loader?id=css&sourceMap=false',
+                        options: cssConfig
+                    }, 'less-loader?id=css']
+                })
+            }, {
+                // @see https://github.com/webpack-contrib/sass-loader
+                test: /\.(scss|sass)$/,
+                use: ExtractTextPlugin.extract({ //sass-loader 默认解析 SCSS 语法
+                    fallback: 'style-loader?id=css',
+                    use: ['css-loader?id=css', {
+                        loader: 'postcss-loader?id=css&sourceMap=false',
+                        options: cssConfig
+                    }, 'sass-loader?id=css']
+                })
             }
-        }, {
-            test: /\.(eot|woff|woff2|svg|ttf)([\?]?.*)$/,
-            loader: 'file-loader',
-            options: {
-                limit: fontNum,
-                name: fontPath + '[name].[ext]?v=' + fontHash,
-            }
-        }, {
-            test: /\.css$/,
-            use: ExtractTextPlugin.extract({
-                fallback: 'style-loader?=css', //编译后用什么loader来提取css文件
-                use: ['css-loader?=css', {
-                    loader: 'postcss-loader?=css',
-                    options: cssConfig
-                }]
-            })
-        }, {
-            test: /\.less$/,
-            use: ExtractTextPlugin.extract({
-                fallback: 'style-loader?=css',
-                use: ['css-loader?=css', {
-                    loader: 'postcss-loader?=css',
-                    options: cssConfig
-                }, 'less-loader?=css']
-            })
-        }, {
-            test: /\.scss$/,
-            use: ExtractTextPlugin.extract({
-                fallback: 'style-loader?=css',
-                use: ['css-loader?=css', {
-                    loader: 'postcss-loader?=css',
-                    options: cssConfig
-                }, 'sass-loader?=css']
-            })
-        }]
+        ]
     },
-    plugins: configPlugins,
-    devServer: {
-        disableHostCheck: true //手机端访问必须设置
-    }
+    performance: {
+        hints: false
+    },
+    plugins: configPlugins
 };
+
+if (isDev) { // 开发环境下才调试
+    //添加HMR，以及输出对用户更友好的模块名字信息
+    configPlugins.push(new webpack.HotModuleReplacementPlugin(), new webpack.NamedModulesPlugin());
+
+    for (var i in config.entry) {
+        config.entry[i].unshift('webpack-hot-middleware/client?reload=true');
+    }
+}
 
 // 获取js路径
 function getEntry(globPath) {
@@ -254,7 +354,7 @@ function getEntry(globPath) {
         var basename = path.basename(entry, path.extname(entry));
         var pathname = path.dirname(entry);
         if (!entry.match(igFolder)) {
-            entries[basename] = pathname + '/' + basename;
+            entries[basename] = [pathname + '/' + basename];
         }
     });
     return entries;

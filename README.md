@@ -19,7 +19,6 @@ webpack 使用异步 IO 并具有多级缓存。这使得 webpack 很快且在�
 webpack最常用与spa应用，主要是vue和react，其实它就非常像Browserify，但是将应用打包为多个文件。如果单页面应用有多个页面，那么用户只从下载对应页面的代码. 当他么访问到另一个页面, 他们不需要重新下载通用的代码。
 ```
 
-
 ## window下快速新建文件及文件夹用newFloder.bat批处理
 目的：快速建立项目所需要的文件及文件夹，免去一个个新建  
 命令：
@@ -536,7 +535,7 @@ alias ggun="cg user.name"
 
 ```
 
-## webpack.confing.js
+## webpack.confing.js （使用了webpack-dev-server）
 ```js
 /*
  * @Author: hedonglin

@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-07-10 06:02:34
+ * @Last Modified time: 2017-07-12 00:18:12
  */
 // 判断开发环境还是生产环境
 var ENV = process.env.NODE_ENV; //package.json中配置的参数
@@ -18,6 +18,10 @@ var webpack = require('webpack');
 // @see https://github.com/webpack/webpack-dev-middleware
 // 处理内存中的文件
 var webpackDevMiddleware = require('webpack-dev-middleware');
+
+// @see https://www.npmjs.com/package/webpack-dev-server
+// 当服务停止时候自动关闭浏览器
+var webpackDevServer = require('webpack-dev-server');
 
 // @see https://github.com/glenjamin/webpack-hot-middleware
 // 实现浏览器的无刷新更新
@@ -81,13 +85,17 @@ app.use(hotMiddleware);
 //     res.sendfile(__dirname + '/src/' + req.url);
 // });
 
-if(isDev){
-    var files=['./src/**'];
-}else{
-    var files=['./dist/**'];
+if (isDev) {
+    var files = ['!./src/**/*.html']; //排除对html文件的监控css文件对于bs-html-injector插件关键作用
+} else {
+    var files = ['./dist/**'];
 }
 
 // app.use('/', router);
+var webpackDevMiddleware = require("webpack-dev-middleware");
+var config = require("./webpack.config.js");
+var webpackDevServer = require('webpack-dev-server');
+
 var port = 3000;
 var bs = require('browser-sync').create();
 var server = app.listen(port, function() {
@@ -96,6 +104,15 @@ var server = app.listen(port, function() {
         ui: false,
         notify: false,
         proxy: 'localhost:' + port,
-        files: files
+        files: files, //监听文件
+        logPrefix: "控制台", //控制台日志前缀
+        online: false, //browser-sync的某些功能需要联网，如果是离线设置为false，则可以以减少启动时间
+        browser: ["chrome"], //打开多个用逗号隔开
+        plugins: [{
+            module: "bs-html-injector",
+            options: {
+                files: ["src/**"] //注入html文件对于bs-html-injector插件关键作用
+            }
+        }]
     });
 });

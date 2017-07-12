@@ -1,23 +1,10 @@
-## webpack优点
+## 2017-07-11 解决了[Nodemon]中发生的错误
+原因：  
 ```
-对 CommonJS 、AMD 、ES6的语法做了兼容；
-
-对js、css、图片等资源文件都支持打包；
-
-串联式模块加载器 以及插件机制 ，让其具有更好的灵活性和扩展性，例如提供对CoffeeScript、ES6的支持；
-
-有独立的配置文件webpack.config.js；
-
-可以将代码切割成不同的chunk，实现按需加载，降低了初始化时间；
-
-支持 SourceUrls 和 SourceMaps，易于调试；
-
-具有强大的Plugin接口，大多是内部插件，使用起来比较灵活；
-
-webpack 使用异步 IO 并具有多级缓存。这使得 webpack 很快且在增量编译上更加快；
-
-webpack最常用与spa应用，主要是vue和react，其实它就非常像Browserify，但是将应用打包为多个文件。如果单页面应用有多个页面，那么用户只从下载对应页面的代码. 当他么访问到另一个页面, 他们不需要重新下载通用的代码。
+[Nodemon] failed to start process, possible issue with exec arguments
 ```
+解决办法：添加||true  
+例如：--exec \"webpack --config webpack.config.js ||true\"  
 
 ## window下快速新建文件及文件夹用newFloder.bat批处理
 目的：快速建立项目所需要的文件及文件夹，免去一个个新建  

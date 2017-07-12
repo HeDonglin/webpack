@@ -14,7 +14,7 @@
             "command": "cross-env NODE_ENV=dev nodemon --watch server.js --watch package.json --watch webpack.config.js server.js"
         },
         "pub": {
-            "command": "cross-env NODE_ENV=production nodemon --watch webpack.config.js --watch package.json --exec \"webpack --config webpack.config.js\" "
+            "command": "cross-env NODE_ENV=production nodemon --watch webpack.config.js --watch package.json --exec \"webpack --config webpack.config.js ||true\" "
         },
         "web": {
             "command": "cross-env NODE_ENV=web nodemon --watch server.js --watch package.json --watch webpack.config.js server.js"
@@ -31,6 +31,7 @@
         "better-npm-run": "0.0.15",
         "body-parser": "^1.17.2",
         "browser-sync": "^2.18.12",
+        "bs-html-injector": "^3.0.3",
         "chokidar": "^1.7.0",
         "clean-webpack-plugin": "^0.1.16",
         "copy-webpack-plugin": "^4.0.1",
@@ -58,9 +59,12 @@
         "url-loader": "^0.5.9",
         "vue-loader": "^13.0.0",
         "vue-router": "^2.7.0",
+        "vue-style-loader": "^3.0.1",
         "vue-template-compiler": "^2.3.4",
+        "vue-template-loader": "^0.3.1",
         "webpack": "^3.1.0",
         "webpack-dev-middleware": "^1.11.0",
+        "webpack-dev-server": "^2.5.1",
         "webpack-hot-middleware": "^2.18.2"
     },
     "dependencies": {

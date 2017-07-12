@@ -1,18 +1,26 @@
 <template>
-    <div id="app">{{ message }}</div>
+<!--     <div id="app">
+        <img src="./assets/logo.png">
+        <h1>{{ msg }}</h1>
+        <abc></abc>
+    </div> -->
 </template>
-
-<script>
-var app = new Vue({
-    el: '#app',
-    data: {
-        message: 'Hello Vue!'
-    }
-})
+<script type="text/javascript">
+    // import abc from './component/abc.vue'
+    // export default {
+    //     data() {
+    //             return {
+    //                 msg: 'Hello Vue!'
+    //             }
+    //         },
+    //         components: {
+    //             abc
+    //         }
+    // }
+    // console.log('日志');
 </script>
-
 <style>
-    #app {
-        color: #090;
+    body {
+        background: #000;
     }
 </style>

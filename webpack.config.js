@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-07-10 06:20:24
+ * @Last Modified time: 2017-07-11 18:10:33
  */
 
 // 引入模块及插件
@@ -46,11 +46,11 @@ var htmlExChunks = ['']; //哪些js文件不需要嵌入到html中例如：['c']
 var delFolder = ['dist/']; //需删除的文件夹
 var publicPath = '/';
 // 出口路径
+var jsPath = './'; //相对于出口文件夹，如果采用绝对路径必须指定--content-base src
+var mapPath = 'maps/'; //相对于出口文件夹，如果采用绝对路径必须指定--content-base src
 var imgPath = '/images/'; //相对于出口文件夹，如果采用绝对路径必须指定--content-base src
 var fontPath = '/fonts/'; //相对于出口文件夹，如果采用绝对路径必须指定--content-base src
 var cssPath = 'css/'; //相对于出口文件夹，如果采用绝对路径必须指定--content-base src
-var jsPath = 'js/'; //相对于出口文件夹，如果采用绝对路径必须指定--content-base src
-var mapPath = 'maps/'; //相对于出口文件夹，如果采用绝对路径必须指定--content-base src
 
 // 小于设置的值转为bash64,单位为Bytes,10000B=9.77KB
 var imgNum = 100;
@@ -76,11 +76,11 @@ var happyThreadPool = happyPack.ThreadPool({
 
 if (isDev) {
     // 配置哈希值
-    var jsHash = '';
-    var cssHash = '';
-    var fontHash = '';
-    var imgHash = '';
-    var mapHash = '';
+    var jsHash = '?v=[hash:8]';
+    var cssHash = '?v=[contenthash:8]';
+    var fontHash = '?v=[hash:8]';
+    var imgHash = '?v=[hash:8]';
+    var mapHash = '?v=[chunkhash:8]';
 } else {
     // 配置哈希值
     var jsHash = '?v=[chunkhash:8]';
@@ -91,10 +91,8 @@ if (isDev) {
 }
 
 
-// 开发环境不压缩css,生成环境压缩
-var cssConfig = isDev ? {
-    plugins: [precss] //因使用了postcss-loader需保留precss
-} : {
+// css 多重功能配置
+var cssConfig = {
     plugins: [precss, cssnext, cssgrace, postcssclean, autoprefixer({
         browsers: [cssBrowsers], //前缀兼容
         remove: true //自动清除过时前缀
@@ -120,7 +118,7 @@ var configPlugins = [
     new happyPack({
         id: 'css',
         threadPool: happyThreadPool,
-        loaders: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader', 'sass-loader']
+        loaders: ['vue-style-loader', 'style-loader', 'css-loader', 'postcss-loader', 'less-loader', 'sass-loader']
     }),
 
     // 抽离相同模块到指定文件中
@@ -153,6 +151,7 @@ var configPlugins = [
     }),
 
     // @see https://github.com/webpack-contrib/extract-text-webpack-plugin
+    // 提取css到单独的文件中
     new ExtractTextPlugin({
         filename: cssPath + '[name].css' + cssHash,
         allChunks: true
@@ -172,7 +171,7 @@ var configPlugins = [
 
 ];
 
-// 向插件配置(数组)里添加新的插件，自动生成n个html文件
+// 向插件配置(数组)里添加新的插件,每个入口文件就是生成一个html或者是预先设置的html文件，该插件主要把生成的css和js文件插入link和script到模板文件中;
 entryHtml.forEach(function(v) {
     configPlugins.push(new HtmlWebpackPlugin(v));
 });
@@ -185,18 +184,19 @@ var config = {
     devtool: isDev ? 'cheap-module-eval-source-map' : 'false',
     // @see https://doc.webpack-china.org/configuration/resolve/
     resolve: {
-        // 省去入口文件中的后缀名，入口文件类型
+        // 省去入口文件中的后缀名，入口文件类型,我们通过js导入所有类型文件；
         extensions: ['.js'],
         // 别名，随时可以调用
         // 将模块名和路径对应起来,在js中直接通过require('模块名'),就可以把文件加载进去了
         alias: { //可以全局require到任何文件中，也可以用于入口文件
-            "A": path.resolve(S, 'a'),
-            "B": path.resolve(S, 'main/b'),
-            "C": path.resolve(S, 'main/c'),
+            // "A": path.resolve(S, 'a'),
+            // "B": path.resolve(S, 'main/b'),
+            // "C": path.resolve(S, 'main/c'),
+            'vue$': 'vue/dist/vue.js'
         },
     },
 
-    // 入口文件
+    // 入口文件，如果入口文件类型有多种那么在extensions中设置后缀；
     entry: entryJs,
 
     // 出口文件配置
@@ -214,17 +214,19 @@ var config = {
         rules: [{
             //@see https://www.npmjs.com/package/html-withimg-loader
             test: /\.html$/,
-            loader: 'html-withimg-loader?min=false', //由于默认会压缩，这个任务交给了html-webpack-plugin处理，min=false(不压缩)，exclude=../(对../的路径都不处理)，deep=false关闭include语法嵌套子页面的功能参数之间用&
-
+            loader: 'html-withimg-loader?min=false' //由于默认会压缩，这个任务交给了html-webpack-plugin处理，min=false(不压缩)，exclude=../(对../的路径都不处理)，deep=false关闭include语法嵌套子页面的功能参数之间用&
         }, {
             // @see https://github.com/babel/babel-loader
             test: /\.js$/,
-            loader: 'babel-loader?id=js',
+            use: [{
+                loader: 'babel-loader?id=js',
+                options: {
+                    presets: ['latest'] //按照最新的ES6语法规则去转换
+                }
+            }]
+
             // exclude: path.resolve(R, 'node_modules'), //编译时，不需要编译哪些文件
             /*include: path.resolve(R, 'src'),//在config中查看编译时，需要包含哪些文件*/
-            options: {
-                presets: ['latest'] //按照最新的ES6语法规则去转换
-            }
         }, {
             // @see https://vue-loader.vuejs.org/zh-cn/configurations/pre-processors.html
             // @see https://github.com/yyx990803/vue-template-explorer
@@ -232,42 +234,10 @@ var config = {
             // @see https://vue-loader.vuejs.org/zh-cn/configurations/extract-css.html#
             // @see https://github.com/vuejs/vue-html-loader
             test: /\.vue$/,
-            loader: 'vue-loader',
+            loader: 'vue-loader', //它会根据 lang 属性自动推断出要使用的 loaders
             options: {
                 extractCSS: true, //提取<style>标签内的css
-                cssSourceMap: false, //默认（true）
-                loaders: {
-                    // 'js': 'babel-loader?{"id":"js","presets":["lastest"]}',
-                    // 'html': 'vue-html-loader',
-                    // 'css': ExtractTextPlugin.extract({
-                    //     fallback: 'style-loader?id=css', //编译后用什么loader来提取css文件
-                    //     use: ['css-loader?id=css', {
-                    //         loader: 'postcss-loader?id=css&sourceMap=false',
-                    //         options: cssConfig
-                    //     }]
-                    // }),
-                    // 'less': ExtractTextPlugin.extract({
-                    //     fallback: 'style-loader?id=css',
-                    //     use: ['css-loader?id=css', {
-                    //         loader: 'postcss-loader?id=css&sourceMap=false',
-                    //         options: cssConfig
-                    //     }, 'less-loader?id=css']
-                    // }),
-                    // 'scss': ExtractTextPlugin.extract({ //sass-loader 默认解析 SCSS 语法
-                    //     fallback: 'style-loader?id=css',
-                    //     use: ['css-loader?id=css', {
-                    //         loader: 'postcss-loader?id=css&sourceMap=false',
-                    //         options: cssConfig
-                    //     }, 'sass-loader?id=css']
-                    // }),
-                    // 'sass': ExtractTextPlugin.extract({ //sass-loader 默认解析 SCSS 语法
-                    //     fallback: 'style-loader?id=css',
-                    //     use: ['css-loader?id=css', {
-                    //         loader: 'postcss-loader?id=css&sourceMap=false',
-                    //         options: cssConfig
-                    //     }, 'sass-loader?indentedSyntax&id=css']
-                    // }),
-                }
+                cssSourceMap: false //默认（true）
             }
         }, {
             test: /\.(png|jpg|gif)$/,
@@ -322,18 +292,29 @@ var config = {
     performance: {
         hints: false
     },
-    plugins: configPlugins
+    plugins: configPlugins,
+    // devServer:{
+    //     hot:true,
+    //     inline:true
+    // }
 };
 
 if (isDev) { // 开发环境下才调试
     //添加HMR，以及输出对用户更友好的模块名字信息
     configPlugins.push(new webpack.HotModuleReplacementPlugin(), new webpack.NamedModulesPlugin());
 
+    var hotAccept = function() {
+        if (module.hot) {
+            // 模块自己就接收更新
+            module.hot.accept();
+        }
+    };
+
     for (var i in config.entry) {
         config.entry[i].unshift('webpack-hot-middleware/client?reload=true');
     }
 }
-
+// webpack-hot-middleware/client?reload=true
 if (ENV !== "web") {
     configPlugins.push( // 删除文件
         new CleanWebpackPlugin(
@@ -382,9 +363,9 @@ function getEntryHtml(globPath) {
         // 排除某个写文件
         if (!entry.match(igFolder)) {
             entries.push({
-                filename: entry.split('/').splice(2).join('/'), //出口文件名及路径
-                template: entry,
-                chunks: [jsName, basename], //把哪些js文件嵌入到html
+                filename: entry.split('/').splice(2).join('/'), //最终生成的文件，出口文件名及路径
+                template: entry, //入口文件解析模板文件（默认为.ejs或者是.html）
+                chunks: [jsName, basename], //把哪些js文件，用script标签放到模板文件中
                 // favicon: 'src/favicon.ico', //网站图标（相对于根目录所以要加src,但多页面开发中自动嵌入head后地址不更改，也不能相对设置为绝对路径，不太友好，手动设置使用copy插件处理）
                 inject: true, //把template模板注入到哪个标签,true | 'head' | 'body' | false
                 hash: false, //是否添加hash，默认(false)

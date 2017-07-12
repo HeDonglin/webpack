@@ -244,15 +244,6 @@
 	"buffers":
 	[
 		{
-			"file": "webpack.config.js",
-			"settings":
-			{
-				"buffer_size": 13271,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "server.js",
 			"settings":
 			{
@@ -262,30 +253,11 @@
 			}
 		},
 		{
-			"file": "package.json",
+			"file": "webpack.config.js",
 			"settings":
 			{
-				"buffer_size": 2481,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "const path = require('path');\n\nfunction hmr(source) {\n    const context = this;\n    this.cacheable();\n    let entryFile = [];\n    const entry = this.options.entry;\n    const customEntrypoint = this.options.entryPoint;\n\n    if (customEntrypoint) {\n        const isValid = Object.prototype.toString.call(customEntrypoint) === ['object String'];\n        if (!isValid) {\n            throw new Error('The entryPoint should be a valid string');\n        }\n        entryFile = customEntrypoint;\n    } else {\n        const entryType = Object.prototype.toString.call(entry);\n        if (entryType === '[object Array]') {\n            // Falling back to the last item in the entry array\n            entryFile = entry[entry.length - 1];\n        } else if (entryType === '[object Object]') {\n            // Named entries.\n            // 可能有多个命名条目。 所以迭代。\n            Object.keys(entry).forEach((namedEntry) => {\n                const namedEntryType = Object.prototype.toString.call(entry[namedEntry]);\n                // 现在，这个名为项既可以是一个单一串或一串阵列\n                if (namedEntryType === '[object String]') {\n                    entryFile.push(entry[namedEntry]);\n                } else if (namedEntryType === '[object Array]') {\n                    // 我们采取的最后一个项目从名阵列项\n                    entryFile.push(entry[namedEntry][entry[namedEntry].length - 1]);\n                }\n            });\n        }\n    }\n\n    let isQualified;\n    const contextBase = context.context;\n\n    if (Object.prototype.toString.call(entryFile) === '[object String]') {\n        const basePath = path.resolve(contextBase, path.basename(entryFile));\n        isQualified = basePath === context.resourcePath;\n    } else if (Object.prototype.toString.call(entryFile) === '[object Array]') {\n        isQualified = entryFile\n            .some(item => context.resourcePath === path.resolve(contextBase, path.basename(item)));\n    }\n\n    if (isQualified) {\n        return `${source}\\r\\n\\r\\nif (module.hot) {\\r\\nmodule.hot.accept();\\r\\n}\\r\\n`;\n    }\n    return source;\n}\n\nmodule.exports = hmr;\n",
-			"file": "/C/Users/Administrator/Downloads/hot-module-accept-master/index.js",
-			"file_size": 2157,
-			"file_write_time": 131442642014509849,
-			"settings":
-			{
-				"buffer_size": 2038,
+				"buffer_size": 13308,
 				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/I/b/b/package.json",
-			"settings":
-			{
-				"buffer_size": 2488,
 				"line_ending": "Unix"
 			}
 		},
@@ -293,7 +265,7 @@
 			"file": "src/index.html",
 			"settings":
 			{
-				"buffer_size": 333,
+				"buffer_size": 324,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -302,7 +274,7 @@
 			"file": "src/index.css",
 			"settings":
 			{
-				"buffer_size": 280,
+				"buffer_size": 285,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -311,8 +283,16 @@
 			"file": "src/index.js",
 			"settings":
 			{
-				"buffer_size": 470,
+				"buffer_size": 319,
 				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 2528,
 				"line_ending": "Unix"
 			}
 		}
@@ -413,9 +393,13 @@
 	"command_palette":
 	{
 		"height": 428.0,
-		"last_filter": "pin",
+		"last_filter": "prvo",
 		"selected_items":
 		[
+			[
+				"prvo",
+				"PackageResourceViewer: Open Resource"
+			],
 			[
 				"pin",
 				"Package Control: Install Package"
@@ -435,10 +419,6 @@
 			[
 				"remov",
 				"Package Control: Remove Package"
-			],
-			[
-				"prvo",
-				"PackageResourceViewer: Open Resource"
 			],
 			[
 				"rem",
@@ -630,17 +610,22 @@
 	"expanded_folders":
 	[
 		"/G/webpack",
-		"/G/webpack/src",
-		"/G/webpack/src/component",
-		"/I/b/b",
-		"/I/b/b/build",
-		"/I/b/b/dist/static",
-		"/I/b/b/dist/static/js",
-		"/I/b/b/test",
-		"/I/b/b/test/unit"
+		"/G/webpack/src"
 	],
 	"file_history":
 	[
+		"/G/webpack/webpack.config.js",
+		"/D/Program Files/Sublime Text 3126/Data/Packages/LocalizedMenu/README.md",
+		"/G/webpack/src/index.js",
+		"/G/webpack/src/index.css",
+		"/G/webpack/src/index.html",
+		"/I/b/b/package.json",
+		"/C/Users/Administrator/Downloads/hot-module-accept-master/index.js",
+		"/G/webpack/package.json",
+		"/C/Users/Administrator/.ssh/id_rsa.pub",
+		"/C/Users/Administrator/.ssh/id2_rsa.pub",
+		"/D/Program Files/Sublime Text 3126/Data/Packages/LocalizedMenu/.no-sublime-package",
+		"/D/Program Files/Sublime Text 3126/Data/Packages/ZZZZZZZZ-LocalizedMenu/Main.sublime-menu",
 		"/I/b/b/build/dev-server.js",
 		"/G/webpack/src/app.vue",
 		"/I/b/b/build/check-versions.js",
@@ -672,7 +657,6 @@
 		"/C/Users/Administrator/Downloads/html-injector-master/lodash.custom.js",
 		"/C/Users/Administrator/Downloads/html-injector-master/index.js",
 		"/C/Users/Administrator/Downloads/html-injector-master/bs.js",
-		"/G/webpack/package.json",
 		"/C/Users/Administrator/Downloads/minimal-webpack-nodejs-hmr-master (1)/minimal-webpack-nodejs-hmr-master/webpack.config.coffee",
 		"/C/Users/Administrator/Downloads/minimal-webpack-nodejs-hmr-master (1)/minimal-webpack-nodejs-hmr-master/package.json",
 		"/C/Users/Administrator/Downloads/html-injector-master/examples/use.js",
@@ -705,11 +689,8 @@
 		"/I/b/b/dist/static/js/manifest.ec9a590678793a100446.js",
 		"/I/b/b/dist/static/js/vendor.4e561224e1f68ab595ac.js",
 		"/I/b/b/dist/static/js/app.4044b08397ebc97a1a0a.js.map",
-		"/G/webpack/src/index.html",
-		"/G/webpack/src/index.js",
 		"/D/Program Files/Sublime Text 3126/Data/Packages/HTML-CSS-JS Prettify/.jsbeautifyrc",
 		"/G/webpack/server.js",
-		"/G/webpack/webpack.config.js",
 		"/G/webpack/.bashrc",
 		"/C/Users/Administrator/.bashrc",
 		"/D/Program Files/Sublime Text 3126/data/Packages/个人快捷键.sublime-keymap",
@@ -720,7 +701,6 @@
 		"/D/Program Files/Sublime Text 3126/data/Packages/Browser Sync/.no-sublime-package",
 		"/D/Program Files/Sublime Text 3126/data/Packages/Browser Sync/browser_sync_launch.js",
 		"/D/Program Files/Sublime Text 3126/data/Packages/Browser Sync/browser_sync.py",
-		"/G/webpack/src/index.css",
 		"/C/Users/Administrator/.babun/cygwin/home/Administrator/.zshrc",
 		"/C/Users/Administrator/.babun/cygwin/home/Administrator/.bashrc",
 		"/C/Users/Administrator/.babun/cygwin/etc/defaults/etc/skel/.bashrc",
@@ -736,7 +716,6 @@
 		"/C/Users/Administrator/.babun/tools/unzip.vbs",
 		"/C/Users/Administrator/Downloads/webpack-master/webpack.config.js",
 		"/C/Users/Administrator/Downloads/webpack-master/src/index.html",
-		"/I/b/b/package.json",
 		"/C/Users/Administrator/Downloads/webpack-hot-test-master/package.json",
 		"/C/Users/Administrator/Downloads/express-webpack-full-live-reload-example-master/package.json",
 		"/C/Users/Administrator/Downloads/angular-webpack-demo-master/server.js",
@@ -762,13 +741,7 @@
 		"/G/webpack/src/components/Hello.vue",
 		"/G/webpack/src/main.js",
 		"/G/webpack/src/a.vue",
-		"/I/b/my-project-name/hello-vue/src/App.vue",
-		"/I/b/my-project-name/hello-vue/package.json",
-		"/I/b/my-project-name/hello-vue/webpack.config.js",
-		"/I/b/my-project-name/hello-vue/index.html",
-		"/I/b/my-project-name/webpack.config.js",
-		"/I/b/my-project-name/package.json",
-		"/I/b/my-project-name/src/App.vue"
+		"/I/b/my-project-name/hello-vue/src/App.vue"
 	],
 	"find":
 	{
@@ -1007,135 +980,11 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 4,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "webpack.config.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 13271,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								11017,
-								11017
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										11337,
-										11338
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/dot.png",
-										"brackethighlighter.default"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										11016,
-										11017
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"c_time":
-							[
-								128,
-								3,
-								99,
-								100,
-								97,
-								116,
-								101,
-								116,
-								105,
-								109,
-								101,
-								10,
-								100,
-								97,
-								116,
-								101,
-								116,
-								105,
-								109,
-								101,
-								10,
-								113,
-								0,
-								67,
-								10,
-								7,
-								225,
-								7,
-								7,
-								2,
-								14,
-								26,
-								3,
-								176,
-								231,
-								113,
-								1,
-								133,
-								113,
-								2,
-								82,
-								113,
-								3,
-								46
-							],
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
-							"is_init_dirty_state": false,
-							"origin_encoding": "UTF-8",
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 12257.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "server.js",
 					"semi_transient": false,
 					"settings":
@@ -1147,8 +996,8 @@
 						"selection":
 						[
 							[
-								1689,
-								1689
+								962,
+								962
 							]
 						],
 						"settings":
@@ -1171,16 +1020,16 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
-								"bh_unmatched_content"
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
 							],
 							"c_time":
 							[
@@ -1237,7 +1086,129 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1408.0,
+						"translation.y": 2304.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "webpack.config.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13308,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7047,
+								7047
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										7541,
+										7542
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/dot.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										7046,
+										7047
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
+							],
+							"c_time":
+							[
+								128,
+								3,
+								99,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								113,
+								0,
+								67,
+								10,
+								7,
+								225,
+								7,
+								7,
+								2,
+								14,
+								26,
+								3,
+								176,
+								231,
+								113,
+								1,
+								133,
+								113,
+								2,
+								82,
+								113,
+								3,
+								46
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 14144.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
@@ -1245,388 +1216,19 @@
 				},
 				{
 					"buffer": 2,
-					"file": "package.json",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2481,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2046,
-								2046
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										2396,
-										2397
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/dot.png",
-										"brackethighlighter.default"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										912,
-										913
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"c_time":
-							[
-								128,
-								3,
-								99,
-								100,
-								97,
-								116,
-								101,
-								116,
-								105,
-								109,
-								101,
-								10,
-								100,
-								97,
-								116,
-								101,
-								116,
-								105,
-								109,
-								101,
-								10,
-								113,
-								0,
-								67,
-								10,
-								7,
-								225,
-								7,
-								11,
-								16,
-								43,
-								52,
-								14,
-								68,
-								155,
-								113,
-								1,
-								133,
-								113,
-								2,
-								82,
-								113,
-								3,
-								46
-							],
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
-							"origin_encoding": "ASCII",
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1728.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/C/Users/Administrator/Downloads/hot-module-accept-master/index.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2038,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1893,
-								1893
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										1898,
-										1899
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/dot.png",
-										"brackethighlighter.default"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										1886,
-										1887
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"c_time":
-							[
-								128,
-								3,
-								99,
-								100,
-								97,
-								116,
-								101,
-								116,
-								105,
-								109,
-								101,
-								10,
-								100,
-								97,
-								116,
-								101,
-								116,
-								105,
-								109,
-								101,
-								10,
-								113,
-								0,
-								67,
-								10,
-								7,
-								225,
-								7,
-								12,
-								0,
-								21,
-								53,
-								1,
-								131,
-								228,
-								113,
-								1,
-								133,
-								113,
-								2,
-								82,
-								113,
-								3,
-								46
-							],
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
-							"origin_encoding": "ASCII",
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1392.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/I/b/b/package.json",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2488,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								922,
-								942
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										942,
-										943
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/dot.png",
-										"brackethighlighter.default"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										921,
-										922
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"c_time":
-							[
-								128,
-								3,
-								99,
-								100,
-								97,
-								116,
-								101,
-								116,
-								105,
-								109,
-								101,
-								10,
-								100,
-								97,
-								116,
-								101,
-								116,
-								105,
-								109,
-								101,
-								10,
-								113,
-								0,
-								67,
-								10,
-								7,
-								225,
-								7,
-								9,
-								15,
-								32,
-								2,
-								10,
-								98,
-								93,
-								113,
-								1,
-								133,
-								113,
-								2,
-								82,
-								113,
-								3,
-								46
-							],
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
-							"origin_encoding": "ASCII",
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
 					"file": "src/index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 333,
+						"buffer_size": 324,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								230,
-								230
+								266,
+								266
 							]
 						],
 						"settings":
@@ -1638,8 +1240,8 @@
 								{
 									"1":
 									[
-										232,
-										235
+										262,
+										265
 									]
 								},
 								"icon":
@@ -1654,8 +1256,8 @@
 								{
 									"1":
 									[
-										212,
-										215
+										242,
+										245
 									]
 								},
 								"unmatched":
@@ -1664,16 +1266,16 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
-								"bh_unmatched_content"
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
 							],
 							"c_time":
 							[
@@ -1723,7 +1325,6 @@
 								46
 							],
 							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
-							"is_init_dirty_state": false,
 							"origin_encoding": "ASCII",
 							"syntax": "Packages/HTML/HTML.sublime-syntax"
 						},
@@ -1731,24 +1332,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 3,
 					"file": "src/index.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 280,
+						"buffer_size": 285,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								273,
-								273
+								141,
+								141
 							]
 						],
 						"settings":
@@ -1758,27 +1359,12 @@
 							{
 								"close":
 								{
-									"1":
-									[
-										278,
-										279
-									]
 								},
 								"icon":
 								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/dot.png",
-										"brackethighlighter.default"
-									]
 								},
 								"open":
 								{
-									"1":
-									[
-										141,
-										142
-									]
 								},
 								"unmatched":
 								{
@@ -1786,16 +1372,16 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
-								"bh_unmatched_content"
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
 							],
 							"c_time":
 							[
@@ -1845,32 +1431,31 @@
 								46
 							],
 							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
-							"is_init_dirty_state": false,
 							"origin_encoding": "ASCII",
 							"syntax": "Packages/CSS/CSS.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 96.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 4,
 					"file": "src/index.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 470,
+						"buffer_size": 319,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								357,
-								357
+								319,
+								319
 							]
 						],
 						"settings":
@@ -1893,16 +1478,16 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
-								"bh_unmatched_content"
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
 							],
 							"c_time":
 							[
@@ -1952,15 +1537,136 @@
 								46
 							],
 							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
-							"is_init_dirty_state": false,
-							"origin_encoding": "ASCII",
 							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 192.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "package.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2528,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1502,
+								1502
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										1504,
+										1505
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/dot.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										1476,
+										1477
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
+							],
+							"c_time":
+							[
+								128,
+								3,
+								99,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								113,
+								0,
+								67,
+								10,
+								7,
+								225,
+								7,
+								12,
+								0,
+								18,
+								13,
+								3,
+								76,
+								32,
+								113,
+								1,
+								133,
+								113,
+								2,
+								82,
+								113,
+								3,
+								46
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1536.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -2057,7 +1763,7 @@
 		[
 			[
 				"",
-				"I:\\笔记\\project.sublime-project"
+				"I:\\笔记\\note.sublime-project"
 			]
 		],
 		"width": 475.0

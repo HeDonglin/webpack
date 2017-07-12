@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-07-11 18:10:33
+ * @Last Modified time: 2017-07-13 06:15:31
  */
 
 // 引入模块及插件
@@ -112,7 +112,7 @@ var configPlugins = [
     new happyPack({
         id: 'js',
         threadPool: happyThreadPool,
-        loaders: ['babel-loader']
+        loaders: ['babel-loader', 'webpack-module-hot-accept']
     }),
 
     new happyPack({
@@ -223,6 +223,8 @@ var config = {
                 options: {
                     presets: ['latest'] //按照最新的ES6语法规则去转换
                 }
+            }, {
+                loader: 'webpack-module-hot-accept'
             }]
 
             // exclude: path.resolve(R, 'node_modules'), //编译时，不需要编译哪些文件
@@ -232,7 +234,6 @@ var config = {
             // @see https://github.com/yyx990803/vue-template-explorer
             // @see https://github.com/vuejs/vue-loader/blob/master/docs/en/configurations/extract-css.md
             // @see https://vue-loader.vuejs.org/zh-cn/configurations/extract-css.html#
-            // @see https://github.com/vuejs/vue-html-loader
             test: /\.vue$/,
             loader: 'vue-loader', //它会根据 lang 属性自动推断出要使用的 loaders
             options: {

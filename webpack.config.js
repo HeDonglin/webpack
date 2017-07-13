@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-07-13 06:15:31
+ * @Last Modified time: 2017-07-13 08:58:37
  */
 
 // 引入模块及插件
@@ -40,17 +40,31 @@ var R = path.resolve(__dirname); //根目录，webpack.config.js所在文件夹
 var S = path.resolve(R, 'src'); //入口文件夹
 var D = path.resolve(R, 'dist'); //出口文件夹
 
+// 判断开发环境还是生产环境
+var ENV = process.env.NODE_ENV; //package.json中配置的参数
+var isDev = (ENV === 'dev') ? true : false;
+
 // 常规配置
 var igFolder = /\/src\/publics\//; // 忽略的某个文件夹所有的内容，相对于根目录
 var htmlExChunks = ['']; //哪些js文件不需要嵌入到html中例如：['c']表示c.js不嵌入,['']表示都嵌入;
 var delFolder = ['dist/']; //需删除的文件夹
-var publicPath = '/';
-// 出口路径
-var jsPath = './'; //相对于出口文件夹，如果采用绝对路径必须指定--content-base src
-var mapPath = 'maps/'; //相对于出口文件夹，如果采用绝对路径必须指定--content-base src
-var imgPath = '/images/'; //相对于出口文件夹，如果采用绝对路径必须指定--content-base src
-var fontPath = '/fonts/'; //相对于出口文件夹，如果采用绝对路径必须指定--content-base src
-var cssPath = 'css/'; //相对于出口文件夹，如果采用绝对路径必须指定--content-base src
+
+var onOff = !isDev;//这里表示生成环境false使用相对路径，因为onOff开关表示删除了publicPath属性；如果生成环境需要用绝对路径可以在isDev前加个！；注意：无论什么时候开发环境都用绝对路径，否则无法找到对应的图片；所以加叹号后开发环境为相对路径无法找到路径；
+if (onOff) {
+    var publicPath = '/'; //
+    var jsPath = 'js'; //
+    var mapPath = 'maps/'; //
+    var imgPath = 'assets/'; //
+    var fontPath = 'fonts/'; //
+    var cssPath = 'css/'; //
+} else {
+    var publicPath = ''; //
+    var jsPath = 'js/'; //
+    var mapPath = 'maps/'; //
+    var imgPath = '/assets/'; //
+    var fontPath = '/fonts/'; //
+    var cssPath = 'css/'; //
+}
 
 // 小于设置的值转为bash64,单位为Bytes,10000B=9.77KB
 var imgNum = 100;
@@ -67,13 +81,9 @@ var vendor = { //第三方库
     "window.jQuery": "jquery"
 };
 
-// 判断开发环境还是生产环境
-var ENV = process.env.NODE_ENV; //package.json中配置的参数
-var isDev = (ENV === 'dev') ? true : false;
 var happyThreadPool = happyPack.ThreadPool({
-    size: (isDev ? 4 : 10) //进程池数量
+    size: (isDev ? 6 : 12) //进程池数量
 });
-
 if (isDev) {
     // 配置哈希值
     var jsHash = '?v=[hash:8]';
@@ -300,6 +310,11 @@ var config = {
     // }
 };
 
+// 生成环境，js和css使用相对路径，所以把publicPath属性删除；
+if (!onOff) {
+    delete config.output.publicPath;
+}
+
 if (isDev) { // 开发环境下才调试
     //添加HMR，以及输出对用户更友好的模块名字信息
     configPlugins.push(new webpack.HotModuleReplacementPlugin(), new webpack.NamedModulesPlugin());
@@ -314,6 +329,7 @@ if (isDev) { // 开发环境下才调试
     for (var i in config.entry) {
         config.entry[i].unshift('webpack-hot-middleware/client?reload=true');
     }
+
 }
 // webpack-hot-middleware/client?reload=true
 if (ENV !== "web") {

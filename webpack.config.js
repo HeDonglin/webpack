@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-07-13 08:58:37
+ * @Last Modified time: 2017-07-13 09:38:14
  */
 
 // 引入模块及插件
@@ -49,7 +49,12 @@ var igFolder = /\/src\/publics\//; // 忽略的某个文件夹所有的内容，
 var htmlExChunks = ['']; //哪些js文件不需要嵌入到html中例如：['c']表示c.js不嵌入,['']表示都嵌入;
 var delFolder = ['dist/']; //需删除的文件夹
 
-var onOff = !isDev;//这里表示生成环境false使用相对路径，因为onOff开关表示删除了publicPath属性；如果生成环境需要用绝对路径可以在isDev前加个！；注意：无论什么时候开发环境都用绝对路径，否则无法找到对应的图片；所以加叹号后开发环境为相对路径无法找到路径；
+var onOff = isDev?true:false;//无论什么时候开发环境使用publicPath绝对路径，生成环境可选这里默认为false（即采用相对路径）
+
+// true：和入口文件位置一一对应；entry.split('/').splice(2).join('/')；开发环境一定要使用这种，为预览要找到index文件；
+// false：在出口文件添加html文件夹存放所有html文件；'html/'+path.basename(entry)
+var htmlPath=isDev?true:false;//第二个控制生成环境下的路径方式这里默认为false（即采用html文件夹）；
+
 if (onOff) {
     var publicPath = '/'; //
     var jsPath = 'js'; //
@@ -380,7 +385,7 @@ function getEntryHtml(globPath) {
         // 排除某个写文件
         if (!entry.match(igFolder)) {
             entries.push({
-                filename: entry.split('/').splice(2).join('/'), //最终生成的文件，出口文件名及路径
+                filename: htmlPath?entry.split('/').splice(2).join('/'):'html/'+path.basename(entry), //最终生成的文件，出口文件名及路径
                 template: entry, //入口文件解析模板文件（默认为.ejs或者是.html）
                 chunks: [jsName, basename], //把哪些js文件，用script标签放到模板文件中
                 // favicon: 'src/favicon.ico', //网站图标（相对于根目录所以要加src,但多页面开发中自动嵌入head后地址不更改，也不能相对设置为绝对路径，不太友好，手动设置使用copy插件处理）

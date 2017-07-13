@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"webpack",
+				"webpack-dev-server"
+			],
+			[
+				"is",
+				"isDev"
+			],
+			[
 				"201",
 				"2017-07-08"
 			],
@@ -243,15 +251,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "server.js",
-			"settings":
-			{
-				"buffer_size": 3091,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -565,16 +564,30 @@
 	},
 	"expanded_folders":
 	[
-		"/G/webpack"
+		"/G/webpack",
+		"/G/webpack/dist",
+		"/G/webpack/dist/page/gg",
+		"/G/webpack/src/font",
+		"/G/webpack/src/page/gg"
 	],
 	"file_history":
 	[
 		"/G/webpack/server.js",
 		"/G/webpack/webpack.config.js",
+		"/G/webpack/dist/page/page.html",
+		"/G/webpack/dist/page/gg/gg.html",
+		"/G/webpack/dist/app.html",
+		"/G/webpack/src/page/gg/gg.html",
 		"/G/webpack/src/index.html",
-		"/G/webpack/src/index.css",
+		"/G/webpack/src/page/gg/gg.css",
 		"/G/webpack/src/index.js",
+		"/G/webpack/src/page/page.html",
+		"/G/webpack/src/index.css",
+		"/G/webpack/src/page/gg/gg.js",
 		"/G/webpack/package.json",
+		"/G/webpack/dist/index.html",
+		"/G/webpack/src/page/page.css",
+		"/G/webpack/src/page/page.js",
 		"/D/Program Files/Sublime Text 3126/Data/Packages/LocalizedMenu/README.md",
 		"/I/b/b/package.json",
 		"/C/Users/Administrator/Downloads/hot-module-accept-master/index.js",
@@ -628,8 +641,6 @@
 		"/D/Program Files/Sublime Text 3126/Data/Packages/Browser Sync/browser_sync_launch.js",
 		"/G/webpack/src/component/abc.vue",
 		"/G/webpack/src/component/firstcomponent.vue",
-		"/G/webpack/dist/app.html",
-		"/G/webpack/dist/index.html",
 		"/G/webpack/src/router/index.js",
 		"/G/webpack/README.md",
 		"/C/Users/Administrator/Downloads/Webpack-Vue-MultiplePage-master/Application/Home/View/another/index.html",
@@ -688,15 +699,7 @@
 		"/C/Users/Administrator/Downloads/express-webpack-full-live-reload-example-master/server/routes/page1.js",
 		"/C/Users/Administrator/Downloads/webpack-hot-test-master/app/component.js",
 		"/C/Users/Administrator/Downloads/angular-webpack-demo-master/mock/index.js",
-		"/C/Users/Administrator/Downloads/webpack-hot-test-master/index.html",
-		"/C/Users/Administrator/Downloads/angular-webpack-demo-master/mock/appInfo.js",
-		"/C/Users/Administrator/Downloads/angular-webpack-demo-master/mock/photos.js",
-		"/C/Users/Administrator/Downloads/angular-webpack-demo-master/mock/citys.js",
-		"/G/webpack/src/App.vue",
-		"/G/webpack/src/components/Hello.vue",
-		"/G/webpack/src/main.js",
-		"/G/webpack/src/a.vue",
-		"/I/b/my-project-name/hello-vue/src/App.vue"
+		"/C/Users/Administrator/Downloads/webpack-hot-test-master/index.html"
 	],
 	"find":
 	{
@@ -790,6 +793,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"onOff",
+			"isDev",
+			"000",
+			"dd",
+			"日志",
+			"publicPath",
+			"images",
+			"=\"../../",
 			"source",
 			"successfully",
 			"Compiled",
@@ -909,15 +920,7 @@
 			"let",
 			"open",
 			"false",
-			"hotSwitch",
-			"开关",
-			"000",
-			"我是vue文件",
-			"ddd",
-			"部署到CDN上可以用到publicPath",
-			"hash",
-			"hot",
-			"true"
+			"hotSwitch"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -935,115 +938,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "server.js",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 3091,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content"
-							],
-							"c_time":
-							[
-								128,
-								3,
-								99,
-								100,
-								97,
-								116,
-								101,
-								116,
-								105,
-								109,
-								101,
-								10,
-								100,
-								97,
-								116,
-								101,
-								116,
-								105,
-								109,
-								101,
-								10,
-								113,
-								0,
-								67,
-								10,
-								7,
-								225,
-								7,
-								9,
-								16,
-								44,
-								18,
-								3,
-								160,
-								157,
-								113,
-								1,
-								133,
-								113,
-								2,
-								82,
-								113,
-								3,
-								46
-							],
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],

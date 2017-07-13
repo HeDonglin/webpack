@@ -251,6 +251,15 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "webpack.config.js",
+			"settings":
+			{
+				"buffer_size": 13772,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -564,14 +573,13 @@
 	},
 	"expanded_folders":
 	[
-		"/G/webpack",
-		"/G/webpack/dist",
-		"/G/webpack/dist/page/gg",
-		"/G/webpack/src/font",
-		"/G/webpack/src/page/gg"
+		"/G/webpack"
 	],
 	"file_history":
 	[
+		"/G/webpack/dist/html/index.html",
+		"/G/webpack/dist/html/page.html",
+		"/G/webpack/dist/html/gg.html",
 		"/G/webpack/server.js",
 		"/G/webpack/webpack.config.js",
 		"/G/webpack/dist/page/page.html",
@@ -696,10 +704,7 @@
 		"/C/Users/Administrator/Downloads/express-webpack-full-live-reload-example-master/server/views/page1/index.html",
 		"/C/Users/Administrator/Downloads/express-webpack-full-live-reload-example-master/server/routes/index.js",
 		"/C/Users/Administrator/Downloads/express-webpack-full-live-reload-example-master/server/routes/page2.js",
-		"/C/Users/Administrator/Downloads/express-webpack-full-live-reload-example-master/server/routes/page1.js",
-		"/C/Users/Administrator/Downloads/webpack-hot-test-master/app/component.js",
-		"/C/Users/Administrator/Downloads/angular-webpack-demo-master/mock/index.js",
-		"/C/Users/Administrator/Downloads/webpack-hot-test-master/index.html"
+		"/C/Users/Administrator/Downloads/express-webpack-full-live-reload-example-master/server/routes/page1.js"
 	],
 	"find":
 	{
@@ -793,6 +798,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"igFolder",
+			"false",
+			"无论什么时候开发环境使用绝对路径，生成环境可选这里默认为false（即采用相对路径）",
+			"false",
+			"htmlPath",
+			"entry.split('/').splice(2).join('/')",
+			"htmlPath",
 			"onOff",
 			"isDev",
 			"000",
@@ -913,14 +925,7 @@
 			"config",
 			"autoOpenBrowser",
 			"config.entry",
-			"configPlugins",
-			"OpenBrowserPlugin",
-			"let",
-			"OpenBrowserPlugin",
-			"let",
-			"open",
-			"false",
-			"hotSwitch"
+			"configPlugins"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -938,8 +943,117 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "webpack.config.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13772,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1854,
+								1854
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
+							],
+							"c_time":
+							[
+								128,
+								3,
+								99,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								113,
+								0,
+								67,
+								10,
+								7,
+								225,
+								7,
+								7,
+								2,
+								14,
+								26,
+								3,
+								176,
+								231,
+								113,
+								1,
+								133,
+								113,
+								2,
+								82,
+								113,
+								3,
+								46
+							],
+							"is_init_dirty_state": false,
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1077.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],

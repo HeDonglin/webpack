@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-07-13 09:38:14
+ * @Last Modified time: 2017-07-13 15:59:20
  */
 
 // 引入模块及插件
@@ -45,7 +45,7 @@ var ENV = process.env.NODE_ENV; //package.json中配置的参数
 var isDev = (ENV === 'dev') ? true : false;
 
 // 常规配置
-var igFolder = /\/src\/publics\//; // 忽略的某个文件夹所有的内容，相对于根目录
+var igFolder = /^\/src\/(publics)\/$/g;// 忽略的某个文件夹所有的内容，相对于根目录，如果匹配src下多个文件夹可以在/^\/src\/(publics|abc)\/$/g
 var htmlExChunks = ['']; //哪些js文件不需要嵌入到html中例如：['c']表示c.js不嵌入,['']表示都嵌入;
 var delFolder = ['dist/']; //需删除的文件夹
 

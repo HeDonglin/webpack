@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"vue",
+				"vue\tvue"
+			],
+			[
 				"webpack",
 				"webpack-dev-server"
 			],
@@ -252,12 +256,39 @@
 	"buffers":
 	[
 		{
-			"file": "webpack.config.js",
+			"file": "src/app.css",
 			"settings":
 			{
-				"buffer_size": 13772,
+				"buffer_size": 262,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/app.html",
+			"settings":
+			{
+				"buffer_size": 374,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/app.js",
+			"settings":
+			{
+				"buffer_size": 375,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "gulpfile.js",
+			"settings":
+			{
+				"buffer_size": 1074,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -357,16 +388,20 @@
 	"command_palette":
 	{
 		"height": 428.0,
-		"last_filter": "prvo",
+		"last_filter": "",
 		"selected_items":
 		[
 			[
-				"prvo",
-				"PackageResourceViewer: Open Resource"
+				"re",
+				"Package Control: Remove Package"
 			],
 			[
 				"pin",
 				"Package Control: Install Package"
+			],
+			[
+				"prvo",
+				"PackageResourceViewer: Open Resource"
 			],
 			[
 				"remove",
@@ -493,10 +528,6 @@
 				"Package Control: Remove Package"
 			],
 			[
-				"re",
-				"Package Control: Remove Package"
-			],
-			[
 				"pr",
 				"PackageResourceViewer: Open Resource"
 			],
@@ -573,15 +604,45 @@
 	},
 	"expanded_folders":
 	[
-		"/G/webpack"
+		"/G/webpack",
+		"/G/webpack/dist",
+		"/G/webpack/src"
 	],
 	"file_history":
 	[
+		"/G/webpack/gulpfile.js",
+		"/G/webpack/src/app.js",
+		"/G/webpack/dist/css/app.css",
+		"/G/webpack/dist/html/app.html",
+		"/G/webpack/src/app.css",
+		"/G/webpack/webpack.config.js",
+		"/G/webpack/src/app.html",
+		"/G/webpack/node_modules/vue/dist/vue.esm.js",
+		"/D/Program Files/Sublime Text 3126/data/Packages/个人快捷键.sublime-keymap",
+		"/G/webpack/src/app.vue",
+		"/I/b/b/my-project-name/webpack.config.js",
+		"/G/webpack/server.js",
+		"/I/b/b/my-project-name/package.json",
+		"/I/b/b/my-project-name/dist/build.js",
+		"/I/b/b/my-project-name/dist/build.js.map",
+		"/I/b/b/my-project-name/src/App.vue",
+		"/I/b/b/my-project-name/index.html",
+		"/I/b/b/my-project-name/src/main.js",
+		"/I/b/b/index.html",
+		"/I/b/b/src/App.vue",
+		"/I/b/b/src/router/index.js",
+		"/I/b/b/build/webpack.base.conf.js",
+		"/I/b/b/build/dev-server.js",
+		"/I/b/b/config/test.env.js",
+		"/I/b/b/config/prod.env.js",
+		"/I/b/b/config/index.js",
+		"/I/b/b/config/dev.env.js",
+		"/I/b/b/src/main.js",
+		"/C/Users/Administrator/Desktop/1.js",
+		"/G/webpack/src/publics/1.html",
 		"/G/webpack/dist/html/index.html",
 		"/G/webpack/dist/html/page.html",
 		"/G/webpack/dist/html/gg.html",
-		"/G/webpack/server.js",
-		"/G/webpack/webpack.config.js",
 		"/G/webpack/dist/page/page.html",
 		"/G/webpack/dist/page/gg/gg.html",
 		"/G/webpack/dist/app.html",
@@ -603,31 +664,20 @@
 		"/C/Users/Administrator/.ssh/id2_rsa.pub",
 		"/D/Program Files/Sublime Text 3126/Data/Packages/LocalizedMenu/.no-sublime-package",
 		"/D/Program Files/Sublime Text 3126/Data/Packages/ZZZZZZZZ-LocalizedMenu/Main.sublime-menu",
-		"/I/b/b/build/dev-server.js",
-		"/G/webpack/src/app.vue",
 		"/I/b/b/build/check-versions.js",
 		"/I/b/b/test/unit/karma.conf.js",
 		"/I/b/b/static/.gitkeep",
 		"/I/b/b/build/webpack.test.conf.js",
 		"/I/b/b/build/webpack.prod.conf.js",
 		"/I/b/b/build/webpack.dev.conf.js",
-		"/I/b/b/build/webpack.base.conf.js",
 		"/I/b/b/build/vue-loader.conf.js",
 		"/I/b/b/build/utils.js",
-		"/I/b/b/config/dev.env.js",
-		"/I/b/b/config/prod.env.js",
-		"/I/b/b/config/test.env.js",
 		"/I/b/b/build/dev-client.js",
 		"/I/b/b/build/build.js",
 		"/I/b/b/dist/static/js/vendor.4e561224e1f68ab595ac.js.map",
-		"/I/b/b/config/index.js",
 		"/I/b/b/dist/index.html",
 		"/I/b/b/src/components/Hello.vue",
-		"/I/b/b/src/router/index.js",
-		"/I/b/b/src/main.js",
-		"/I/b/b/src/App.vue",
 		"/I/b/b/.babelrc",
-		"/I/b/b/index.html",
 		"/I/b/b/.postcssrc.js",
 		"/I/b/b/test/e2e/runner.js",
 		"/C/Users/Administrator/Downloads/Webpack-Vue-MultiplePage-master/webpack.config.js",
@@ -643,8 +693,6 @@
 		"/C/Users/Administrator/Downloads/minimal-webpack-nodejs-hmr-master/src/lib.coffee",
 		"/C/Users/Administrator/Downloads/minimal-webpack-nodejs-hmr-master/src/main.coffee",
 		"/C/Users/Administrator/Downloads/minimal-webpack-nodejs-hmr-master/build/bundle.js",
-		"/G/webpack/src/app.js",
-		"/G/webpack/src/app.html",
 		"/C/Users/Administrator/Downloads/html-injector-master/package.json",
 		"/D/Program Files/Sublime Text 3126/Data/Packages/Browser Sync/browser_sync_launch.js",
 		"/G/webpack/src/component/abc.vue",
@@ -667,8 +715,6 @@
 		"/D/Program Files/Sublime Text 3126/Data/Packages/HTML-CSS-JS Prettify/.jsbeautifyrc",
 		"/G/webpack/.bashrc",
 		"/C/Users/Administrator/.bashrc",
-		"/D/Program Files/Sublime Text 3126/data/Packages/个人快捷键.sublime-keymap",
-		"/C/Users/Administrator/Desktop/1.js",
 		"/D/Program Files/Sublime Text 3126/Data/Packages/Browser Sync/Main.sublime-menu",
 		"/D/Program Files/Sublime Text 3126/data/Packages/Browser Sync/Main.sublime-menu",
 		"/D/Program Files/Sublime Text 3126/data/Packages/Browser Sync/package-metadata.json",
@@ -691,20 +737,7 @@
 		"/C/Users/Administrator/Downloads/webpack-master/webpack.config.js",
 		"/C/Users/Administrator/Downloads/webpack-master/src/index.html",
 		"/C/Users/Administrator/Downloads/webpack-hot-test-master/package.json",
-		"/C/Users/Administrator/Downloads/express-webpack-full-live-reload-example-master/package.json",
-		"/C/Users/Administrator/Downloads/angular-webpack-demo-master/server.js",
-		"/C/Users/Administrator/Downloads/angular-webpack-demo-master/package.json",
-		"/C/Users/Administrator/Downloads/webpack-hot-test-master/webpack.dev.config.js",
-		"/G/webpack/src/sass.sass",
-		"/G/webpack/src/less.less",
-		"/G/webpack/src/scss.scss",
-		"/C/Users/Administrator/Downloads/angular-webpack-demo-master/webpack.config.js",
-		"/C/Users/Administrator/Downloads/express-webpack-full-live-reload-example-master/webpack.config.js",
-		"/C/Users/Administrator/Downloads/express-webpack-full-live-reload-example-master/app_browsersync.js",
-		"/C/Users/Administrator/Downloads/express-webpack-full-live-reload-example-master/server/views/page1/index.html",
-		"/C/Users/Administrator/Downloads/express-webpack-full-live-reload-example-master/server/routes/index.js",
-		"/C/Users/Administrator/Downloads/express-webpack-full-live-reload-example-master/server/routes/page2.js",
-		"/C/Users/Administrator/Downloads/express-webpack-full-live-reload-example-master/server/routes/page1.js"
+		"/C/Users/Administrator/Downloads/express-webpack-full-live-reload-example-master/package.json"
 	],
 	"find":
 	{
@@ -798,6 +831,54 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"fff",
+			"html",
+			"');\n",
+			"src",
+			"dist",
+			"chrome",
+			"dist",
+			"path",
+			"dist",
+			"default",
+			"preview",
+			"预览",
+			"444",
+			"099",
+			"090",
+			"fff",
+			"html",
+			"fff",
+			"bs-html-injector",
+			"false",
+			"index",
+			"vnotify",
+			"runSequence",
+			"watch",
+			"gulp-watch",
+			"sourcemaps",
+			"configPlugins",
+			"\\",
+			"vue",
+			"sourceMap",
+			"div",
+			"app",
+			"标记",
+			"hotAccept",
+			"000",
+			"message",
+			"你妹",
+			"id",
+			"DDD",
+			"router-view",
+			"aap",
+			"000",
+			"app",
+			"html",
+			"igFolder",
+			"abc",
+			"publics",
+			"pubics",
 			"igFolder",
 			"false",
 			"无论什么时候开发环境使用绝对路径，生成环境可选这里默认为false（即采用相对路径）",
@@ -877,55 +958,7 @@
 			"090",
 			"less",
 			"css",
-			"sass",
-			"less",
-			"css",
-			"less",
-			"ddd",
-			"less",
-			"css",
-			"index",
-			"chokidar",
-			"3000",
-			"000",
-			"config",
-			"OpenBrowserPlugin",
-			"8080",
-			"resolve",
-			"html-webpack-plugin",
-			"true",
-			"isDev",
-			"config",
-			"Config",
-			"config",
-			"isDev",
-			"compiler",
-			"html-webpack-plugin-after-emit",
-			" html-webpack-plugin-after-emit -D\n",
-			"{\n",
-			"env",
-			" html-webpack-plugin-after-emit",
-			" html-webpack-plugin-after-emit -D",
-			"hotMiddleware",
-			"\n  }\n  _resolve",
-			"  }\n  ",
-			"}\n",
-			"devMiddleware",
-			"compilation",
-			"compiler",
-			"router",
-			"urlencoded",
-			"multer",
-			"chokidar",
-			"hotMiddleware",
-			"uri",
-			"proxyMiddleware",
-			"config",
-			"Config",
-			"config",
-			"autoOpenBrowser",
-			"config.entry",
-			"configPlugins"
+			"sass"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -943,24 +976,24 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "webpack.config.js",
+					"file": "src/app.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 13772,
+						"buffer_size": 262,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1854,
-								1854
+								258,
+								255
 							]
 						],
 						"settings":
@@ -970,12 +1003,27 @@
 							{
 								"close":
 								{
+									"1":
+									[
+										260,
+										261
+									]
 								},
 								"icon":
 								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/dot.png",
+										"brackethighlighter.default"
+									]
 								},
 								"open":
 								{
+									"1":
+									[
+										219,
+										220
+									]
 								},
 								"unmatched":
 								{
@@ -983,16 +1031,16 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
-								"bh_default_content"
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
 							],
 							"c_time":
 							[
@@ -1024,13 +1072,13 @@
 								7,
 								225,
 								7,
-								7,
-								2,
 								14,
-								26,
-								3,
-								176,
-								231,
+								1,
+								44,
+								36,
+								6,
+								223,
+								11,
 								113,
 								1,
 								133,
@@ -1041,14 +1089,345 @@
 								3,
 								46
 							],
-							"is_init_dirty_state": false,
-							"origin_encoding": "UTF-8",
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/CSS/CSS.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 96.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/app.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 374,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								266,
+								266
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"c_time":
+							[
+								128,
+								3,
+								99,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								113,
+								0,
+								67,
+								10,
+								7,
+								225,
+								7,
+								11,
+								4,
+								37,
+								36,
+								8,
+								73,
+								176,
+								113,
+								1,
+								133,
+								113,
+								2,
+								82,
+								113,
+								3,
+								46
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 192.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 375,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								375,
+								375
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"c_time":
+							[
+								128,
+								3,
+								99,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								113,
+								0,
+								67,
+								10,
+								7,
+								225,
+								7,
+								11,
+								4,
+								38,
+								5,
+								4,
+								141,
+								226,
+								113,
+								1,
+								133,
+								113,
+								2,
+								82,
+								113,
+								3,
+								46
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 384.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "gulpfile.js",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1074,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								633,
+								633
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										949,
+										950
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/dot.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										466,
+										467
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"c_time":
+							[
+								128,
+								3,
+								99,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								113,
+								0,
+								67,
+								10,
+								7,
+								225,
+								7,
+								14,
+								3,
+								13,
+								28,
+								5,
+								179,
+								238,
+								113,
+								1,
+								133,
+								113,
+								2,
+								82,
+								113,
+								3,
+								46
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
 							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1077.0,
+						"translation.y": 448.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1094,7 +1473,7 @@
 	},
 	"output.exec":
 	{
-		"height": 142.0
+		"height": 227.0
 	},
 	"output.find_results":
 	{
@@ -1129,6 +1508,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"vue",
+				"node_modules\\vue\\dist\\vue.esm.js"
+			],
 			[
 				"sublim",
 				"source\\_posts\\sublime.md"
@@ -1173,7 +1556,7 @@
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": true,
+	"side_bar_visible": false,
 	"side_bar_width": 352.0,
 	"status_bar_visible": true,
 	"template_settings":

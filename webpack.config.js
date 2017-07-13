@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-07-13 15:59:20
+ * @Last Modified time: 2017-07-14 02:28:26
  */
 
 // 引入模块及插件
@@ -57,7 +57,7 @@ var htmlPath=isDev?true:false;//第二个控制生成环境下的路径方式这
 
 if (onOff) {
     var publicPath = '/'; //
-    var jsPath = 'js'; //
+    var jsPath = 'js/'; //
     var mapPath = 'maps/'; //
     var imgPath = 'assets/'; //
     var fontPath = 'fonts/'; //
@@ -157,11 +157,11 @@ var configPlugins = [
 
     // @see https://doc.webpack-china.org/guides/migrating/
     // 压缩js
-    // 配置中，压缩后是否添加sourceMap和warnings同时设置才有意义，警告能够对应到正确的代码行,如果devtool设置为false，那么这里true就没作用了；
+    // 配置中；
     new webpack.optimize.UglifyJsPlugin({
         sourceMap: true, //默认为false
         compress: {
-            warnings: true, //默认为 false
+            warnings: false, //默认为 false
         }
     }),
 
@@ -207,7 +207,7 @@ var config = {
             // "A": path.resolve(S, 'a'),
             // "B": path.resolve(S, 'main/b'),
             // "C": path.resolve(S, 'main/c'),
-            'vue$': 'vue/dist/vue.js'
+            // 'vue$': 'vue/dist/vue.esm.js'
         },
     },
 
@@ -324,13 +324,6 @@ if (isDev) { // 开发环境下才调试
     //添加HMR，以及输出对用户更友好的模块名字信息
     configPlugins.push(new webpack.HotModuleReplacementPlugin(), new webpack.NamedModulesPlugin());
 
-    var hotAccept = function() {
-        if (module.hot) {
-            // 模块自己就接收更新
-            module.hot.accept();
-        }
-    };
-
     for (var i in config.entry) {
         config.entry[i].unshift('webpack-hot-middleware/client?reload=true');
     }
@@ -385,7 +378,7 @@ function getEntryHtml(globPath) {
         // 排除某个写文件
         if (!entry.match(igFolder)) {
             entries.push({
-                filename: htmlPath?entry.split('/').splice(2).join('/'):'html/'+path.basename(entry), //最终生成的文件，出口文件名及路径
+                filename: htmlPath?entry.split('/').splice(2).join('/'):'html/'+path.basename(entry), //最终生成的文件，出口文件名及路径,默认文件为index.html,所以浏览器打开后预览的都是index.html
                 template: entry, //入口文件解析模板文件（默认为.ejs或者是.html）
                 chunks: [jsName, basename], //把哪些js文件，用script标签放到模板文件中
                 // favicon: 'src/favicon.ico', //网站图标（相对于根目录所以要加src,但多页面开发中自动嵌入head后地址不更改，也不能相对设置为绝对路径，不太友好，手动设置使用copy插件处理）

@@ -1,26 +1,24 @@
 <template>
-<!--     <div id="app">
-        <img src="./assets/logo.png">
-        <h1>{{ msg }}</h1>
-        <abc></abc>
-    </div> -->
+    <div class="message">
+        {{msg}}
+    </div>
 </template>
-<script type="text/javascript">
-    // import abc from './component/abc.vue'
-    // export default {
-    //     data() {
-    //             return {
-    //                 msg: 'Hello Vue!'
-    //             }
-    //         },
-    //         components: {
-    //             abc
-    //         }
-    // }
-    // console.log('日志');
-</script>
+
 <style>
-    body {
+    .message{
         background: #000;
+        color: #fff;
+        border: 10px solid #090;
     }
 </style>
+
+<script>
+    export default {
+      data () {
+        return {
+          msg: '1818'
+        }
+      }
+    }
+</script>
+

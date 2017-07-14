@@ -8,7 +8,7 @@
     .message{
         background: #000;
         color: #fff;
-        border: 10px solid #090;
+        border: 10px solid #455;
     }
 </style>
 
@@ -16,7 +16,7 @@
     export default {
       data () {
         return {
-          msg: '1818'
+          msg: '800'
         }
       }
     }

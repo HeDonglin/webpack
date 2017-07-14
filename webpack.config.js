@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-07-14 02:28:26
+ * @Last Modified time: 2017-07-14 09:46:09
  */
 
 // 引入模块及插件
@@ -34,6 +34,9 @@ var autoprefixer = require('autoprefixer'); //为CSS补全浏览器前缀
 var glob = require('glob'); //同步执行
 // @see https://github.com/amireh/happypack
 var happyPack = require('happyPack'); //多进程，加速代码构建
+// @see https://doc.webpack-china.org/plugins/uglifyjs-webpack-plugin/
+// @see https://github.com/mishoo/UglifyJS2/tree/harmony
+var UglifyJSPlugin = require('uglifyjs-webpack-plugin'); //压缩js，由于官方提供的压缩只支持es5,所以需要这个插件,以及UglifyJS2（压缩es6）
 
 // 设置文件夹
 var R = path.resolve(__dirname); //根目录，webpack.config.js所在文件夹
@@ -45,15 +48,15 @@ var ENV = process.env.NODE_ENV; //package.json中配置的参数
 var isDev = (ENV === 'dev') ? true : false;
 
 // 常规配置
-var igFolder = /^\/src\/(publics)\/$/g;// 忽略的某个文件夹所有的内容，相对于根目录，如果匹配src下多个文件夹可以在/^\/src\/(publics|abc)\/$/g
+var igFolder = /^\/src\/(publics)\/$/g; // 忽略的某个文件夹所有的内容，相对于根目录，如果匹配src下多个文件夹可以在/^\/src\/(publics|abc)\/$/g
 var htmlExChunks = ['']; //哪些js文件不需要嵌入到html中例如：['c']表示c.js不嵌入,['']表示都嵌入;
 var delFolder = ['dist/']; //需删除的文件夹
 
-var onOff = isDev?true:false;//无论什么时候开发环境使用publicPath绝对路径，生成环境可选这里默认为false（即采用相对路径）
+var onOff = isDev ? true : false; //无论什么时候开发环境使用publicPath绝对路径，生成环境可选这里默认为false（即采用相对路径）
 
 // true：和入口文件位置一一对应；entry.split('/').splice(2).join('/')；开发环境一定要使用这种，为预览要找到index文件；
 // false：在出口文件添加html文件夹存放所有html文件；'html/'+path.basename(entry)
-var htmlPath=isDev?true:false;//第二个控制生成环境下的路径方式这里默认为false（即采用html文件夹）；
+var htmlPath = isDev ? true : false; //第二个控制生成环境下的路径方式这里默认为false（即采用html文件夹）；
 
 if (onOff) {
     var publicPath = '/'; //
@@ -155,15 +158,6 @@ var configPlugins = [
         }
     }),
 
-    // @see https://doc.webpack-china.org/guides/migrating/
-    // 压缩js
-    // 配置中；
-    new webpack.optimize.UglifyJsPlugin({
-        sourceMap: true, //默认为false
-        compress: {
-            warnings: false, //默认为 false
-        }
-    }),
 
     // @see https://github.com/webpack-contrib/extract-text-webpack-plugin
     // 提取css到单独的文件中
@@ -320,7 +314,7 @@ if (!onOff) {
     delete config.output.publicPath;
 }
 
-if (isDev) { // 开发环境下才调试
+if (isDev) {
     //添加HMR，以及输出对用户更友好的模块名字信息
     configPlugins.push(new webpack.HotModuleReplacementPlugin(), new webpack.NamedModulesPlugin());
 
@@ -328,9 +322,16 @@ if (isDev) { // 开发环境下才调试
         config.entry[i].unshift('webpack-hot-middleware/client?reload=true');
     }
 
-}
-// webpack-hot-middleware/client?reload=true
-if (ENV !== "web") {
+} else {
+    // 压缩js,
+    configPlugins.push( new webpack.optimize.UglifyJsPlugin({
+        sourceMap: false, //默认为false
+        compress: {
+            warnings: false, //默认为 false
+        }
+    }));
+
+    // 删除上一次的dist文件
     configPlugins.push( // 删除文件
         new CleanWebpackPlugin(
             delFolder, //匹配删除的文件
@@ -378,7 +379,7 @@ function getEntryHtml(globPath) {
         // 排除某个写文件
         if (!entry.match(igFolder)) {
             entries.push({
-                filename: htmlPath?entry.split('/').splice(2).join('/'):'html/'+path.basename(entry), //最终生成的文件，出口文件名及路径,默认文件为index.html,所以浏览器打开后预览的都是index.html
+                filename: htmlPath ? entry.split('/').splice(2).join('/') : 'html/' + path.basename(entry), //最终生成的文件，出口文件名及路径,默认文件为index.html,所以浏览器打开后预览的都是index.html
                 template: entry, //入口文件解析模板文件（默认为.ejs或者是.html）
                 chunks: [jsName, basename], //把哪些js文件，用script标签放到模板文件中
                 // favicon: 'src/favicon.ico', //网站图标（相对于根目录所以要加src,但多页面开发中自动嵌入head后地址不更改，也不能相对设置为绝对路径，不太友好，手动设置使用copy插件处理）

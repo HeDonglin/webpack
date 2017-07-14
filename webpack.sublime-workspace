@@ -256,39 +256,39 @@
 	"buffers":
 	[
 		{
-			"file": "src/app.css",
-			"settings":
-			{
-				"buffer_size": 262,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/app.html",
-			"settings":
-			{
-				"buffer_size": 374,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "src/app.js",
 			"settings":
 			{
-				"buffer_size": 375,
+				"buffer_size": 296,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "gulpfile.js",
+			"file": "src/app.vue",
 			"settings":
 			{
-				"buffer_size": 1074,
+				"buffer_size": 314,
 				"encoding": "UTF-8",
-				"line_ending": "Windows"
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "webpack.config.js",
+			"settings":
+			{
+				"buffer_size": 13810,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "server.js",
+			"settings":
+			{
+				"buffer_size": 3091,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -604,23 +604,34 @@
 	},
 	"expanded_folders":
 	[
-		"/G/webpack",
-		"/G/webpack/dist",
-		"/G/webpack/src"
+		"/G/webpack"
 	],
 	"file_history":
 	[
-		"/G/webpack/gulpfile.js",
-		"/G/webpack/src/app.js",
-		"/G/webpack/dist/css/app.css",
-		"/G/webpack/dist/html/app.html",
-		"/G/webpack/src/app.css",
-		"/G/webpack/webpack.config.js",
+		"/G/webpack/package.json",
+		"/G/webpack/src/.babelrc",
+		"/I/b/b/my-project-name/webpack.config.js",
 		"/G/webpack/src/app.html",
+		"/I/b/b/vue2-elm/build/webpack.prod.conf.js",
+		"/I/b/b/vue2-elm/build/webpack.base.conf.js",
+		"/I/b/b/vue2-elm/build/dev-server.js",
+		"/I/b/b/vue2-elm/build/utils.js",
+		"/I/b/b/vue2-elm/config/index.js",
+		"/I/b/b/vue2-elm/.babelrc",
+		"/I/b/b/my-project-name/.babelrc",
+		"/G/webpack/src/index.html",
+		"/G/webpack/src/app.css",
+		"/G/webpack/src/app.js",
+		"/G/webpack/gulpfile.js",
+		"/G/webpack/dist/html/app.html",
+		"/C/Users/Administrator/Desktop/1.js",
+		"/C/Users/Administrator/Downloads/quench-project/gulpfile.js",
+		"/C/Users/Administrator/Downloads/quench-project/package.json",
+		"/G/webpack/dist/css/app.css",
+		"/G/webpack/webpack.config.js",
 		"/G/webpack/node_modules/vue/dist/vue.esm.js",
 		"/D/Program Files/Sublime Text 3126/data/Packages/个人快捷键.sublime-keymap",
 		"/G/webpack/src/app.vue",
-		"/I/b/b/my-project-name/webpack.config.js",
 		"/G/webpack/server.js",
 		"/I/b/b/my-project-name/package.json",
 		"/I/b/b/my-project-name/dist/build.js",
@@ -638,7 +649,6 @@
 		"/I/b/b/config/index.js",
 		"/I/b/b/config/dev.env.js",
 		"/I/b/b/src/main.js",
-		"/C/Users/Administrator/Desktop/1.js",
 		"/G/webpack/src/publics/1.html",
 		"/G/webpack/dist/html/index.html",
 		"/G/webpack/dist/html/page.html",
@@ -647,13 +657,11 @@
 		"/G/webpack/dist/page/gg/gg.html",
 		"/G/webpack/dist/app.html",
 		"/G/webpack/src/page/gg/gg.html",
-		"/G/webpack/src/index.html",
 		"/G/webpack/src/page/gg/gg.css",
 		"/G/webpack/src/index.js",
 		"/G/webpack/src/page/page.html",
 		"/G/webpack/src/index.css",
 		"/G/webpack/src/page/gg/gg.js",
-		"/G/webpack/package.json",
 		"/G/webpack/dist/index.html",
 		"/G/webpack/src/page/page.css",
 		"/G/webpack/src/page/page.js",
@@ -727,21 +735,11 @@
 		"/C/Users/Administrator/.babun/cygwin/etc/defaults/etc/bash.bashrc",
 		"/C/Users/Administrator/.babun/cygwin/etc/skel/.bashrc",
 		"/C/Users/Administrator/.babun/cygwin/etc/lynx.cfg",
-		"/C/Users/Administrator/.babun/cygwin/etc/bash.bash_logout",
-		"/C/Users/Administrator/.babun/cygwin/etc/bash.bashrc",
-		"/C/Users/Administrator/.babun/cygwin/etc/preremove/base-files-manifest.lst",
-		"/C/Users/Administrator/.babun/cygwin/etc/preremove/zsh.sh",
-		"/C/Users/Administrator/.babun/babun.bat",
-		"/C/Users/Administrator/.babun/tools/unsetpath.vbs",
-		"/C/Users/Administrator/.babun/tools/unzip.vbs",
-		"/C/Users/Administrator/Downloads/webpack-master/webpack.config.js",
-		"/C/Users/Administrator/Downloads/webpack-master/src/index.html",
-		"/C/Users/Administrator/Downloads/webpack-hot-test-master/package.json",
-		"/C/Users/Administrator/Downloads/express-webpack-full-live-reload-example-master/package.json"
+		"/C/Users/Administrator/.babun/cygwin/etc/bash.bash_logout"
 	],
 	"find":
 	{
-		"height": 43.0
+		"height": 44.0
 	},
 	"find_in_files":
 	{
@@ -831,6 +829,19 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"configPlugins",
+			"new UglifyJSPlugin",
+			"new UglifyJSPlugin()",
+			"UglifyJsPlugin",
+			"UglifyJSPlugin",
+			"true",
+			"dist",
+			"run-sequence",
+			"browserSync",
+			"change",
+			"pathName",
+			"Pathname",
+			"src",
 			"fff",
 			"html",
 			"');\n",
@@ -945,20 +956,7 @@
 			"协议",
 			"publicPath",
 			"port",
-			"interpolate=true",
-			"[",
-			"?v=",
-			"esle",
-			"scss",
-			"sass",
-			"less",
-			"WebpackDevServer",
-			"cssConfig",
-			"precss",
-			"090",
-			"less",
-			"css",
-			"sass"
+			"interpolate=true"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -976,251 +974,24 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "src/app.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 262,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								258,
-								255
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										260,
-										261
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/dot.png",
-										"brackethighlighter.default"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										219,
-										220
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"c_time":
-							[
-								128,
-								3,
-								99,
-								100,
-								97,
-								116,
-								101,
-								116,
-								105,
-								109,
-								101,
-								10,
-								100,
-								97,
-								116,
-								101,
-								116,
-								105,
-								109,
-								101,
-								10,
-								113,
-								0,
-								67,
-								10,
-								7,
-								225,
-								7,
-								14,
-								1,
-								44,
-								36,
-								6,
-								223,
-								11,
-								113,
-								1,
-								133,
-								113,
-								2,
-								82,
-								113,
-								3,
-								46
-							],
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
-							"origin_encoding": "ASCII",
-							"syntax": "Packages/CSS/CSS.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 96.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "src/app.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 374,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								266,
-								266
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"c_time":
-							[
-								128,
-								3,
-								99,
-								100,
-								97,
-								116,
-								101,
-								116,
-								105,
-								109,
-								101,
-								10,
-								100,
-								97,
-								116,
-								101,
-								116,
-								105,
-								109,
-								101,
-								10,
-								113,
-								0,
-								67,
-								10,
-								7,
-								225,
-								7,
-								11,
-								4,
-								37,
-								36,
-								8,
-								73,
-								176,
-								113,
-								1,
-								133,
-								113,
-								2,
-								82,
-								113,
-								3,
-								46
-							],
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
-							"origin_encoding": "ASCII",
-							"syntax": "Packages/HTML/HTML.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 192.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "src/app.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 375,
+						"buffer_size": 296,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								375,
-								375
+								296,
+								296
 							]
 						],
 						"settings":
@@ -1243,16 +1014,16 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
-								"bh_unmatched_content"
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
 							],
 							"c_time":
 							[
@@ -1302,30 +1073,32 @@
 								46
 							],
 							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"is_init_dirty_state": false,
+							"origin_encoding": "ASCII",
 							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 384.0,
+						"translation.y": 210.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "gulpfile.js",
-					"semi_transient": true,
+					"buffer": 1,
+					"file": "src/app.vue",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1074,
+						"buffer_size": 314,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								633,
-								633
+								76,
+								76
 							]
 						],
 						"settings":
@@ -1335,27 +1108,12 @@
 							{
 								"close":
 								{
-									"1":
-									[
-										949,
-										950
-									]
 								},
 								"icon":
 								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/dot.png",
-										"brackethighlighter.default"
-									]
 								},
 								"open":
 								{
-									"1":
-									[
-										466,
-										467
-									]
 								},
 								"unmatched":
 								{
@@ -1363,16 +1121,16 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
-								"bh_unmatched_content"
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
 							],
 							"c_time":
 							[
@@ -1404,13 +1162,126 @@
 								7,
 								225,
 								7,
-								14,
+								9,
+								18,
+								31,
+								50,
+								2,
+								127,
+								207,
+								113,
+								1,
+								133,
+								113,
+								2,
+								82,
+								113,
 								3,
-								13,
-								28,
-								5,
-								179,
-								238,
+								46
+							],
+							"is_init_dirty_state": false,
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/Vuejs Complete Package/vue.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "webpack.config.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13810,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6195,
+								6195
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+									"1":
+									[
+										6011,
+										6012
+									]
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
+							],
+							"c_time":
+							[
+								128,
+								3,
+								99,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								113,
+								0,
+								67,
+								10,
+								7,
+								225,
+								7,
+								7,
+								2,
+								14,
+								26,
+								3,
+								176,
+								231,
 								113,
 								1,
 								133,
@@ -1422,15 +1293,123 @@
 								46
 							],
 							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"is_init_dirty_state": false,
+							"origin_encoding": "UTF-8",
 							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 448.0,
+						"translation.y": 8137.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "server.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3091,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								393,
+								393
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
+							],
+							"c_time":
+							[
+								128,
+								3,
+								99,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								113,
+								0,
+								67,
+								10,
+								7,
+								225,
+								7,
+								9,
+								16,
+								44,
+								18,
+								3,
+								160,
+								157,
+								113,
+								1,
+								133,
+								113,
+								2,
+								82,
+								113,
+								3,
+								46
+							],
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3395.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -1438,7 +1417,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 40.0
+		"height": 43.0
 	},
 	"input":
 	{
@@ -1499,7 +1478,7 @@
 	"project": "webpack.sublime-project",
 	"replace":
 	{
-		"height": 76.0
+		"height": 82.0
 	},
 	"save_all_on_build": true,
 	"select_file":

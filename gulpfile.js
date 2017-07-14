@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-07-14 06:25:18
+ * @Last Modified time: 2017-07-14 09:50:53
  */
 
 // 引入插件
@@ -11,7 +11,7 @@ var runSequence = require('run-sequence'); //控制task顺序
 var htmlInjector = require("bs-html-injector"); //html注入
 var browserSync = require('browser-sync').create(); //浏览器预览
 
-var path = false ? 'dist' : 'src'; //布尔值控制选择哪个作为服务器根目录
+var path = true ? 'dist' : 'src'; //布尔值控制选择哪个作为服务器根目录
 
 var distPath=path==='dist'?'html/':'';//在根目录下的哪个文件夹
 

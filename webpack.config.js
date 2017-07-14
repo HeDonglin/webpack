@@ -2,9 +2,12 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-07-14 09:46:09
+ * @Last Modified time: 2017-07-14 18:13:56
  */
-
+// 判断开发环境还是生产环境
+var ENV = process.env.NODE_ENV; //package.json中配置的参数
+var isDev = (ENV === 'dev') ? true : false;
+console.log(ENV);
 // 引入模块及插件
 // @see http://nodejs.cn/api/path.html
 var path = require('path'); //引入path模块
@@ -43,9 +46,6 @@ var R = path.resolve(__dirname); //根目录，webpack.config.js所在文件夹
 var S = path.resolve(R, 'src'); //入口文件夹
 var D = path.resolve(R, 'dist'); //出口文件夹
 
-// 判断开发环境还是生产环境
-var ENV = process.env.NODE_ENV; //package.json中配置的参数
-var isDev = (ENV === 'dev') ? true : false;
 
 // 常规配置
 var igFolder = /^\/src\/(publics)\/$/g; // 忽略的某个文件夹所有的内容，相对于根目录，如果匹配src下多个文件夹可以在/^\/src\/(publics|abc)\/$/g
@@ -255,7 +255,6 @@ var config = {
             options: {
                 limit: imgNum,
                 name: imgPath + '[name].[ext]' + imgHash,
-
             }
         }, {
             test: /\.(eot|woff|woff2|svg|ttf)([\?]?.*)$/,
@@ -395,5 +394,5 @@ function getEntryHtml(globPath) {
     });
     return entries;
 }
-
+console.log('日志');
 module.exports = config;

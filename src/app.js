@@ -4,7 +4,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-11 04:38:05
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-07-14 09:56:37
+ * @Last Modified time: 2017-07-14 17:02:40
  */
 
 import Vue from 'vue';
@@ -15,4 +15,3 @@ import App from './app.vue';
 new Vue({
     render: h => h(App)
 }).$mount('#app');
-

@@ -256,19 +256,22 @@
 	"buffers":
 	[
 		{
-			"file": "gulpfile.js",
+			"contents": "/*\n * @Author: hedonglin\n * @Date:   2017-07-07 20:19:39\n * @Last Modified by:   hedonglin\n * @Last Modified time: 2017-07-14 22:47:16\n */\n// 判断开发环境还是生产环境\nvar ENV = process.env.NODE_ENV; //package.json中配置的参数\nvar isDev = (ENV === 'dev') ? true : false;\n\nif (isDev) {\n    // @see https://github.com/expressjs/express\n    // node.js Web应用框架\n    var express = require('express');\n\n    // @see https://github.com/webpack/webpack\n    // 打包编译\n    var webpack = require('webpack');\n    // @see https://github.com/webpack/webpack-dev-middleware\n    // 处理内存中的文件\n    var webpackDevMiddleware = require('webpack-dev-middleware');\n\n    // @see https://www.npmjs.com/package/webpack-dev-server\n    // 当服务停止时候自动关闭浏览器\n    var webpackDevServer = require('webpack-dev-server');\n\n    // @see https://github.com/glenjamin/webpack-hot-middleware\n    // 实现浏览器的无刷新更新\n    var webpackHotMiddleware = require('webpack-hot-middleware');\n\n    // @see https://github.com/expressjs/body-parser\n    // 处理 JSON, Raw, Text 和 URL 编码的数据\n    var bodyParser = require('body-parser');\n\n    // @see https://github.com/paulmillr/chokidar\n    // 解决Node.js fs.watch出现的问题\n    // var chokidar = require('chokidar').watch('./mock');\n    var webpackConfig = require('./webpack.config');\n\n    var compiler = webpack(webpackConfig);\n\n    var devMiddleware = require('webpack-dev-middleware')(compiler, {\n        publicPath: webpackConfig.output.publicPath,\n        stats: {\n            colors: true\n        }\n    });\n\n    var hotMiddleware = require('webpack-hot-middleware')(compiler, {\n        log: console.log\n    });\n\n\n    var app = express();\n\n    app.use(devMiddleware);\n\n    app.use(hotMiddleware);\n\n    // app.use(bodyParser.json());\n\n    // app.use(bodyParser.urlencoded({\n    //     extended: false\n    // }));\n\n    // app.use(function(res, req, next) {\n    //     require('./mock')(res, req, next);\n    // });\n\n    // // 监控json文件变化\n    // chokidar.on('ready', function() {\n    //     chokidar.on('all', function() {\n    //         console.log('Server restarting...');\n\n    //         Object.keys(require.cache).forEach(function(id) {\n    //             if (/[\\/\\\\]mock[\\/\\\\]/.test(id)) {\n    //                 delete require.cache[id];\n    //             }\n    //         });\n    //     });\n    // });\n\n    // var router = express.Router();\n    // // 定义路由\n    // router.all('*', function(req, res) {\n    //     res.sendfile(__dirname + '/src/' + req.url);\n    // });\n\n    if (isDev) {\n        var files = ['!./src/**/*.html']; //排除对html文件的监控css文件对于bs-html-injector插件关键作用\n    } else {\n        var files = ['./dist/**'];\n    }\n\n    // app.use('/', router);\n    var webpackDevMiddleware = require(\"webpack-dev-middleware\");\n    var webpackDevServer = require('webpack-dev-server');\n\n    var port = 3000;\n    var bs = require('browser-sync').create();\n    var server = app.listen(port, function() {\n        bs.init({\n            open: true,\n            ui: false,\n            notify: false,\n            proxy: 'localhost:' + port,\n            files: files, //监听文件\n            logPrefix: \"控制台\", //控制台日志前缀\n            online: false, //browser-sync的某些功能需要联网，如果是离线设置为false，则可以以减少启动时间\n            browser: [\"chrome\"], //打开多个用逗号隔开\n            plugins: [{\n                module: \"bs-html-injector\",\n                options: {\n                    files: [\"src/**\"] //注入html文件对于bs-html-injector插件关键作用\n                }\n            }]\n        });\n    });\n} else {\n\n    var webpack = require('webpack');\n\n    var webpackConfig = require('./webpack.config');\n\n    webpack(webpackConfig, function(err, stats) {\n        if (err) {\n            console.error(err);\n            return;\n        }\n        console.log(stats.toString({\n            // chunks: false,\n            clors: true\n        }));\n    });\n}\n",
+			"file": "server.js",
+			"file_size": 4087,
+			"file_write_time": 131445233888311059,
 			"settings":
 			{
-				"buffer_size": 1887,
+				"buffer_size": 3754,
 				"encoding": "UTF-8",
-				"line_ending": "Windows"
+				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "server.js",
+			"file": "webpack.config.js",
 			"settings":
 			{
-				"buffer_size": 4153,
+				"buffer_size": 13844,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -369,18 +372,10 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 354.0,
-		"last_filter": "",
+		"height": 428.0,
+		"last_filter": "pin",
 		"selected_items":
 		[
-			[
-				"remove",
-				"Package Control: Remove Package"
-			],
-			[
-				"re",
-				"Package Control: Remove Package"
-			],
 			[
 				"pin",
 				"Package Control: Install Package"
@@ -388,6 +383,14 @@
 			[
 				"prvo",
 				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"re",
+				"Package Control: Remove Package"
 			],
 			[
 				"remo",
@@ -586,28 +589,34 @@
 	},
 	"expanded_folders":
 	[
-		"/G/webpack",
-		"/G/webpack/src"
+		"/G/webpack"
 	],
 	"file_history":
 	[
-		"/G/webpack/src/index.html",
-		"/C/Users/Administrator/Downloads/gulp-webpack-demo-master/gulpfile.js",
+		"/D/Program Files/Sublime Text 3126/Data/Packages/User/Monokai.tmTheme",
+		"/D/Program Files/Sublime Text 3126/Data/Packages/User/SublimeLinter.sublime-settings",
+		"/D/Program Files/Sublime Text 3126/Data/Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+		"/D/Program Files/Sublime Text 3126/Data/Packages/Gulp/Gulp.sublime-settings",
+		"/D/Program Files/Sublime Text 3126/Data/Packages/Theme - Default/Default.sublime-theme",
+		"/D/Program Files/Sublime Text 3126/Data/Packages/User/Gulp.sublime-settings",
+		"/G/webpack/gulpfile.js",
 		"/G/webpack/webpack.config.js",
+		"/G/webpack/dist/html/app.html",
+		"/G/webpack/src/index.html",
+		"/G/webpack/dist/html/index.html",
+		"/G/webpack/server.js",
+		"/G/webpack/src/index.css",
 		"/G/webpack/package.json",
+		"/C/Users/Administrator/Downloads/gulp-webpack-demo-master/gulpfile.js",
 		"/C/Users/Administrator/Downloads/gulp-webpack-demo-master/webpack.config.js",
 		"/G/webpack/src/app.html",
 		"/G/webpack/src/app.css",
 		"/G/webpack/src/app.js",
 		"/G/webpack/src/index.js",
-		"/G/webpack/dist/html/index.html",
-		"/G/webpack/dist/html/app.html",
-		"/G/webpack/server.js",
 		"/G/webpack/src/app.vue",
 		"/I/b/b/my-project-name/my-project/index.html",
 		"/I/b/b/my-project-name/index.html",
 		"/I/b/b/hello/index.html",
-		"/G/webpack/gulpfile.js",
 		"/G/webpack/src/.babelrc",
 		"/I/b/b/my-project-name/webpack.config.js",
 		"/I/b/b/vue2-elm/build/webpack.prod.conf.js",
@@ -647,7 +656,6 @@
 		"/G/webpack/src/page/gg/gg.html",
 		"/G/webpack/src/page/gg/gg.css",
 		"/G/webpack/src/page/page.html",
-		"/G/webpack/src/index.css",
 		"/G/webpack/src/page/gg/gg.js",
 		"/G/webpack/dist/index.html",
 		"/G/webpack/src/page/page.css",
@@ -712,13 +720,7 @@
 		"/C/Users/Administrator/.bashrc",
 		"/D/Program Files/Sublime Text 3126/Data/Packages/Browser Sync/Main.sublime-menu",
 		"/D/Program Files/Sublime Text 3126/data/Packages/Browser Sync/Main.sublime-menu",
-		"/D/Program Files/Sublime Text 3126/data/Packages/Browser Sync/package-metadata.json",
-		"/D/Program Files/Sublime Text 3126/data/Packages/Browser Sync/.no-sublime-package",
-		"/D/Program Files/Sublime Text 3126/data/Packages/Browser Sync/browser_sync_launch.js",
-		"/D/Program Files/Sublime Text 3126/data/Packages/Browser Sync/browser_sync.py",
-		"/C/Users/Administrator/.babun/cygwin/home/Administrator/.zshrc",
-		"/C/Users/Administrator/.babun/cygwin/home/Administrator/.bashrc",
-		"/C/Users/Administrator/.babun/cygwin/etc/defaults/etc/skel/.bashrc"
+		"/D/Program Files/Sublime Text 3126/data/Packages/Browser Sync/package-metadata.json"
 	],
 	"find":
 	{
@@ -812,6 +814,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"272822",
+			"火狐",
+			"config",
+			"compile",
+			"html",
+			"ignored",
 			"run",
 			"RD",
 			"run",
@@ -933,13 +941,7 @@
 			"getEntryHtml",
 			"vue",
 			"hello",
-			"Hello",
-			"Hello world!",
-			"example",
-			"cheap",
-			"less",
-			"css",
-			"style-loader"
+			"Hello"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -957,148 +959,24 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "gulpfile.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1887,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1624,
-								1624
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										1623,
-										1624
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/dot.png",
-										"brackethighlighter.default"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										1583,
-										1584
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"c_time":
-							[
-								128,
-								3,
-								99,
-								100,
-								97,
-								116,
-								101,
-								116,
-								105,
-								109,
-								101,
-								10,
-								100,
-								97,
-								116,
-								101,
-								116,
-								105,
-								109,
-								101,
-								10,
-								113,
-								0,
-								67,
-								10,
-								7,
-								225,
-								7,
-								14,
-								3,
-								13,
-								28,
-								5,
-								179,
-								238,
-								113,
-								1,
-								133,
-								113,
-								2,
-								82,
-								113,
-								3,
-								46
-							],
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
-							"is_init_dirty_state": false,
-							"origin_encoding": "UTF-8",
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "server.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4153,
+						"buffer_size": 3754,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3557,
-								3557
+								1143,
+								1143
 							]
 						],
 						"settings":
@@ -1110,8 +988,8 @@
 								{
 									"1":
 									[
-										4151,
-										4152
+										3406,
+										3407
 									]
 								},
 								"icon":
@@ -1126,8 +1004,8 @@
 								{
 									"1":
 									[
-										3410,
-										3411
+										264,
+										265
 									]
 								},
 								"unmatched":
@@ -1136,16 +1014,16 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
-								"bh_unmatched_content"
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
 							],
 							"c_time":
 							[
@@ -1194,7 +1072,6 @@
 								3,
 								46
 							],
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
 							"is_init_dirty_state": false,
 							"origin_encoding": "UTF-8",
 							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
@@ -1202,10 +1079,116 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4200.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "webpack.config.js",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 13844,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								149,
+								149
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
+							],
+							"c_time":
+							[
+								128,
+								3,
+								99,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								100,
+								97,
+								116,
+								101,
+								116,
+								105,
+								109,
+								101,
+								10,
+								113,
+								0,
+								67,
+								10,
+								7,
+								225,
+								7,
+								7,
+								2,
+								14,
+								26,
+								3,
+								176,
+								231,
+								113,
+								1,
+								133,
+								113,
+								2,
+								82,
+								113,
+								3,
+								46
+							],
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 420.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -1268,7 +1251,7 @@
 	},
 	"output.gulp_output":
 	{
-		"height": 224.0
+		"height": 184.0
 	},
 	"pinned_build_system": "",
 	"project": "webpack.sublime-project",
@@ -1331,8 +1314,8 @@
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": false,
-	"side_bar_width": 471.0,
+	"side_bar_visible": true,
+	"side_bar_width": 425.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

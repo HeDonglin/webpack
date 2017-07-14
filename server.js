@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-07-14 22:47:16
+ * @Last Modified time: 2017-07-15 00:48:20
  */
 // 判断开发环境还是生产环境
 var ENV = process.env.NODE_ENV; //package.json中配置的参数
@@ -132,5 +132,4 @@ if (isDev) {
             clors: true
         }));
     });
-
 }

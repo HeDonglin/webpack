@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-07-14 22:59:26
+ * @Last Modified time: 2017-07-15 00:57:34
  */
 
 // 引入插件
@@ -12,7 +12,9 @@ var runSequence = require('run-sequence'); //控制task顺序
 var htmlInjector = require('bs-html-injector'); //html注入
 var browserSync = require('browser-sync').create(); //浏览器预览
 
-if (true) {
+var sEnv="pro"; //选择dev和pro两个选项
+
+if (false) {//true gulp预览；false webpack工具预览
 
     var path = true ? 'dist' : 'src'; //布尔值控制选择哪个作为服务器根目录
 
@@ -59,7 +61,7 @@ if (true) {
         script: 'server.js',
         watch: ['webpack.config.js','package.json','server.js'],
         env: {
-            "NODE_ENV": "pro"
+            "NODE_ENV": sEnv
         },
     };
 

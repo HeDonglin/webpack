@@ -9,6 +9,7 @@ html文件上支持使用#include("./handlebars/layout.html")；嵌套子页面
 css文件上支持下一代css书写，css前缀补全，css兼容写法，postcss，less，sass，scss  
 js文件上支持es6  
 vue文件上支持模板书写  
+
 原理：三个主要文件，html+css+js  
 获取src下的所有html文件作为模板，js文件作为入口，文件名一一对应，如index.html,index.js，css文件名可以随意，因为它嵌入到js文件中使用的；经过loader和插件处理后得到相应的文件  
 

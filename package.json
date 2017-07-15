@@ -6,14 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "better-npm-run dev",
-    "pub": "better-npm-run pub",
-    "web": "better-npm-run web"
+    "pro": "better-npm-run pro"
   },
   "betterScripts": {
     "dev": {
       "command": "cross-env NODE_ENV=dev nodemon --watch server.js --watch package.json --watch webpack.config.js server.js"
     },
-    "pub": {
+    "pro": {
       "command": "cross-env NODE_ENV=pro nodemon --watch webpack.config.js --watch package.json --exec \"webpack --config webpack.config.js ||true\" "
     }
   },

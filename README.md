@@ -28,9 +28,9 @@ html文件夹，css文件夹，js文件夹，assets文件夹，font文件夹，i
 预览：npm run dev  
 生成：npm run pro  
 .bashrc文件快捷命令，存放在C:\Users\Administrator目录下  
-记忆：rs（src目录）rd（dist目录）
+记忆：rs（src目录）rd（dist目录）  
 alias rs="npm run dev"  
-alias rd="npm run pro  
+alias rd="npm run pro"  
 
 ### 第二种：ST+gulp插件(推荐)
 好处：不用打开git，按下快捷键即可进行打包或者预览  

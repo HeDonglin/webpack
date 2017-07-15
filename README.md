@@ -66,5 +66,5 @@ if (false) {}//true gulp预览；false webpack工具预览
 
 ## 默认情况预览只是打开index.html文件如果想要打开其他页面
 
-#全程演示
-![image](https://github.com/HeDonglin/webpack/blob/master/src/assets/1.png)
+# 全程演示  
+![image](https://github.com/HeDonglin/webpack/blob/master/src/assets/1.gif)

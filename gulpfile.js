@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-07-15 00:57:34
+ * @Last Modified time: 2017-07-15 12:35:32
  */
 
 // 引入插件
@@ -12,7 +12,7 @@ var runSequence = require('run-sequence'); //控制task顺序
 var htmlInjector = require('bs-html-injector'); //html注入
 var browserSync = require('browser-sync').create(); //浏览器预览
 
-var sEnv="pro"; //选择dev和pro两个选项
+var sEnv="dev"; //选择dev和pro两个选项
 
 if (false) {//true gulp预览；false webpack工具预览
 

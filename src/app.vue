@@ -16,7 +16,7 @@
     export default {
       data () {
         return {
-          msg: '800'
+          msg: 'vue模板'
         }
       }
     }

@@ -1,11 +1,10 @@
-/* jshint esversion: 6 */
-
-/*
-* @Author: hedonglin
-* @Date:   2017-07-13 06:53:15
-* @Last Modified by:   hedonglin
-* @Last Modified time: 2017-07-13 07:00:48
-*/
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+console.log($('#less'));
+require('../less.less');
+require('../scss.scss');
+require('../sass.sass');
 require('./page.css');
-let a=1;
-console.log(a);
+// require('./app.vue');
+// window.onload = function() {
+console.log('page页面');

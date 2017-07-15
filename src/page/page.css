@@ -1,13 +1,15 @@
 /*
-* @Author: w3c0929
-* @Date:   2017-07-13 06:53:07
-* @Last Modified by:   w3c0929
-* @Last Modified time: 2017-07-13 06:56:48
+* @Author: Administrator
+* @Date:   2017-07-09 20:48:33
+* @Last Modified by:   Administrator
+* @Last Modified time: 2017-07-15 14:41:05
 */
+
 div {
-    background: #000;
-    font-size: 30px;
+    background: #800;
     color: #fff;
-    width: 100px;
-    height: 100px;
+    border: 10px solid #000;
+    outline: 10px solid #900;
+    margin: 10px;
+    padding: 10px;
 }

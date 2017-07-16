@@ -2,12 +2,12 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-07-16 12:38:49
+ * @Last Modified time: 2017-07-16 12:46:25
  */
 // 判断开发环境还是生产环境
 var ENV = process.env.NODE_ENV; //package.json中配置的参数
 var isDev = (ENV === 'dev') ? true : false;
-console.log(ENV);
+console.log(ENV==='dev'?'。。。。。。开发环境。。。。。。':'。。。。。。生成环境。。。。。。');
 // 引入模块及插件
 // @see http://nodejs.cn/api/path.html
 var path = require('path'); //引入path模块
@@ -394,5 +394,4 @@ function getEntryHtml(globPath) {
     });
     return entries;
 }
-console.log('日志');
 module.exports = config;

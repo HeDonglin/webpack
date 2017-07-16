@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-07-16 12:19:49
+ * @Last Modified time: 2017-07-16 12:38:49
  */
 // 判断开发环境还是生产环境
 var ENV = process.env.NODE_ENV; //package.json中配置的参数
@@ -228,7 +228,10 @@ var config = {
             // @see https://github.com/babel/babel-loader
             test: /\.js$/,
             use: [{
-                loader: 'babel-loader?id=js'
+                loader: 'babel-loader?id=js',
+                options: {
+                    presets: ['latest'] //按照最新的ES6语法规则去转换,配合.babelrc一起使用才不报错；
+                }
             }, {
                 loader: 'webpack-module-hot-accept'
             }]

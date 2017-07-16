@@ -7,8 +7,5 @@ require('./sass.sass');
 require('./index.css');
 // require('./app.vue');
 // window.onload = function() {
-require('./index.tpl');
 console.log('日志');
 console.log('日志');
-
-

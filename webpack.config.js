@@ -2,12 +2,12 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-07-16 14:22:26
+ * @Last Modified time: 2017-07-16 15:31:20
  */
 // 判断开发环境还是生产环境
 var ENV = process.env.NODE_ENV; //package.json中配置的参数
 var isDev = (ENV === 'dev') ? true : false;
-console.log(ENV === 'dev' ? '。。。。。。开发环境。。。。。。' : '。。。。。。生成环境。。。。。。');
+console.log(ENV === 'dev' ? '。。。。。。开发环境。。。。。。' : '。。。。。。生产环境。。。。。。');
 // 引入模块及插件
 // @see http://nodejs.cn/api/path.html
 var path = require('path'); //引入path模块
@@ -184,7 +184,6 @@ var configPlugins = [
 entryHtml.forEach(function(v) {
     configPlugins.push(new HtmlWebpackPlugin(v));
 });
-console.log(entryHtml);
 // js处理
 var config = {
     // 开发环境推荐：cheap-module-eval-source-map(在开发环境监测)
@@ -249,10 +248,6 @@ var config = {
                 extractCSS: true, //提取<style>标签内的css
                 cssSourceMap: false //默认（true）
             }
-        }, {
-            // @see https://github.com/aui/art-template
-            test: /\.tpl$/,
-            use: ['art-template-loader']
         }, {
             test: /\.(png|jpg|gif)$/,
             loader: 'url-loader', //三个参数prefix(添加前缀)，mimetype（设置文件的MIME类型）limit（在小于指定值转为bash64）

@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-07-15 00:48:20
+ * @Last Modified time: 2017-07-16 18:23:09
  */
 // 判断开发环境还是生产环境
 var ENV = process.env.NODE_ENV; //package.json中配置的参数
@@ -87,7 +87,7 @@ if (isDev) {
     // });
 
     if (isDev) {
-        var files = ['!./src/**/*.html']; //排除对html文件的监控css文件对于bs-html-injector插件关键作用
+        var files = ['!./src/**/*.html']; //如果采用编写vue用['./src/**'];不采用vue的时候用['!./src/**/*.html']；
     } else {
         var files = ['./dist/**'];
     }

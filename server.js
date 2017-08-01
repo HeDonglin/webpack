@@ -2,13 +2,15 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-07-16 18:23:09
+ * @Last Modified time: 2017-08-01 11:45:05
  */
 // 判断开发环境还是生产环境
 var ENV = process.env.NODE_ENV; //package.json中配置的参数
 var isDev = (ENV === 'dev') ? true : false;
 
 if (isDev) {
+    // 开发环境预览编译；
+
     // @see https://github.com/expressjs/express
     // node.js Web应用框架
     var express = require('express');
@@ -16,6 +18,7 @@ if (isDev) {
     // @see https://github.com/webpack/webpack
     // 打包编译
     var webpack = require('webpack');
+
     // @see https://github.com/webpack/webpack-dev-middleware
     // 处理内存中的文件
     var webpackDevMiddleware = require('webpack-dev-middleware');
@@ -37,8 +40,10 @@ if (isDev) {
     // var chokidar = require('chokidar').watch('./mock');
     var webpackConfig = require('./webpack.config');
 
+    // 运行配置文件
     var compiler = webpack(webpackConfig);
 
+    //
     var devMiddleware = require('webpack-dev-middleware')(compiler, {
         publicPath: webpackConfig.output.publicPath,
         stats: {
@@ -85,6 +90,7 @@ if (isDev) {
     // router.all('*', function(req, res) {
     //     res.sendfile(__dirname + '/src/' + req.url);
     // });
+    // app.use('/', router);
 
     if (isDev) {
         var files = ['!./src/**/*.html']; //如果采用编写vue用['./src/**'];不采用vue的时候用['!./src/**/*.html']；
@@ -92,9 +98,6 @@ if (isDev) {
         var files = ['./dist/**'];
     }
 
-    // app.use('/', router);
-    var webpackDevMiddleware = require("webpack-dev-middleware");
-    var webpackDevServer = require('webpack-dev-server');
 
     var port = 3000;
     var bs = require('browser-sync').create();
@@ -118,6 +121,7 @@ if (isDev) {
     });
 } else {
 
+    // 生成环境直接打包
     var webpack = require('webpack');
 
     var webpackConfig = require('./webpack.config');
@@ -129,7 +133,7 @@ if (isDev) {
         }
         console.log(stats.toString({
             // chunks: false,
-            clors: true
+            colors: true
         }));
     });
 }

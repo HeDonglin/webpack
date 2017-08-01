@@ -2,12 +2,14 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-07-16 15:31:20
+ * @Last Modified time: 2017-08-01 12:45:45
  */
+
 // 判断开发环境还是生产环境
 var ENV = process.env.NODE_ENV; //package.json中配置的参数
 var isDev = (ENV === 'dev') ? true : false;
 console.log(ENV === 'dev' ? '。。。。。。开发环境。。。。。。' : '。。。。。。生产环境。。。。。。');
+
 // 引入模块及插件
 // @see http://nodejs.cn/api/path.html
 var path = require('path'); //引入path模块
@@ -16,7 +18,7 @@ var webpack = require('webpack'); //引入webpack插件
 // @see https://github.com/jantimon/html-webpack-plugin
 var HtmlWebpackPlugin = require('html-webpack-plugin'); //新建html
 // @see https://www.npmjs.com/package/vue-template-compiler (可以不用require进来)
-var vueTemplateCompiler = require('vue-template-compiler');
+// var vueTemplateCompiler = require('vue-template-compiler');
 // @see https://github.com/webpack-contrib/extract-text-webpack-plugin
 var ExtractTextPlugin = require("extract-text-webpack-plugin"); //抽离css
 // @see https://github.com/johnagan/clean-webpack-plugin
@@ -36,6 +38,7 @@ var autoprefixer = require('autoprefixer'); //为CSS补全浏览器前缀
 // @see https://github.com/isaacs/node-glob
 var glob = require('glob'); //同步执行
 // @see https://github.com/amireh/happypack
+// 将原有的webpack对loader的执行过程从单一进程的形式扩展多进程模式，原本的流程保持不变，这样可以在不修改原有配置的基础上来完成对编译过程的优化
 var happyPack = require('happyPack'); //多进程，加速代码构建
 // @see https://doc.webpack-china.org/plugins/uglifyjs-webpack-plugin/
 // @see https://github.com/mishoo/UglifyJS2/tree/harmony
@@ -48,7 +51,7 @@ var D = path.resolve(R, 'dist'); //出口文件夹
 
 
 // 常规配置
-var igFolder = /^\.\/src\/(module|vendor)\//g; // component忽略的某个文件夹所有的内容，相对于根目录，如果匹配src下多个文件夹可以在/^\/src\/(publics|abc)\/$/g
+var igFolder = /^\.\/src\/(module|vendor|public|font)\//g; // component忽略的某个文件夹所有的内容，相对于根目录，如果匹配src下多个文件夹可以在/^\/src\/(publics|abc)\/$/g
 var htmlExChunks = ['']; //哪些js文件不需要嵌入到html中例如：['c']表示c.js不嵌入,['']表示都嵌入;
 var delFolder = ['dist/']; //需删除的文件夹
 
@@ -61,16 +64,16 @@ var htmlPath = isDev ? true : false; //第二个控制生成环境下的路径�
 if (onOff) {
     var publicPath = '/'; //
     var jsPath = 'js/'; //
-    var mapPath = 'maps/'; //
-    var imgPath = 'assets/'; //
-    var fontPath = 'fonts/'; //
+    var mapPath = 'map/'; //
+    var imgPath = 'img/'; //
+    var fontPath = 'font/'; //
     var cssPath = 'css/'; //
 } else {
     var publicPath = ''; //
     var jsPath = 'js/'; //
-    var mapPath = 'maps/'; //
-    var imgPath = '/assets/'; //
-    var fontPath = '/fonts/'; //
+    var mapPath = 'map/'; //
+    var imgPath = '/img/'; //
+    var fontPath = '/font/'; //
     var cssPath = 'css/'; //
 }
 
@@ -90,8 +93,9 @@ var vendor = { //第三方库
 };
 
 var happyThreadPool = happyPack.ThreadPool({
-    size: (isDev ? 6 : 12) //进程池数量
+    size: (isDev ? 14 : 14) //进程池数量
 });
+
 if (isDev) {
     // 配置哈希值
     var jsHash = '?v=[hash:8]';
@@ -136,7 +140,7 @@ var configPlugins = [
     new happyPack({
         id: 'css',
         threadPool: happyThreadPool,
-        loaders: ['vue-style-loader', 'style-loader', 'css-loader', 'postcss-loader', 'less-loader', 'sass-loader']
+        loaders: ['vue-style-loader', 'style-loader', 'css-loader', 'postcss-loader', 'less-loader', 'sass-loader','vue-loader']
     }),
 
     // 抽离相同模块到指定文件中
@@ -232,7 +236,7 @@ var config = {
                     presets: ['latest'] //按照最新的ES6语法规则去转换,配合.babelrc一起使用才不报错；
                 }
             }, {
-                loader: 'webpack-module-hot-accept'
+                loader: 'webpack-module-hot-accept?id=js'
             }]
 
             // exclude: path.resolve(R, 'node_modules'), //编译时，不需要编译哪些文件
@@ -243,7 +247,7 @@ var config = {
             // @see https://github.com/vuejs/vue-loader/blob/master/docs/en/configurations/extract-css.md
             // @see https://vue-loader.vuejs.org/zh-cn/configurations/extract-css.html#
             test: /\.vue$/,
-            loader: 'vue-loader', //它会根据 lang 属性自动推断出要使用的 loaders
+            loader: 'vue-loader?id=css', //它会根据 lang 属性自动推断出要使用的 loaders
             options: {
                 extractCSS: true, //提取<style>标签内的css
                 cssSourceMap: false //默认（true）

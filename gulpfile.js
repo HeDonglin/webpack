@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-07-16 11:49:57
+ * @Last Modified time: 2017-08-01 12:09:57
  */
 
 // 引入插件
@@ -12,16 +12,20 @@ var runSequence = require('run-sequence'); //控制task顺序
 var htmlInjector = require('bs-html-injector'); //html注入
 var browserSync = require('browser-sync').create(); //浏览器预览
 
-var sEnv="pro"; //选择dev和pro两个选项
+//选择dev和pro两个选项
+var sEnv="dev";
 
-if (false) {//true gulp预览；false webpack工具预览
+//true gulp预览；false webpack工具预览
+if (false) {
 
-    var path = true ? 'dist' : 'src'; //布尔值控制选择哪个作为服务器根目录
+    //根目录
+    var path = true ? 'dist' : 'src';
 
-    var distPath = path === 'dist' ? 'html/' : ''; //在根目录下的哪个文件夹
+    //根目录下的文件夹
+    var distPath = path === 'dist' ? 'html/' : '';
 
-    // 指定运行的文件和位置
-    var pathHtmlName = distPath + 'app.html'; //文件夹中哪个文件作为预览
+    // 根目录下的文件夹的文件
+    var pathHtmlName = distPath + 'app.html';
 
     // 无刷新更新实时预览
     gulp.task('preview', function() {
@@ -69,7 +73,6 @@ if (false) {//true gulp预览；false webpack工具预览
     gulp.task('start', function() {
         return nodemon(nodemonConfig);
     });
-
 
     // 同步运行
     gulp.task('default', function(done) {

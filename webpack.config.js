@@ -2,8 +2,14 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-08-01 12:45:45
+ * @Last Modified time: 2017-08-02 01:21:49
  */
+
+// 技巧
+// 没有在html中img的src中设置的，以及不在css中设置的图片都需要在js中require加载所有的图片;为了避免一张张require,以下加载img文件夹包含子目录的所有格式的图片；
+// var requireContext = require.context("./img", true, /^\.\/.*\.(png|jpg|gif)$/);
+// requireContext.keys().map(requireContext);
+
 
 // 判断开发环境还是生产环境
 var ENV = process.env.NODE_ENV; //package.json中配置的参数

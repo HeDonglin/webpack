@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-08-02 01:21:49
+ * @Last Modified time: 2017-08-06 01:18:18
  */
 
 // 技巧
@@ -10,6 +10,8 @@
 // var requireContext = require.context("./img", true, /^\.\/.*\.(png|jpg|gif)$/);
 // requireContext.keys().map(requireContext);
 
+// 全局必备的
+//npm i -g cnpm gulp hexo jshint
 
 // 判断开发环境还是生产环境
 var ENV = process.env.NODE_ENV; //package.json中配置的参数
@@ -91,11 +93,11 @@ var fontNum = 100;
 var jsName = 'common'; //抽离到符合要求的js模块到common.js文件中；
 var cssBrowsers = 'last 10 versions'; //css前缀浏览器版本
 var vendor = { //第三方库
-    Vue: "vue",
-    THREE: 'three',
+    // Vue: "vue",
+    // THREE: 'three',
     $: "jquery",
-    jQuery: "jquery",
-    "window.jQuery": "jquery"
+    // jQuery: "jquery",
+    // "window.jQuery": "jquery"
 };
 
 var happyThreadPool = happyPack.ThreadPool({

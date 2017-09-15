@@ -2,15 +2,15 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-08-01 11:45:05
+ * @Last Modified time: 2017-09-15 18:55:15
  */
 // 判断开发环境还是生产环境
 var ENV = process.env.NODE_ENV; //package.json中配置的参数
 var isDev = (ENV === 'dev') ? true : false;
-
 if (isDev) {
-    // 开发环境预览编译；
 
+
+    // 开发环境预览编译；
     // @see https://github.com/expressjs/express
     // node.js Web应用框架
     var express = require('express');
@@ -62,42 +62,12 @@ if (isDev) {
 
     app.use(hotMiddleware);
 
-    // app.use(bodyParser.json());
-
-    // app.use(bodyParser.urlencoded({
-    //     extended: false
-    // }));
-
-    // app.use(function(res, req, next) {
-    //     require('./mock')(res, req, next);
-    // });
-
-    // // 监控json文件变化
-    // chokidar.on('ready', function() {
-    //     chokidar.on('all', function() {
-    //         console.log('Server restarting...');
-
-    //         Object.keys(require.cache).forEach(function(id) {
-    //             if (/[\/\\]mock[\/\\]/.test(id)) {
-    //                 delete require.cache[id];
-    //             }
-    //         });
-    //     });
-    // });
-
-    // var router = express.Router();
-    // // 定义路由
-    // router.all('*', function(req, res) {
-    //     res.sendfile(__dirname + '/src/' + req.url);
-    // });
-    // app.use('/', router);
 
     if (isDev) {
-        var files = ['!./src/**/*.html']; //如果采用编写vue用['./src/**'];不采用vue的时候用['!./src/**/*.html']；
+        var files = ['./src/**']; //如果采用编写vue用['./src/**'];不采用vue的时候用['!./src/**/*.html']；
     } else {
         var files = ['./dist/**'];
     }
-
 
     var port = 3000;
     var bs = require('browser-sync').create();
@@ -119,6 +89,8 @@ if (isDev) {
             }]
         });
     });
+
+
 } else {
 
     // 生成环境直接打包

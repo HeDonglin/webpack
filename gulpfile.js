@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-08-01 12:09:57
+ * @Last Modified time: 2017-09-15 19:05:26
  */
 
 // 引入插件
@@ -11,7 +11,6 @@ var nodemon = require('gulp-nodemon');
 var runSequence = require('run-sequence'); //控制task顺序
 var htmlInjector = require('bs-html-injector'); //html注入
 var browserSync = require('browser-sync').create(); //浏览器预览
-
 //选择dev和pro两个选项
 var sEnv="dev";
 
@@ -60,23 +59,70 @@ if (false) {
     });
 
 } else {
-    // nodemon 的配置
-    var nodemonConfig = {
-        script: 'server.js',
-        watch: ['webpack.config.js','package.json','server.js'],
-        env: {
-            "NODE_ENV": sEnv
-        },
-    };
-
+    var gpath = require('path');
+    var mockpath = gpath.resolve(__dirname, 'mock');
+    var watchFile=['webpack.config.js','package.json','server.js'];
     // 使用 nodemone 跑起服务器
-    gulp.task('start', function() {
-        return nodemon(nodemonConfig);
+    gulp.task('serverNodemon', function(cb) {
+        // nodemon 的配置
+        var started = false;
+        var nodemonConfig = {
+            script: 'server.js',
+            watch: watchFile,
+            env: {
+                "NODE_ENV": sEnv
+            },
+        };
+        var serverStream =nodemon(nodemonConfig);
+        serverStream.on('start', function() {
+            if (!started) {
+                cb();
+                started = true;
+            }
+        }).on('crash', function() {
+            console.error('application has crashed!\n');
+            serverStream.emit('restart', 10);
+        });
+    });
+
+    gulp.task('mockNodemon', function(cb) {
+        // nodemon 的配置
+        var started = false;
+        var nodemonConfig = {
+            script: './mock/server.js',
+            watch: mockpath,
+            env: {
+                "NODE_ENV": sEnv
+            },
+        };
+        var mockStream =nodemon(nodemonConfig);
+        mockStream.on('start', function() {
+            if (!started) {
+                cb();
+                started = true;
+            }
+        }).on('crash', function() {
+            console.error('application has crashed!\n');
+            mockStream.emit('restart', 10);
+        });
+    });
+
+    // 监听mock中的数据发生变化延迟1秒刷新;
+    gulp.task('mockWatch',['mockNodemon'], function() {
+        gulp.watch(['./mock/db.js', './mock/**'], ['bs-delay']);
+    });
+
+    // 延时刷新
+    gulp.task('bs-delay', function() {
+        setTimeout(function() {
+            browserSync.reload();
+        }, 1000);
     });
 
     // 同步运行
     gulp.task('default', function(done) {
         condition = false;
-        runSequence(['start'], done); //必须按顺序执行，加快速度
+        runSequence(['serverNodemon'], done); //必须按顺序执行，加快速度
     });
+
 }

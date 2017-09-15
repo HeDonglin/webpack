@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-08-06 01:18:18
+ * @Last Modified time: 2017-09-15 16:58:05
  */
 
 // 技巧
@@ -92,12 +92,15 @@ var fontNum = 100;
 // 公共设置
 var jsName = 'common'; //抽离到符合要求的js模块到common.js文件中；
 var cssBrowsers = 'last 10 versions'; //css前缀浏览器版本
+
+//自动加载模块，而不必到处 import 或 require 。
+//对于 ES2015 模块的 default export，你必须指定模块的 default 属性
 var vendor = { //第三方库
-    // Vue: "vue",
+    Vue: ['vue/dist/vue.esm.js', 'default'],
     // THREE: 'three',
     $: "jquery",
-    // jQuery: "jquery",
-    // "window.jQuery": "jquery"
+    jQuery: "jquery",
+    "window.jQuery": "jquery"
 };
 
 var happyThreadPool = happyPack.ThreadPool({
@@ -148,7 +151,7 @@ var configPlugins = [
     new happyPack({
         id: 'css',
         threadPool: happyThreadPool,
-        loaders: ['vue-style-loader', 'style-loader', 'css-loader', 'postcss-loader', 'less-loader', 'sass-loader','vue-loader']
+        loaders: ['vue-style-loader', 'style-loader', 'css-loader', 'postcss-loader', 'less-loader', 'sass-loader', 'vue-loader']
     }),
 
     // 抽离相同模块到指定文件中

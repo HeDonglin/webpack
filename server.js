@@ -2,13 +2,19 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-09-15 18:55:15
+ * @Last Modified time: 2017-09-15 19:54:48
  */
+
 // 判断开发环境还是生产环境
+// --------------------------------------------------
 var ENV = process.env.NODE_ENV; //package.json中配置的参数
 var isDev = (ENV === 'dev') ? true : false;
-if (isDev) {
 
+// 开发环境下进行预览
+// 生成环境进行打包编译
+// --------------------------------------------------
+
+if (isDev) {
 
     // 开发环境预览编译；
     // @see https://github.com/expressjs/express
@@ -24,8 +30,8 @@ if (isDev) {
     var webpackDevMiddleware = require('webpack-dev-middleware');
 
     // @see https://www.npmjs.com/package/webpack-dev-server
-    // 当服务停止时候自动关闭浏览器
-    var webpackDevServer = require('webpack-dev-server');
+    // webpack开发服务器（这里不需要）
+    // var webpackDevServer = require('webpack-dev-server');
 
     // @see https://github.com/glenjamin/webpack-hot-middleware
     // 实现浏览器的无刷新更新
@@ -43,7 +49,6 @@ if (isDev) {
     // 运行配置文件
     var compiler = webpack(webpackConfig);
 
-    //
     var devMiddleware = require('webpack-dev-middleware')(compiler, {
         publicPath: webpackConfig.output.publicPath,
         stats: {
@@ -89,10 +94,7 @@ if (isDev) {
             }]
         });
     });
-
-
 } else {
-
     // 生成环境直接打包
     var webpack = require('webpack');
 

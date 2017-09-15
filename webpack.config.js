@@ -2,23 +2,30 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-09-15 16:58:05
+ * @Last Modified time: 2017-09-15 19:56:43
  */
 
 // 技巧
 // 没有在html中img的src中设置的，以及不在css中设置的图片都需要在js中require加载所有的图片;为了避免一张张require,以下加载img文件夹包含子目录的所有格式的图片；
 // var requireContext = require.context("./img", true, /^\.\/.*\.(png|jpg|gif)$/);
 // requireContext.keys().map(requireContext);
+// --------------------------------------------------
 
 // 全局必备的
-//npm i -g cnpm gulp hexo jshint
+// npm i -g cnpm gulp hexo jshint
+// --------------------------------------------------
+
 
 // 判断开发环境还是生产环境
+// --------------------------------------------------
+
 var ENV = process.env.NODE_ENV; //package.json中配置的参数
 var isDev = (ENV === 'dev') ? true : false;
 console.log(ENV === 'dev' ? '。。。。。。开发环境。。。。。。' : '。。。。。。生产环境。。。。。。');
 
 // 引入模块及插件
+// --------------------------------------------------
+
 // @see http://nodejs.cn/api/path.html
 var path = require('path'); //引入path模块
 // @see https://github.com/webpack/webpack
@@ -53,22 +60,28 @@ var happyPack = require('happyPack'); //多进程，加速代码构建
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin'); //压缩js，由于官方提供的压缩只支持es5,所以需要这个插件,以及UglifyJS2（压缩es6）
 
 // 设置文件夹
+// --------------------------------------------------
+
 var R = path.resolve(__dirname); //根目录，webpack.config.js所在文件夹
 var S = path.resolve(R, 'src'); //入口文件夹
 var D = path.resolve(R, 'dist'); //出口文件夹
 
 
 // 常规配置
-var igFolder = /^\.\/src\/(module|vendor|public|font)\//g; // component忽略的某个文件夹所有的内容，相对于根目录，如果匹配src下多个文件夹可以在/^\/src\/(publics|abc)\/$/g
-var htmlExChunks = ['']; //哪些js文件不需要嵌入到html中例如：['c']表示c.js不嵌入,['']表示都嵌入;
-var delFolder = ['dist/']; //需删除的文件夹
+// --------------------------------------------------
 
-var onOff = isDev ? true : false; //无论什么时候开发环境使用publicPath绝对路径，生成环境可选这里默认为false（即采用相对路径）
-
+// component忽略的某个文件夹所有的内容，相对于根目录，如果匹配src下多个文件夹可以在/^\/src\/(publics|abc)\/$/g
+var igFolder = /^\.\/src\/(module|vendor|public|font)\//g;
+// 哪些js文件不需要嵌入到html中例如：['c']表示c.js不嵌入,['']表示都嵌入;
+var htmlExChunks = [''];
+// 需删除的文件夹
+var delFolder = ['dist/'];
 // true：和入口文件位置一一对应；entry.split('/').splice(2).join('/')；开发环境一定要使用这种，为预览要找到index文件；
 // false：在出口文件添加html文件夹存放所有html文件；'html/'+path.basename(entry)
-var htmlPath = isDev ? true : false; //第二个控制生成环境下的路径方式这里默认为false（即采用html文件夹）；
-
+// 第二个控制生成环境下的路径方式这里默认为false（即采用html文件夹）；
+var htmlPath = isDev ? true : false;
+// 无论什么时候开发环境使用publicPath绝对路径，生成环境可选这里默认为false（即采用相对路径）
+var onOff = isDev ? true : false;
 if (onOff) {
     var publicPath = '/'; //
     var jsPath = 'js/'; //
@@ -93,9 +106,9 @@ var fontNum = 100;
 var jsName = 'common'; //抽离到符合要求的js模块到common.js文件中；
 var cssBrowsers = 'last 10 versions'; //css前缀浏览器版本
 
-//自动加载模块，而不必到处 import 或 require 。
-//对于 ES2015 模块的 default export，你必须指定模块的 default 属性
-var vendor = { //第三方库
+// 自动加载模块，而不必到处 import 或 require 。
+// 对于 ES2015 模块的 default export，你必须指定模块的 default 属性
+var vendor = {
     Vue: ['vue/dist/vue.esm.js', 'default'],
     // THREE: 'three',
     $: "jquery",
@@ -103,10 +116,12 @@ var vendor = { //第三方库
     "window.jQuery": "jquery"
 };
 
+// 进程池数量
 var happyThreadPool = happyPack.ThreadPool({
-    size: (isDev ? 14 : 14) //进程池数量
+    size: (isDev ? 14 : 7) //进程池数量
 });
 
+// 配置hash值
 if (isDev) {
     // 配置哈希值
     var jsHash = '?v=[hash:8]';
@@ -124,7 +139,9 @@ if (isDev) {
 }
 
 
-// css 多重功能配置
+// css多重功能配置
+// --------------------------------------------------
+
 var cssConfig = {
     plugins: [precss, cssnext, cssgrace, postcssclean, autoprefixer({
         browsers: [cssBrowsers], //前缀兼容
@@ -135,12 +152,16 @@ var cssConfig = {
 
 
 // 入口文件，函数调用；
+// --------------------------------------------------
+
 var entryHtml = getEntryHtml('./src/**/*.html'); //获取所有html文件的路径(数组)，相对于根目录
 var entryJs = getEntry('./src/**/*.js'); //获取所有的js路径(对象)，相对于根目录
 
 
 
 // 插件封装在数组里
+// --------------------------------------------------
+
 var configPlugins = [
     new happyPack({
         id: 'js',
@@ -196,10 +217,15 @@ var configPlugins = [
 ];
 
 // 向插件配置(数组)里添加新的插件,每个入口文件就是生成一个html或者是预先设置的html文件，该插件主要把生成的css和js文件插入link和script到模板文件中;
+// --------------------------------------------------
+
 entryHtml.forEach(function(v) {
     configPlugins.push(new HtmlWebpackPlugin(v));
 });
+
 // js处理
+// --------------------------------------------------
+
 var config = {
     // 开发环境推荐：cheap-module-eval-source-map(在开发环境监测)
     // 生产环境推荐：cheap-module-source-map
@@ -322,10 +348,16 @@ var config = {
     // }
 };
 
-// 生成环境，js和css使用相对路径，所以把publicPath属性删除；
+// 生产环境，js和css使用相对路径，所以把publicPath属性删除；
+// --------------------------------------------------
+
 if (!onOff) {
     delete config.output.publicPath;
 }
+
+// 开发环境中每个入口文件都配置一个中间件进行热替换
+// 生成环境中进行压缩js，删除上一次的dist文件
+// --------------------------------------------------
 
 if (isDev) {
     //添加HMR，以及输出对用户更友好的模块名字信息
@@ -357,6 +389,8 @@ if (isDev) {
 }
 
 // 获取js路径
+// --------------------------------------------------
+
 function getEntry(globPath) {
     var entries = {};
     glob.sync(globPath).forEach(function(entry) {
@@ -370,6 +404,8 @@ function getEntry(globPath) {
 }
 
 // 获取html路径
+// --------------------------------------------------
+
 function getEntryHtml(globPath) {
     var entries = [];
     glob.sync(globPath).forEach(function(entry) {
@@ -408,5 +444,8 @@ function getEntryHtml(globPath) {
     });
     return entries;
 }
+
+// 导出模块
+// --------------------------------------------------
 
 module.exports = config;

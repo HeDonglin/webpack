@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-09-15 19:54:48
+ * @Last Modified time: 2017-09-18 03:35:42
  */
 
 // 判断开发环境还是生产环境
@@ -73,7 +73,6 @@ if (isDev) {
     } else {
         var files = ['./dist/**'];
     }
-
     var port = 3000;
     var bs = require('browser-sync').create();
     var server = app.listen(port, function() {

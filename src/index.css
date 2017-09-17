@@ -1,16 +1,11 @@
 /*
 * @Author: Administrator
-* @Date:   2017-07-09 20:48:33
+* @Date:   2017-09-18 02:13:28
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-08-17 13:00:58
+* @Last Modified time: 2017-09-18 02:34:41
 */
-
-div {
-    color: #fff;
-    border: 10px solid #000;
-    outline: 10px solid #800;
-    margin: 10px;
-    padding: 10px;
-    background: #900;
-
+.div1 {
+  background: #000;
+  color: #fff;
+  border-radius: 100px;
 }

@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-09-18 16:46:34
+ * @Last Modified time: 2017-09-18 16:54:30
  */
 
 // 注意事项：
@@ -16,86 +16,73 @@
 
 // 引入插件
 // --------------------------------------------------
-var gulp = require('gulp'); //基础库
-var runSequence = require('run-sequence'); //控制task顺序
+var gulp         = require('gulp'); //基础库
+var runSequence  = require('run-sequence'); //控制task顺序
 var htmlInjector = require('bs-html-injector'); //html注入
-var browserSync = require('browser-sync').create(); //浏览器预览
-var stylus = require('gulp-stylus');
-var less = require('gulp-less');
-var sass = require('gulp-sass');
-var postcss = require('gulp-postcss');
-var precss = require('precss');
-var plumber = require('gulp-plumber');
-var nodemon = require('gulp-nodemon');
-var gpath = require('path');
-var rev = require('gulp-rev'); //加MD5后缀
-var flatten = require('gulp-flatten'); //修改rev中json路径
+var browserSync  = require('browser-sync').create(); //浏览器预览
+var stylus       = require('gulp-stylus');
+var less         = require('gulp-less');
+var sass         = require('gulp-sass');
+var postcss      = require('gulp-postcss');
+var precss       = require('precss');
+var plumber      = require('gulp-plumber');
+var nodemon      = require('gulp-nodemon');
+var gpath        = require('path');
+var rev          = require('gulp-rev'); //加MD5后缀
+var flatten      = require('gulp-flatten'); //修改rev中json路径
 var revCollector = require('gulp-rev-collector'); //路径替换
-var uglify = require('gulp-uglify'); //js压缩
-var htmlinc = require('gulp-content-includer'); //html模块打包
-var htmlmin = require('gulp-htmlmin'); //html压缩
-var gulpcdn = require('gulp-cdn-absolute-path'); //替换相对路径和绝对路径的cdn前缀
-var clean = require('gulp-clean'); //清理内容
-var cssnext = require('cssnext'); //下一代CSS书写方式兼容现在浏览器
+var uglify       = require('gulp-uglify'); //js压缩
+var htmlinc      = require('gulp-content-includer'); //html模块打包
+var htmlmin      = require('gulp-htmlmin'); //html压缩
+var gulpcdn      = require('gulp-cdn-absolute-path'); //替换相对路径和绝对路径的cdn前缀
+var clean        = require('gulp-clean'); //清理内容
+var cssnext      = require('cssnext'); //下一代CSS书写方式兼容现在浏览器
 var autoprefixer = require('autoprefixer'); //为CSS补全浏览器前缀
 var postcssclean = require('postcss-clean'); //压缩css文件
-// var rename = require('gulp-rename'); //重新命名文件
-// var replace = require('gulp-replace'); //文件内容替换
-// var spriter = require('gulp-css-spriter'); //雪碧图
-// var concat = require('gulp-concat'); //合并文件
+// var rename    = require('gulp-rename'); //重新命名文件
+// var replace   = require('gulp-replace'); //文件内容替换
+// var spriter   = require('gulp-css-spriter'); //雪碧图
+// var concat    = require('gulp-concat'); //合并文件
+
 // 全局配置
 // --------------------------------------------------
-// 必须设置：true (gulp预览)；false (webpack工具预览)
 
 // webpack模式, 开发环境(dev)还是生产环境(pro)
-var sEnv = "dev";
+var sEnv            = "dev";
 // jsonserver监听文件路径
-var mockpath = gpath.resolve(__dirname, 'mock');
+var mockpath        = gpath.resolve(__dirname, 'mock');
 // serverNodemon中监听的文件重启
 var serverWatchFile = ['webpack.config.js', 'package.json', 'server.js'];
 
-// 关于日期
-// var data = new Date(), //按日期
-//     a = data.getFullYear(),
-//     b = data.getMonth() + 1,
-//     c = data.getDate();
-// var timestamp = +new Date();
+// 必须设置：true (gulp预览)；false (webpack工具预览)
 
-// 重命名
-// .pipe(rename(function(path) {
-//     path.dirname += "/日期"; //在cssDst路径最后加一个文件夹
-//     path.basename += "-" + a + b + c; //位于前缀和后缀的名字
-//     path.prefix += "abc-"; //前缀
-//     path.suffix += ".min"; //后缀
-//     path.extname = ".css"; //扩展后缀
-// })) //重新命名
 
 if (true) {
     // src配置
     // --------------------------------------------------
     // src根目录
-    var srcRoot = 'src';
+    var srcRoot     = 'src';
     // src根目录下的文件夹
-    var srcFolder = '';
+    var srcFolder   = '';
     // src根目录下的文件夹的文件
-    var srcFile = srcFolder + 'index.html';
+    var srcFile     = srcFolder + 'index.html';
     // 是否把所有的scss集中在一个文件中
     var styleFolder = false ? 'style/' : '';
-    var styleDst = false ? 'css' : '';
+    var styleDst    = false ? 'css' : '';
     var cssBrowsers = 'last 10 versions'; //css前缀浏览器版本
     // 忽略的文件夹和文件
-    var igFolder = '!src/{font,img}/**/*.+(html|css|js)';
+    var igFolder    = '!src/{font,img}/**/*.+(html|css|js)';
     // 是否按功能页面打包;按后缀文件打包还存在路径问题；
-    var isPosa = true;
+    var isPosa      = true;
 
     // dist配置
     // --------------------------------------------------
     // dist根目录
-    var distRoot = 'dist';
+    var distRoot    = 'dist';
     // dist根目录下的文件夹
-    var distFolder = 'html';
+    var distFolder  = 'html';
     // dist根目录下的文件夹的文件
-    var distFile = distFolder + '/' + 'index.html';
+    var distFile    = distFolder + '/' + 'index.html';
 
     // 生成后预览
     // --------------------------------------------------
@@ -465,3 +452,19 @@ if (true) {
     });
 
 }
+
+// 关于日期
+// var data = new Date(), //按日期
+//     a = data.getFullYear(),
+//     b = data.getMonth() + 1,
+//     c = data.getDate();
+// var timestamp = +new Date();
+
+// 重命名
+// .pipe(rename(function(path) {
+//     path.dirname += "/日期"; //在cssDst路径最后加一个文件夹
+//     path.basename += "-" + a + b + c; //位于前缀和后缀的名字
+//     path.prefix += "abc-"; //前缀
+//     path.suffix += ".min"; //后缀
+//     path.extname = ".css"; //扩展后缀
+// })) //重新命名

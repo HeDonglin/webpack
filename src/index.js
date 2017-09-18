@@ -2,9 +2,9 @@
 
 /*
 * @Author: hedonglin
-* @Date:   2017-09-18 02:13:28
+* @Date:   2017-09-18 17:13:40
 * @Last Modified by:   hedonglin
-* @Last Modified time: 2017-09-18 02:35:03
+* @Last Modified time: 2017-09-18 17:16:13
 */
 require('./index.scss');
-console.log('index.scss');
+console.log('日志');

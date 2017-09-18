@@ -2,10 +2,12 @@
 * @Author: Administrator
 * @Date:   2017-09-18 02:13:28
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-09-18 02:34:41
+* @Last Modified time: 2017-09-18 16:05:25
 */
+@import './public/reset.scss';
 .div1 {
     background: #000;
     color: #fff;
-    border-radius: 100px;
+    border-radius: 340px;
+    background-image: url(./img/2.png);
 }

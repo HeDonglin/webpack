@@ -6,7 +6,7 @@ rem md src\style
 md src\page\about
 md src\module
 md src\vendor
-md src\public
+md src\common
 type NUL > src\index.html
 type NUL > src\index.scss
 type NUL > src\index.js

@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-09-18 16:54:30
+ * @Last Modified time: 2017-09-21 17:06:10
  */
 
 // 注意事项：
@@ -48,7 +48,7 @@ var postcssclean = require('postcss-clean'); //压缩css文件
 // --------------------------------------------------
 
 // webpack模式, 开发环境(dev)还是生产环境(pro)
-var sEnv            = "dev";
+var sEnv            = "pro";
 // jsonserver监听文件路径
 var mockpath        = gpath.resolve(__dirname, 'mock');
 // serverNodemon中监听的文件重启
@@ -57,7 +57,7 @@ var serverWatchFile = ['webpack.config.js', 'package.json', 'server.js'];
 // 必须设置：true (gulp预览)；false (webpack工具预览)
 
 
-if (true) {
+if (false) {
     // src配置
     // --------------------------------------------------
     // src根目录

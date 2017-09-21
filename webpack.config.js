@@ -2,17 +2,24 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-09-15 19:56:43
+ * @Last Modified time: 2017-09-21 18:15:49
  */
 
-// 技巧
-// 没有在html中img的src中设置的，以及不在css中设置的图片都需要在js中require加载所有的图片;为了避免一张张require,以下加载img文件夹包含子目录的所有格式的图片；
+// 技巧1
+// 问题：什么情况下需要在js中require图片？
+// 解决：如果该图片不在html和css文件中出现，那么就要在js中require进来;为了避免一张张require进来可以使用以下代码；
 // var requireContext = require.context("./img", true, /^\.\/.*\.(png|jpg|gif)$/);
 // requireContext.keys().map(requireContext);
 // --------------------------------------------------
 
+// 技巧2
+// 问题：如何把多个文件中的scss中相同的代码抽离到一个公共common.css模块下？
+// 解决：只要在不同js中require进相同的css即可；
+// 注意：如果在scss中用@import这种方式是不会有效果的；
+// --------------------------------------------------
+
 // 全局必备的
-// npm i -g cnpm gulp hexo jshint
+// npm i -g cnpm gulp hexo jshint npm-check
 // --------------------------------------------------
 
 
@@ -27,37 +34,37 @@ console.log(ENV === 'dev' ? '。。。。。。开发环境。。。。。。' :
 // --------------------------------------------------
 
 // @see http://nodejs.cn/api/path.html
-var path = require('path'); //引入path模块
+var path                   = require('path'); //引入path模块
 // @see https://github.com/webpack/webpack
-var webpack = require('webpack'); //引入webpack插件
+var webpack                = require('webpack'); //引入webpack插件
 // @see https://github.com/jantimon/html-webpack-plugin
-var HtmlWebpackPlugin = require('html-webpack-plugin'); //新建html
+var HtmlWebpackPlugin      = require('html-webpack-plugin'); //新建html
 // @see https://www.npmjs.com/package/vue-template-compiler (可以不用require进来)
 // var vueTemplateCompiler = require('vue-template-compiler');
 // @see https://github.com/webpack-contrib/extract-text-webpack-plugin
-var ExtractTextPlugin = require("extract-text-webpack-plugin"); //抽离css
+var ExtractTextPlugin      = require("extract-text-webpack-plugin"); //抽离css
 // @see https://github.com/johnagan/clean-webpack-plugin
-var CleanWebpackPlugin = require('clean-webpack-plugin'); //删除文件夹
+var CleanWebpackPlugin     = require('clean-webpack-plugin'); //删除文件夹
 // @see https://github.com/kevlened/copy-webpack-plugin
-var CopyWebpackPlugin = require("copy-webpack-plugin"); //拷贝文件
+var CopyWebpackPlugin      = require("copy-webpack-plugin"); //拷贝文件
 // @see https://github.com/jonathantneal/precss
-var precss = require('precss'); //CSS预处理器
+var precss                 = require('precss'); //CSS预处理器
 // @see https://github.com/MoOx/postcss-cssnext
-var cssnext = require('cssnext'); //下一代CSS书写方式兼容现在浏览器
+var cssnext                = require('cssnext'); //下一代CSS书写方式兼容现在浏览器
 // @see https://github.com/cssdream/cssgrace
-var cssgrace = require('cssgrace'); //让CSS兼容旧版IE
+var cssgrace               = require('cssgrace'); //让CSS兼容旧版IE
 // @see https://github.com/leodido/postcss-clean
-var postcssclean = require('postcss-clean'); //压缩css文件
+var postcssclean           = require('postcss-clean'); //压缩css文件
 // @see https://github.com/postcss/autoprefixer
-var autoprefixer = require('autoprefixer'); //为CSS补全浏览器前缀
+var autoprefixer           = require('autoprefixer'); //为CSS补全浏览器前缀
 // @see https://github.com/isaacs/node-glob
-var glob = require('glob'); //同步执行
+var glob                   = require('glob'); //同步执行
 // @see https://github.com/amireh/happypack
 // 将原有的webpack对loader的执行过程从单一进程的形式扩展多进程模式，原本的流程保持不变，这样可以在不修改原有配置的基础上来完成对编译过程的优化
-var happyPack = require('happyPack'); //多进程，加速代码构建
+var happyPack              = require('happyPack'); //多进程，加速代码构建
 // @see https://doc.webpack-china.org/plugins/uglifyjs-webpack-plugin/
 // @see https://github.com/mishoo/UglifyJS2/tree/harmony
-var UglifyJSPlugin = require('uglifyjs-webpack-plugin'); //压缩js，由于官方提供的压缩只支持es5,所以需要这个插件,以及UglifyJS2（压缩es6）
+var UglifyJSPlugin         = require('uglifyjs-webpack-plugin'); //压缩js，由于官方提供的压缩只支持es5,所以需要这个插件,以及UglifyJS2（压缩es6）
 
 // 设置文件夹
 // --------------------------------------------------
@@ -71,31 +78,31 @@ var D = path.resolve(R, 'dist'); //出口文件夹
 // --------------------------------------------------
 
 // component忽略的某个文件夹所有的内容，相对于根目录，如果匹配src下多个文件夹可以在/^\/src\/(publics|abc)\/$/g
-var igFolder = /^\.\/src\/(module|vendor|public|font)\//g;
+var igFolder     = /^\.\/src\/(module|vendor|public|font)\//g;
 // 哪些js文件不需要嵌入到html中例如：['c']表示c.js不嵌入,['']表示都嵌入;
 var htmlExChunks = [''];
 // 需删除的文件夹
-var delFolder = ['dist/'];
+var delFolder    = ['dist/'];
 // true：和入口文件位置一一对应；entry.split('/').splice(2).join('/')；开发环境一定要使用这种，为预览要找到index文件；
 // false：在出口文件添加html文件夹存放所有html文件；'html/'+path.basename(entry)
 // 第二个控制生成环境下的路径方式这里默认为false（即采用html文件夹）；
-var htmlPath = isDev ? true : false;
+var htmlPath     = isDev ? true : false;
 // 无论什么时候开发环境使用publicPath绝对路径，生成环境可选这里默认为false（即采用相对路径）
-var onOff = isDev ? true : false;
+var onOff        = isDev ? true : false;
 if (onOff) {
     var publicPath = '/'; //
-    var jsPath = 'js/'; //
-    var mapPath = 'map/'; //
-    var imgPath = 'img/'; //
-    var fontPath = 'font/'; //
-    var cssPath = 'css/'; //
+    var jsPath     = 'js/'; //
+    var mapPath    = 'map/'; //
+    var imgPath    = 'img/'; //
+    var fontPath   = 'font/'; //
+    var cssPath    = 'css/'; //
 } else {
     var publicPath = ''; //
-    var jsPath = 'js/'; //
-    var mapPath = 'map/'; //
-    var imgPath = '/img/'; //
-    var fontPath = '/font/'; //
-    var cssPath = 'css/'; //
+    var jsPath     = 'js/'; //
+    var mapPath    = 'map/'; //
+    var imgPath    = '/img/'; //
+    var fontPath   = '/font/'; //
+    var cssPath    = 'css/'; //
 }
 
 // 小于设置的值转为bash64,单位为Bytes,10000B=9.77KB
@@ -103,8 +110,8 @@ var imgNum = 100;
 var fontNum = 100;
 
 // 公共设置
-var jsName = 'common'; //抽离到符合要求的js模块到common.js文件中；
-var cssBrowsers = 'last 10 versions'; //css前缀浏览器版本
+var jsName      = 'common'; //抽离到符合要求的js模块到common.js文件中；
+var cssBrowsers = 'last 4 versions'; //css前缀浏览器版本
 
 // 自动加载模块，而不必到处 import 或 require 。
 // 对于 ES2015 模块的 default export，你必须指定模块的 default 属性
@@ -124,18 +131,18 @@ var happyThreadPool = happyPack.ThreadPool({
 // 配置hash值
 if (isDev) {
     // 配置哈希值
-    var jsHash = '?v=[hash:8]';
-    var cssHash = '?v=[contenthash:8]';
+    var jsHash   = '?v=[hash:8]';
+    var cssHash  = '?v=[contenthash:8]';
     var fontHash = '?v=[hash:8]';
-    var imgHash = '?v=[hash:8]';
-    var mapHash = '?v=[chunkhash:8]';
+    var imgHash  = '?v=[hash:8]';
+    var mapHash  = '?v=[chunkhash:8]';
 } else {
     // 配置哈希值
-    var jsHash = '?v=[chunkhash:8]';
-    var cssHash = '?v=[contenthash:8]';
+    var jsHash   = '?v=[chunkhash:8]';
+    var cssHash  = '?v=[contenthash:8]';
     var fontHash = '?v=[hash:8]';
-    var imgHash = '?v=[hash:8]';
-    var mapHash = '?v=[chunkhash:8]';
+    var imgHash  = '?v=[hash:8]';
+    var mapHash  = '?v=[chunkhash:8]';
 }
 
 
@@ -143,7 +150,7 @@ if (isDev) {
 // --------------------------------------------------
 
 var cssConfig = {
-    plugins: [precss, cssnext, cssgrace, postcssclean, autoprefixer({
+    plugins: [precss, cssnext, /*cssgrace, */postcssclean, autoprefixer({
         browsers: [cssBrowsers], //前缀兼容
         remove: true //自动清除过时前缀
     })]
@@ -155,7 +162,7 @@ var cssConfig = {
 // --------------------------------------------------
 
 var entryHtml = getEntryHtml('./src/**/*.html'); //获取所有html文件的路径(数组)，相对于根目录
-var entryJs = getEntry('./src/**/*.js'); //获取所有的js路径(对象)，相对于根目录
+var entryJs   = getEntry('./src/**/*.js'); //获取所有的js路径(对象)，相对于根目录
 
 
 

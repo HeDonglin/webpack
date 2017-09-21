@@ -1,14 +1,18 @@
 {
-  "name": "abc",
+  "name": "webpack",
   "version": "1.0.0",
   "description": "",
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "cnpmc": "better-npm-run cnpmc",
     "dev": "better-npm-run dev",
     "pro": "better-npm-run pro"
   },
   "betterScripts": {
+    "cnpmc": {
+      "command": "cross-env NPM_CHECK_INSTALLER=cnpm npm-check -u"
+    },
     "dev": {
       "command": "cross-env NODE_ENV=dev nodemon --watch server.js --watch package.json --watch webpack.config.js server.js"
     },
@@ -24,7 +28,7 @@
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
     "babel-preset-latest": "^6.24.1",
-    "better-npm-run": "0.0.15",
+    "better-npm-run": "0.1.0",
     "body-parser": "^1.17.2",
     "browser-sync": "^2.18.13",
     "bs-html-injector": "^3.0.3",
@@ -37,8 +41,8 @@
     "cssnext": "^1.8.4",
     "exports-loader": "^0.6.4",
     "expose-loader": "^0.7.3",
-    "express": "^4.15.3",
-    "extract-text-webpack-plugin": "^2.1.2",
+    "express": "^4.15.4",
+    "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
     "glob": "^7.1.2",
     "gulp": "^3.9.1",
@@ -69,7 +73,7 @@
     "mockjs": "^1.0.1-beta3",
     "node-sass": "^4.5.3",
     "nodemon": "^1.11.0",
-    "postcss": "^6.0.6",
+    "postcss": "^6.0.11",
     "postcss-clean": "^1.0.3",
     "postcss-loader": "^2.0.6",
     "precss": "^2.0.0",

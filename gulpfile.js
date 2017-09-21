@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-09-21 17:06:10
+ * @Last Modified time: 2017-09-21 20:08:55
  */
 
 // 注意事项：
@@ -48,14 +48,24 @@ var postcssclean = require('postcss-clean'); //压缩css文件
 // --------------------------------------------------
 
 // webpack模式, 开发环境(dev)还是生产环境(pro)
-var sEnv            = "pro";
+var sEnv            = "dev";
 // jsonserver监听文件路径
 var mockpath        = gpath.resolve(__dirname, 'mock');
 // serverNodemon中监听的文件重启
 var serverWatchFile = ['webpack.config.js', 'package.json', 'server.js'];
 
-// 必须设置：true (gulp预览)；false (webpack工具预览)
 
+// dist配置
+// --------------------------------------------------
+// dist根目录
+var distRoot    = 'dist';
+// dist根目录下的文件夹
+var distFolder  = 'html';
+// dist根目录下的文件夹的文件
+var distFile    = distFolder + '/' + 'index.html';
+
+// 必须设置：true (gulp预览)；false (webpack工具预览)
+// --------------------------------------------------
 
 if (false) {
     // src配置
@@ -75,14 +85,6 @@ if (false) {
     // 是否按功能页面打包;按后缀文件打包还存在路径问题；
     var isPosa      = true;
 
-    // dist配置
-    // --------------------------------------------------
-    // dist根目录
-    var distRoot    = 'dist';
-    // dist根目录下的文件夹
-    var distFolder  = 'html';
-    // dist根目录下的文件夹的文件
-    var distFile    = distFolder + '/' + 'index.html';
 
     // 生成后预览
     // --------------------------------------------------
@@ -383,6 +385,33 @@ if (false) {
 
 
 } else {
+
+    // 生成后预览
+    // --------------------------------------------------
+    gulp.task('dist', function() {
+        browserSync.init(null, {
+            index: distFile,
+            server: {
+                baseDir: './' + distRoot,
+                // 打开目录列表
+                directory: true
+            },
+            notify: false,
+            open: true,
+            logPrefix: "控制台",
+            browser: ['chrome'], //可以配置多个浏览器
+            injectChanges: true, //热替换，注入css
+            files: ['./' + distRoot + '/css/**/*.css'], //监听css文件便于bs-html-injector进行热替换
+            online: false, //browser-sync的某些功能需要联网，如果是离线设置为false，则可以以减少启动时间
+            plugins: [{
+                module: 'bs-html-injector',
+                options: {
+                    files: [distRoot + '/**/*.html'] //注入html文件
+                }
+            }]
+        });
+        gulp.watch([distRoot + '/**/*.js']).on('change', browserSync.reload); //专门监控js文件,这个还没法做到热更新，选择了整个页面刷新
+    });
 
     // serverNodemon
     // --------------------------------------------------

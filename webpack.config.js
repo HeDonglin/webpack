@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-09-21 18:15:49
+ * @Last Modified time: 2017-09-22 15:35:17
  */
 
 // 技巧1
@@ -123,10 +123,6 @@ var vendor = {
     "window.jQuery": "jquery"
 };
 
-// 进程池数量
-var happyThreadPool = happyPack.ThreadPool({
-    size: (isDev ? 14 : 7) //进程池数量
-});
 
 // 配置hash值
 if (isDev) {
@@ -156,7 +152,10 @@ var cssConfig = {
     })]
 };
 
-
+// 进程池数量
+var happyThreadPool = happyPack.ThreadPool({
+    size: (isDev ? 5 : 2) //进程池数量
+});
 
 // 入口文件，函数调用；
 // --------------------------------------------------
@@ -170,17 +169,18 @@ var entryJs   = getEntry('./src/**/*.js'); //获取所有的js路径(对象)，�
 // --------------------------------------------------
 
 var configPlugins = [
-    new happyPack({
-        id: 'js',
-        threadPool: happyThreadPool,
-        loaders: ['babel-loader', 'webpack-module-hot-accept']
-    }),
+    // 经过测试设置了happyPack反而变慢了，项目多的时候看看是否有变化
+    // new happyPack({
+    //     id: 'js',
+    //     threadPool: happyThreadPool,
+    //     loaders: ['babel-loader']
+    // }),
 
-    new happyPack({
-        id: 'css',
-        threadPool: happyThreadPool,
-        loaders: ['vue-style-loader', 'style-loader', 'css-loader', 'postcss-loader', 'less-loader', 'sass-loader', 'vue-loader']
-    }),
+    // new happyPack({
+    //     id: 'css',
+    //     threadPool: happyThreadPool,
+    //     loaders: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader', 'sass-loader']
+    // }),
 
     // 抽离相同模块到指定文件中
     // @see https://doc.webpack-china.org/plugins/commons-chunk-plugin/
@@ -280,7 +280,7 @@ var config = {
                     presets: ['latest'] //按照最新的ES6语法规则去转换,配合.babelrc一起使用才不报错；
                 }
             }, {
-                loader: 'webpack-module-hot-accept?id=js'
+                loader: 'webpack-module-hot-accept'
             }]
 
             // exclude: path.resolve(R, 'node_modules'), //编译时，不需要编译哪些文件
@@ -291,7 +291,7 @@ var config = {
             // @see https://github.com/vuejs/vue-loader/blob/master/docs/en/configurations/extract-css.md
             // @see https://vue-loader.vuejs.org/zh-cn/configurations/extract-css.html#
             test: /\.vue$/,
-            loader: 'vue-loader?id=css', //它会根据 lang 属性自动推断出要使用的 loaders
+            loader: 'vue-loader', //它会根据 lang 属性自动推断出要使用的 loaders
             options: {
                 extractCSS: true, //提取<style>标签内的css
                 cssSourceMap: false //默认（true）

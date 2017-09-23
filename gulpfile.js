@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-09-21 20:08:55
+ * @Last Modified time: 2017-09-23 12:52:23
  */
 
 // 注意事项：
@@ -48,7 +48,7 @@ var postcssclean = require('postcss-clean'); //压缩css文件
 // --------------------------------------------------
 
 // webpack模式, 开发环境(dev)还是生产环境(pro)
-var sEnv            = "dev";
+var sEnv            = "pro";
 // jsonserver监听文件路径
 var mockpath        = gpath.resolve(__dirname, 'mock');
 // serverNodemon中监听的文件重启

@@ -2,7 +2,7 @@
  * @Author: hedonglin
  * @Date:   2017-07-07 20:19:39
  * @Last Modified by:   hedonglin
- * @Last Modified time: 2017-09-22 15:35:17
+ * @Last Modified time: 2017-09-23 12:57:34
  */
 
 // 技巧1
@@ -72,6 +72,7 @@ var UglifyJSPlugin         = require('uglifyjs-webpack-plugin'); //压缩js，�
 var R = path.resolve(__dirname); //根目录，webpack.config.js所在文件夹
 var S = path.resolve(R, 'src'); //入口文件夹
 var D = path.resolve(R, 'dist'); //出口文件夹
+var M = path.resolve(R, 'node_modules');//模块位置；
 
 
 // 常规配置
@@ -132,6 +133,14 @@ if (isDev) {
     var fontHash = '?v=[hash:8]';
     var imgHash  = '?v=[hash:8]';
     var mapHash  = '?v=[chunkhash:8]';
+    // css多重功能配置
+    // 目前采用scss开发，所以precss和cssnext以及cssgrace都不需要；postcssclean在打包的时候使用
+    var cssConfig = {
+        plugins: [/*precss, cssnext, cssgrace,postcssclean,*/ autoprefixer({
+            browsers: [cssBrowsers], //前缀兼容
+            remove: true //自动清除过时前缀
+        })]
+    };
 } else {
     // 配置哈希值
     var jsHash   = '?v=[chunkhash:8]';
@@ -139,18 +148,16 @@ if (isDev) {
     var fontHash = '?v=[hash:8]';
     var imgHash  = '?v=[hash:8]';
     var mapHash  = '?v=[chunkhash:8]';
+    var cssConfig = {
+        plugins: [/*precss, cssnext, cssgrace, */postcssclean, autoprefixer({
+            browsers: [cssBrowsers], //前缀兼容
+            remove: true //自动清除过时前缀
+        })]
+    };
 }
 
 
-// css多重功能配置
-// --------------------------------------------------
 
-var cssConfig = {
-    plugins: [precss, cssnext, /*cssgrace, */postcssclean, autoprefixer({
-        browsers: [cssBrowsers], //前缀兼容
-        remove: true //自动清除过时前缀
-    })]
-};
 
 // 进程池数量
 var happyThreadPool = happyPack.ThreadPool({
@@ -169,7 +176,9 @@ var entryJs   = getEntry('./src/**/*.js'); //获取所有的js路径(对象)，�
 // --------------------------------------------------
 
 var configPlugins = [
+
     // 经过测试设置了happyPack反而变慢了，项目多的时候看看是否有变化
+
     // new happyPack({
     //     id: 'js',
     //     threadPool: happyThreadPool,
@@ -242,6 +251,8 @@ var config = {
     resolve: {
         // 省去入口文件中的后缀名，入口文件类型,我们通过js导入所有类型文件；
         extensions: ['.js'],
+        // 缩小node_modules搜索范围；
+        modules: [M],
         // 别名，随时可以调用
         // 将模块名和路径对应起来,在js中直接通过require('模块名'),就可以把文件加载进去了
         alias: { //可以全局require到任何文件中，也可以用于入口文件
@@ -274,8 +285,9 @@ var config = {
         }, {
             // @see https://github.com/babel/babel-loader
             test: /\.js$/,
+            include: S,//缩小搜索范围(必须)
             use: [{
-                loader: 'babel-loader?id=js',
+                loader: 'babel-loader?id=js&cacheDirectory=true',
                 options: {
                     presets: ['latest'] //按照最新的ES6语法规则去转换,配合.babelrc一起使用才不报错；
                 }
@@ -377,9 +389,14 @@ if (isDev) {
 } else {
     // 压缩js,
     configPlugins.push(new webpack.optimize.UglifyJsPlugin({
+        beautify: false,// 最紧凑的输出
+        comments: false,// 删除所有的注释
         sourceMap: false, //默认为false
         compress: {
             warnings: false, //默认为 false
+            drop_console: true,// 删除所有的 `console` 语句// 还可以兼容ie浏览器
+            collapse_vars: true,// 内嵌定义了但是只用到一次的变量
+            reduce_vars: true,// 提取出出现多次但是没有定义成变量去引用的静态值
         }
     }));
 
